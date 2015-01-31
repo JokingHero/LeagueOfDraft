@@ -2,12 +2,12 @@
 
 module.exports = {
 	db: {
-		uri: process.env.MONGOHQ_URL || 'mongodb://heroku_app33624925:83992tj9u8p97qaibj3ka6b65v@ds039421.mongolab.com:39421/heroku_app33624925' || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mean',
+		uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mean',
 		options: {
 			user: '',
 			pass: ''
 		}
-	},
+	}, 
 	log: {
 		// Can specify one of 'combined', 'common', 'dev', 'short', 'tiny'
 		format: 'combined',

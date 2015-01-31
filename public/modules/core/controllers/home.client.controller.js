@@ -402,5 +402,9 @@ angular.module('core').controller('HomeController', ['$scope', '$filter', 'Authe
             var order = $filter('orderBy')($scope.champions, 'name');
             return $filter('filter')(order, $scope.search.name);
         };
+
+        $scope.rejectChampion = function(e, ui) {
+            console.log(ui);
+        };
     }
 ]);

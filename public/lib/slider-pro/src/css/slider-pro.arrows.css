@@ -1,0 +1,143 @@
+/* Arrows
+--------------------------------------------------*/
+.sp-arrows {
+	position: absolute;
+}
+
+.sp-fade-arrows {
+	opacity: 0;
+	-webkit-transition: opacity 0.5s;
+	transition: opacity 0.5s;
+}
+
+.sp-slides-container:hover .sp-fade-arrows {
+	opacity: 1;
+}
+
+.sp-horizontal .sp-arrows {
+	width: 100%;
+	left: 0;
+	top: 50%;
+	margin-top: -15px;
+}
+
+.sp-vertical .sp-arrows {
+	height: 100%;
+	left: 50%;
+	top: 0;
+	margin-left: -10px;
+}
+
+.sp-arrow {
+	position: absolute;
+	display: block;
+	width: 20px;
+	height: 30px;
+	cursor: pointer;
+}
+
+.sp-vertical .sp-arrow {
+	-webkit-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+
+.sp-horizontal .sp-previous-arrow {
+	left: 20px;
+}
+
+.sp-horizontal .sp-next-arrow {
+	right: 20px;
+}
+
+.sp-vertical .sp-previous-arrow {
+	top: 20px;
+}
+
+.sp-vertical .sp-next-arrow {
+	bottom: 20px;
+}
+
+.sp-previous-arrow:before,
+.sp-previous-arrow:after,
+.sp-next-arrow:before,
+.sp-next-arrow:after {
+	content: '';
+	position: absolute;
+	width: 50%;
+	height: 50%;
+	background-color: #FFF;
+}
+
+.sp-previous-arrow:before {
+	left: 30%;
+	top: 0;
+	-webkit-transform: skew(145deg, 0deg);
+	-ms-transform: skew(145deg, 0deg);
+	transform: skew(145deg, 0deg);
+}
+
+.sp-previous-arrow:after {
+	left: 30%;
+	top: 50%;
+	-webkit-transform: skew(-145deg, 0deg);
+	-ms-transform: skew(-145deg, 0deg);
+	transform: skew(-145deg, 0deg);
+}
+
+.sp-next-arrow:before {
+	right: 30%;
+	top: 0;
+	-webkit-transform: skew(35deg, 0deg);
+	-ms-transform: skew(35deg, 0deg);
+	transform: skew(35deg, 0deg);
+}
+
+.sp-next-arrow:after {
+	right: 30%;
+	top: 50%;
+	-webkit-transform: skew(-35deg, 0deg);
+	-ms-transform: skew(-35deg, 0deg);
+	transform: skew(-35deg, 0deg);
+}
+
+.ie8 .sp-arrow,
+.ie7 .sp-arrow {
+	width: 0;
+	height: 0;
+}
+
+.ie8 .sp-arrow:before,
+.ie8 .sp-arrow:after,
+.ie7 .sp-arrow:before,
+.ie7 .sp-arrow:after {
+	content: none;
+}
+
+.ie8.sp-horizontal .sp-previous-arrow,
+.ie7.sp-horizontal .sp-previous-arrow {
+	border-right: 20px solid #FFF;
+	border-top: 20px solid transparent;
+	border-bottom: 20px solid transparent;
+}
+
+.ie8.sp-horizontal .sp-next-arrow,
+.ie7.sp-horizontal .sp-next-arrow {
+	border-left: 20px solid #FFF;
+	border-top: 20px solid transparent;
+	border-bottom: 20px solid transparent;
+}
+
+.ie8.sp-vertical .sp-previous-arrow,
+.ie7.sp-vertical .sp-previous-arrow {
+	border-bottom: 20px solid #FFF;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+}
+
+.ie8.sp-vertical .sp-next-arrow,
+.ie7.sp-vertical .sp-next-arrow {
+	border-top: 20px solid #FFF;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+}

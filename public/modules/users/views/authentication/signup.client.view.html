@@ -1,0 +1,27 @@
+<div class="modal-header">
+    <h3 class="text-center">Sign Up and Save some settings!</h3>
+</div>
+<div class="modal-body">
+    <form name="userForm" data-ng-submit="signup()" class="signin form-horizontal" novalidate autocomplete="off">
+        <fieldset>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="Email *">
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username *">
+            </div>
+            <div class="form-group">
+                <label for="password" >Password</label>
+                <input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password *">
+            </div>
+            <div class="text-center form-group">
+                <button type="submit" class="btn btn-large action-button-green">Sign up</button>
+            </div>
+            <div data-ng-show="error" class="text-center text-danger">
+                <strong data-ng-bind="error"></strong>
+            </div>
+        </fieldset>
+    </form>
+</div>

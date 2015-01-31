@@ -1,0 +1,27 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/jokinghero/opt/bin/node',
+1 verbose cli   '/home/jokinghero/opt/bin/npm',
+1 verbose cli   'install' ]
+2 info using npm@1.4.28
+3 info using node@v0.13.0-pre
+4 error install Couldn't read dependencies
+5 error Error: Invalid name: "league of draft"
+5 error     at ensureValidName (/home/jokinghero/opt/lib/node_modules/npm/node_modules/read-package-json/node_modules/normalize-package-data/lib/fixer.js:315:15)
+5 error     at Object.module.exports.fixNameField (/home/jokinghero/opt/lib/node_modules/npm/node_modules/read-package-json/node_modules/normalize-package-data/lib/fixer.js:204:5)
+5 error     at /home/jokinghero/opt/lib/node_modules/npm/node_modules/read-package-json/node_modules/normalize-package-data/lib/normalize.js:30:38
+5 error     at Array.forEach (native)
+5 error     at normalize (/home/jokinghero/opt/lib/node_modules/npm/node_modules/read-package-json/node_modules/normalize-package-data/lib/normalize.js:29:15)
+5 error     at final (/home/jokinghero/opt/lib/node_modules/npm/node_modules/read-package-json/read-json.js:342:33)
+5 error     at then (/home/jokinghero/opt/lib/node_modules/npm/node_modules/read-package-json/read-json.js:126:33)
+5 error     at /home/jokinghero/opt/lib/node_modules/npm/node_modules/read-package-json/read-json.js:331:40
+5 error     at evalmachine.<anonymous>:295:14
+5 error     at /home/jokinghero/opt/lib/node_modules/npm/node_modules/graceful-fs/graceful-fs.js:102:5
+6 error If you need help, you may report this *entire* log,
+6 error including the npm and node versions, at:
+6 error     <http://github.com/npm/npm/issues>
+7 error System Linux 3.13.0-44-generic
+8 error command "/home/jokinghero/opt/bin/node" "/home/jokinghero/opt/bin/npm" "install"
+9 error cwd /home/jokinghero/championPick
+10 error node -v v0.13.0-pre
+11 error npm -v 1.4.28
+12 verbose exit [ 1, true ]

@@ -1,0 +1,50 @@
+@media (min-width: 992px) {
+    .nav-users {
+        position: fixed;
+    }
+}
+.remove-account-container {
+    display: inline-block;
+    position: relative;
+}
+.btn-remove-account {
+    top: 10px;
+    right: 10px;
+    position: absolute;
+}
+
+.ngdialog.ngdialog-theme-plain .ngdialog-content {
+    border-radius: 5px;
+}
+.form-control {
+    height: initial;
+    padding: 12px 20px;
+    font-size: 18px;
+    line-height: 1.42857143;
+    border-radius: 0;
+}
+.form-control.action-button:hover, .form-control.action-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+}
+.action-button-green {
+    width: 100px;
+    background: #27AE60;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 1px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+    font-size: 18px;
+}
+.action-button-green:hover, .action-button-green:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+}
+.right-inner-addon i {
+    padding: 12px 12px;
+}
+.ng-valid.ng-dirty {
+    border-color: #27AE60;
+    outline-color: #27AE60;
+}

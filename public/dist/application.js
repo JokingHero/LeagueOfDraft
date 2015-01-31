@@ -4,7 +4,7 @@
 var ApplicationConfiguration = (function() {
 	// Init module configuration options
 	var applicationModuleName = 'mean';
-	var applicationModuleVendorDependencies = ['ngResource', 'ngAnimate', 'ui.router', 'ui.bootstrap', 'ui.utils'];
+	var applicationModuleVendorDependencies = ['ngResource', 'ngAnimate', 'ui.router', 'ui.bootstrap', 'ui.utils', 'ngDragDrop', 'ngDialog'];
 
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {
@@ -44,123 +44,11 @@ angular.element(document).ready(function() {
 'use strict';
 
 // Use Applicaion configuration module to register a new module
-ApplicationConfiguration.registerModule('articles');
-'use strict';
-
-// Use Applicaion configuration module to register a new module
 ApplicationConfiguration.registerModule('core');
 'use strict';
 
-// Use Applicaion configuration module to register a new module
+// Use Application configuration module to register a new module
 ApplicationConfiguration.registerModule('users');
-'use strict';
-
-// Configuring the Articles module
-angular.module('articles').run(['Menus',
-	function(Menus) {
-		// Set top bar menu items
-		Menus.addMenuItem('topbar', 'Articles', 'articles', 'dropdown', '/articles(/create)?');
-		Menus.addSubMenuItem('topbar', 'articles', 'List Articles', 'articles');
-		Menus.addSubMenuItem('topbar', 'articles', 'New Article', 'articles/create');
-	}
-]);
-'use strict';
-
-// Setting up route
-angular.module('articles').config(['$stateProvider',
-	function($stateProvider) {
-		// Articles state routing
-		$stateProvider.
-		state('listArticles', {
-			url: '/articles',
-			templateUrl: 'modules/articles/views/list-articles.client.view.html'
-		}).
-		state('createArticle', {
-			url: '/articles/create',
-			templateUrl: 'modules/articles/views/create-article.client.view.html'
-		}).
-		state('viewArticle', {
-			url: '/articles/:articleId',
-			templateUrl: 'modules/articles/views/view-article.client.view.html'
-		}).
-		state('editArticle', {
-			url: '/articles/:articleId/edit',
-			templateUrl: 'modules/articles/views/edit-article.client.view.html'
-		});
-	}
-]);
-'use strict';
-
-angular.module('articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Articles',
-	function($scope, $stateParams, $location, Authentication, Articles) {
-		$scope.authentication = Authentication;
-
-		$scope.create = function() {
-			var article = new Articles({
-				title: this.title,
-				content: this.content
-			});
-			article.$save(function(response) {
-				$location.path('articles/' + response._id);
-
-				$scope.title = '';
-				$scope.content = '';
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
-
-		$scope.remove = function(article) {
-			if (article) {
-				article.$remove();
-
-				for (var i in $scope.articles) {
-					if ($scope.articles[i] === article) {
-						$scope.articles.splice(i, 1);
-					}
-				}
-			} else {
-				$scope.article.$remove(function() {
-					$location.path('articles');
-				});
-			}
-		};
-
-		$scope.update = function() {
-			var article = $scope.article;
-
-			article.$update(function() {
-				$location.path('articles/' + article._id);
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
-
-		$scope.find = function() {
-			$scope.articles = Articles.query();
-		};
-
-		$scope.findOne = function() {
-			$scope.article = Articles.get({
-				articleId: $stateParams.articleId
-			});
-		};
-	}
-]);
-'use strict';
-
-//Articles service used for communicating with the articles REST endpoints
-angular.module('articles').factory('Articles', ['$resource',
-	function($resource) {
-		return $resource('articles/:articleId', {
-			articleId: '@_id'
-		}, {
-			update: {
-				method: 'PUT'
-			}
-		});
-	}
-]);
 'use strict';
 
 // Setting up route
@@ -179,31 +67,455 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 ]);
 'use strict';
 
-angular.module('core').controller('HeaderController', ['$scope', 'Authentication', 'Menus',
-	function($scope, Authentication, Menus) {
-		$scope.authentication = Authentication;
-		$scope.isCollapsed = false;
-		$scope.menu = Menus.getMenu('topbar');
+angular.module('core').controller('HeaderController', ['$scope', 'Authentication', 'Menus', 'ngDialog',
+    function($scope, Authentication, Menus, ngDialog) {
+        $scope.authentication = Authentication;
+        $scope.isCollapsed = false;
+        $scope.menu = Menus.getMenu('topbar');
 
-		$scope.toggleCollapsibleMenu = function() {
-			$scope.isCollapsed = !$scope.isCollapsed;
-		};
+        $scope.toggleCollapsibleMenu = function() {
+            $scope.isCollapsed = !$scope.isCollapsed;
+        };
 
-		// Collapsing the menu after navigation
-		$scope.$on('$stateChangeSuccess', function() {
-			$scope.isCollapsed = false;
-		});
-	}
+        // Collapsing the menu after navigation
+        $scope.$on('$stateChangeSuccess', function() {
+            $scope.isCollapsed = false;
+        });
+
+        $scope.signInModal = function() {
+            ngDialog.open({
+                template: 'modules/users/views/authentication/signin.client.view.html',
+                className: 'ngdialog-theme-plain',
+                controller: 'AuthenticationController'
+            });
+        };
+
+        $scope.signUpModal = function() {
+            ngDialog.open({
+                template: 'modules/users/views/authentication/signup.client.view.html',
+                className: 'ngdialog-theme-plain',
+                controller: 'AuthenticationController'
+            });
+        };
+    }
 ]);
+
 'use strict';
 
 
-angular.module('core').controller('HomeController', ['$scope', 'Authentication',
-	function($scope, Authentication) {
-		// This provides Authentication context.
-		$scope.authentication = Authentication;
-	}
+angular.module('core').controller('HomeController', ['$scope', '$filter', 'Authentication', '$modal',
+    function($scope, $filter, Authentication, $modal) {
+        // This provides Authentication context.
+        $scope.authentication = Authentication;
+
+        $scope.search = {
+            'name': ''
+        };
+
+        $scope.rejects = [{}];
+
+        $scope.champions = [{
+            'name': 'aatrox',
+            'id': '266'
+        }, {
+            'name': 'ahri',
+            'id': '103'
+        }, {
+            'name': 'akali',
+            'id': '84'
+        }, {
+            'name': 'alistar',
+            'id': '12'
+        }, {
+            'name': 'amumu',
+            'id': '32'
+        }, {
+            'name': 'anivia',
+            'id': '34'
+        }, {
+            'name': 'annie',
+            'id': '1'
+        }, {
+            'name': 'ashe',
+            'id': '22'
+        }, {
+            'name': 'azir',
+            'id': '268'
+        }, {
+            'name': 'blitzcrank',
+            'id': '53'
+        }, {
+            'name': 'brand',
+            'id': '63'
+        }, {
+            'name': 'braum',
+            'id': '201'
+        }, {
+            'name': 'caitlyn',
+            'id': '51'
+        }, {
+            'name': 'cassiopeia',
+            'id': '69'
+        }, {
+            'name': 'chogath',
+            'id': '31'
+        }, {
+            'name': 'corki',
+            'id': '42'
+        }, {
+            'name': 'darius',
+            'id': '122'
+        }, {
+            'name': 'diana',
+            'id': '131'
+        }, {
+            'name': 'draven',
+            'id': '119'
+        }, {
+            'name': 'drmundo',
+            'id': '36'
+        }, {
+            'name': 'elise',
+            'id': '60'
+        }, {
+            'name': 'evelynn',
+            'id': '28'
+        }, {
+            'name': 'ezreal',
+            'id': '81'
+        }, {
+            'name': 'fiddlesticks',
+            'id': '9'
+        }, {
+            'name': 'fiora',
+            'id': '114'
+        }, {
+            'name': 'fizz',
+            'id': '105'
+        }, {
+            'name': 'galio',
+            'id': '3'
+        }, {
+            'name': 'gangplank',
+            'id': '41'
+        }, {
+            'name': 'garen',
+            'id': '86'
+        }, {
+            'name': 'gnar',
+            'id': '150'
+        }, {
+            'name': 'gragas',
+            'id': '79'
+        }, {
+            'name': 'graves',
+            'id': '104'
+        }, {
+            'name': 'hecarim',
+            'id': '120'
+        }, {
+            'name': 'heimerdinger',
+            'id': '74'
+        }, {
+            'name': 'irelia',
+            'id': '39'
+        }, {
+            'name': 'janna',
+            'id': '40'
+        }, {
+            'name': 'jarvan',
+            'id': '59'
+        }, {
+            'name': 'jax',
+            'id': '24'
+        }, {
+            'name': 'jayce',
+            'id': '126'
+        }, {
+            'name': 'jinx',
+            'id': '222'
+        }, {
+            'name': 'kalista',
+            'id': '429'
+        }, {
+            'name': 'karma',
+            'id': '43'
+        }, {
+            'name': 'karthus',
+            'id': '30'
+        }, {
+            'name': 'kassadin',
+            'id': '38'
+        }, {
+            'name': 'katarina',
+            'id': '55'
+        }, {
+            'name': 'kayle',
+            'id': '10'
+        }, {
+            'name': 'kennen',
+            'id': '85'
+        }, {
+            'name': 'khazix',
+            'id': '121'
+        }, {
+            'name': 'kogmav',
+            'id': '96'
+        }, {
+            'name': 'leblanc',
+            'id': '7'
+        }, {
+            'name': 'leesin',
+            'id': '64'
+        }, {
+            'name': 'leona',
+            'id': '89'
+        }, {
+            'name': 'lissandra',
+            'id': '127'
+        }, {
+            'name': 'lucian',
+            'id': '236'
+        }, {
+            'name': 'lulu',
+            'id': '117'
+        }, {
+            'name': 'lux',
+            'id': '99'
+        }, {
+            'name': 'malphite',
+            'id': '54'
+        }, {
+            'name': 'malzahar',
+            'id': '90'
+        }, {
+            'name': 'maokai',
+            'id': '57'
+        }, {
+            'name': 'masteryi',
+            'id': '11'
+        }, {
+            'name': 'missfortune',
+            'id': '21'
+        }, {
+            'name': 'mordekaiser',
+            'id': '82'
+        }, {
+            'name': 'morgana',
+            'id': '25'
+        }, {
+            'name': 'nami',
+            'id': '267'
+        }, {
+            'name': 'nasus',
+            'id': '75'
+        }, {
+            'name': 'nautilus',
+            'id': '111'
+        }, {
+            'name': 'nidalee',
+            'id': '76'
+        }, {
+            'name': 'nocturne',
+            'id': '56'
+        }, {
+            'name': 'nunu',
+            'id': '20'
+        }, {
+            'name': 'olaf',
+            'id': '2'
+        }, {
+            'name': 'orianna',
+            'id': '61'
+        }, {
+            'name': 'pantheon',
+            'id': '80'
+        }, {
+            'name': 'poppy',
+            'id': '78'
+        }, {
+            'name': 'quinn',
+            'id': '133'
+        }, {
+            'name': 'rammus',
+            'id': '33'
+        }, {
+            'name': 'reksai',
+            'id': '421'
+        }, {
+            'name': 'renekton',
+            'id': '58'
+        }, {
+            'name': 'rengar',
+            'id': '107'
+        }, {
+            'name': 'riven',
+            'id': '92'
+        }, {
+            'name': 'rumble',
+            'id': '68'
+        }, {
+            'name': 'ryze',
+            'id': '13'
+        }, {
+            'name': 'sejuani',
+            'id': '113'
+        }, {
+            'name': 'shaco',
+            'id': '35'
+        }, {
+            'name': 'shen',
+            'id': '98'
+        }, {
+            'name': 'shyvana',
+            'id': '102'
+        }, {
+            'name': 'singed',
+            'id': '27'
+        }, {
+            'name': 'sion',
+            'id': '14'
+        }, {
+            'name': 'sivir',
+            'id': '15'
+        }, {
+            'name': 'skarner',
+            'id': '72'
+        }, {
+            'name': 'sona',
+            'id': '37'
+        }, {
+            'name': 'soraka',
+            'id': '16'
+        }, {
+            'name': 'swain',
+            'id': '50'
+        }, {
+            'name': 'syndra',
+            'id': '134'
+        }, {
+            'name': 'talon',
+            'id': '91'
+        }, {
+            'name': 'tarick',
+            'id': '44'
+        }, {
+            'name': 'teemo',
+            'id': '17'
+        }, {
+            'name': 'thresh',
+            'id': '412'
+        }, {
+            'name': 'tristana',
+            'id': '18'
+        }, {
+            'name': 'trundle',
+            'id': '48'
+        }, {
+            'name': 'tryndamere',
+            'id': '23'
+        }, {
+            'name': 'twistedfate',
+            'id': '4'
+        }, {
+            'name': 'twitch',
+            'id': '29'
+        }, {
+            'name': 'udyr',
+            'id': '77'
+        }, {
+            'name': 'urgot',
+            'id': '6'
+        }, {
+            'name': 'varus',
+            'id': '110'
+        }, {
+            'name': 'vayne',
+            'id': '67'
+        }, {
+            'name': 'veigar',
+            'id': '45'
+        }, {
+            'name': 'velkoz',
+            'id': '161'
+        }, {
+            'name': 'vi',
+            'id': '254'
+        }, {
+            'name': 'viktor',
+            'id': '112'
+        }, {
+            'name': 'vladimir',
+            'id': '8'
+        }, {
+            'name': 'volibear',
+            'id': '106'
+        }, {
+            'name': 'warwick',
+            'id': '19'
+        }, {
+            'name': 'wukong',
+            'id': '62'
+        }, {
+            'name': 'xerath',
+            'id': '101'
+        }, {
+            'name': 'xinzhao',
+            'id': '5'
+        }, {
+            'name': 'yasuo',
+            'id': '157'
+        }, {
+            'name': 'yorick',
+            'id': '83'
+        }, {
+            'name': 'zac',
+            'id': '154'
+        }, {
+            'name': 'zed',
+            'id': '238'
+        }, {
+            'name': 'ziggs',
+            'id': '115'
+        }, {
+            'name': 'zilean',
+            'id': '26'
+        }, {
+            'name': 'zyra',
+            'id': '143'
+        }];
+        $scope.purple_ban1 = [{}];
+        $scope.purple_ban2 = [{}];
+        $scope.purple_ban3 = [{}];
+        $scope.purple2 = [{}];
+        $scope.purple3 = [{}];
+        $scope.purple4 = [{}];
+        $scope.purple5 = [{}];
+        $scope.blue_ban1 = [{}];
+        $scope.blue_ban2 = [{}];
+        $scope.blue_ban3 = [{}];
+        $scope.blue1 = [{}];
+        $scope.blue2 = [{}];
+        $scope.blue3 = [{}];
+        $scope.blue4 = [{}];
+        $scope.blue5 = [{}];
+
+        $scope.filterIt = function() {
+            var order = $filter('orderBy')($scope.champions, 'name');
+            return $filter('filter')(order, $scope.search.name);
+        };
+    }
 ]);
+
+'use strict';
+
+angular.module('core').directive('scrollfix', ["$window", function($window) {
+    return function(scope, element, attrs) {
+
+        
+    };
+}]);
+
 'use strict';
 
 //Menu service used for managing  menus
@@ -415,18 +727,6 @@ angular.module('users').config(['$stateProvider',
 			url: '/settings/password',
 			templateUrl: 'modules/users/views/settings/change-password.client.view.html'
 		}).
-		state('signup', {
-			url: '/signup',
-			templateUrl: 'modules/users/views/authentication/signup.client.view.html'
-		}).
-		state('signin', {
-			url: '/signin',
-			templateUrl: 'modules/users/views/authentication/signin.client.view.html'
-		}).
-		state('forgot', {
-			url: '/password/forgot',
-			templateUrl: 'modules/users/views/password/forgot-password.client.view.html'
-		}).
 		state('reset-invalid', {
 			url: '/password/reset/invalid',
 			templateUrl: 'modules/users/views/password/reset-password-invalid.client.view.html'
@@ -443,38 +743,51 @@ angular.module('users').config(['$stateProvider',
 ]);
 'use strict';
 
-angular.module('users').controller('AuthenticationController', ['$scope', '$http', '$location', 'Authentication',
-	function($scope, $http, $location, Authentication) {
-		$scope.authentication = Authentication;
+angular.module('users').controller('AuthenticationController', ['$scope', '$http', '$location', 'Authentication', 'ngDialog',
+    function($scope, $http, $location, Authentication, ngDialog) {
+        $scope.authentication = Authentication;
 
-		// If user is signed in then redirect back home
-		if ($scope.authentication.user) $location.path('/');
+        // If user is signed in then redirect back home
+        if ($scope.authentication.user) $location.path('/');
 
-		$scope.signup = function() {
-			$http.post('/auth/signup', $scope.credentials).success(function(response) {
-				// If successful we assign the response to the global user model
-				$scope.authentication.user = response;
+        $scope.signup = function() {
+            $http.post('/auth/signup', $scope.credentials).success(function(response) {
+                // If successful we assign the response to the global user model
+                $scope.authentication.user = response;
+                $scope.closeThisDialog();
+                // And redirect to the index page
+                $location.path('/settings/profile');
+            }).error(function(response) {
+                $scope.error = response.message;
+            });
+        };
 
-				// And redirect to the index page
-				$location.path('/');
-			}).error(function(response) {
-				$scope.error = response.message;
-			});
-		};
+        $scope.signin = function() {
+            $http.post('/auth/signin', $scope.credentials).success(function(response) {
+                // If successful we assign the response to the global user model
+                $scope.authentication.user = response;
+                $scope.closeThisDialog();
+                // And redirect to the index page
+                $location.path('/');
+            }).error(function(response) {
+                $scope.error = response.message;
+            });
+        };
 
-		$scope.signin = function() {
-			$http.post('/auth/signin', $scope.credentials).success(function(response) {
-				// If successful we assign the response to the global user model
-				$scope.authentication.user = response;
 
-				// And redirect to the index page
-				$location.path('/');
-			}).error(function(response) {
-				$scope.error = response.message;
-			});
-		};
-	}
+        $scope.forgotPassword = function() {
+            if (typeof $scope.closeThisDialog === "function") {
+                $scope.closeThisDialog();
+            }
+            ngDialog.open({
+                template: 'modules/users/views/password/forgot-password.client.view.html',
+                className: 'ngdialog-theme-plain',
+                controller: 'PasswordController'
+            });
+        };
+    }
 ]);
+
 'use strict';
 
 angular.module('users').controller('PasswordController', ['$scope', '$stateParams', '$http', '$location', 'Authentication',
@@ -522,74 +835,44 @@ angular.module('users').controller('PasswordController', ['$scope', '$stateParam
 'use strict';
 
 angular.module('users').controller('SettingsController', ['$scope', '$http', '$location', 'Users', 'Authentication',
-	function($scope, $http, $location, Users, Authentication) {
-		$scope.user = Authentication.user;
+    function($scope, $http, $location, Users, Authentication) {
+        $scope.user = Authentication.user;
 
-		// If user is not signed in then redirect back home
-		if (!$scope.user) $location.path('/');
+        // If user is not signed in then redirect back home
+        if (!$scope.user) $location.path('/');
 
-		// Check if there are additional accounts 
-		$scope.hasConnectedAdditionalSocialAccounts = function(provider) {
-			for (var i in $scope.user.additionalProvidersData) {
-				return true;
-			}
+        // Update a user profile
+        $scope.updateUserProfile = function(isValid) {
+            if (isValid) {
+                $scope.success = $scope.error = null;
+                var user = new Users($scope.user);
 
-			return false;
-		};
+                user.$update(function(response) {
+                    $scope.success = true;
+                    Authentication.user = response;
+                }, function(response) {
+                    $scope.error = response.data.message;
+                });
+            } else {
+                $scope.submitted = true;
+            }
+        };
 
-		// Check if provider is already in use with current user
-		$scope.isConnectedSocialAccount = function(provider) {
-			return $scope.user.provider === provider || ($scope.user.additionalProvidersData && $scope.user.additionalProvidersData[provider]);
-		};
+        // Change user password
+        $scope.changeUserPassword = function() {
+            $scope.success = $scope.error = null;
 
-		// Remove a user social account
-		$scope.removeUserSocialAccount = function(provider) {
-			$scope.success = $scope.error = null;
-
-			$http.delete('/users/accounts', {
-				params: {
-					provider: provider
-				}
-			}).success(function(response) {
-				// If successful show success message and clear form
-				$scope.success = true;
-				$scope.user = Authentication.user = response;
-			}).error(function(response) {
-				$scope.error = response.message;
-			});
-		};
-
-		// Update a user profile
-		$scope.updateUserProfile = function(isValid) {
-			if (isValid) {
-				$scope.success = $scope.error = null;
-				var user = new Users($scope.user);
-
-				user.$update(function(response) {
-					$scope.success = true;
-					Authentication.user = response;
-				}, function(response) {
-					$scope.error = response.data.message;
-				});
-			} else {
-				$scope.submitted = true;
-			}
-		};
-
-		// Change user password
-		$scope.changeUserPassword = function() {
-			$scope.success = $scope.error = null;
-
-			$http.post('/users/password', $scope.passwordDetails).success(function(response) {
-				// If successful show success message and clear form
-				$scope.success = true;
-				$scope.passwordDetails = null;
-			}).error(function(response) {
-				$scope.error = response.message;
-			});
-		};
-	}
+            $http.post('/users/password', $scope.passwordDetails).success(function(response) {
+                // If successful show success message and clear form
+                $scope.success = true;
+                $scope.passwordDetails = null;
+            }).error(function(response) {
+                $scope.error = response.message;
+            });
+        };
+    }
 ]);
+
 'use strict';
 
 // Authentication service for user variables

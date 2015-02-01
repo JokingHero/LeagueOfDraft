@@ -103,16 +103,14 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 'use strict';
 
 
-angular.module('core').controller('HomeController', ['$scope', '$filter', 'Authentication', '$modal',
-    function($scope, $filter, Authentication, $modal) {
+angular.module('core').controller('HomeController', ['$scope', '$http', '$filter', 'Authentication', '$modal',
+    function($scope, $http, $filter, Authentication, $modal) {
         // This provides Authentication context.
         $scope.authentication = Authentication;
 
         $scope.search = {
             'name': ''
         };
-
-        $scope.rejects = [{}];
 
         $scope.champions = [{
             'name': 'aatrox',
@@ -500,6 +498,29 @@ angular.module('core').controller('HomeController', ['$scope', '$filter', 'Authe
         $scope.blue4 = [{}];
         $scope.blue5 = [{}];
 
+        $scope.$watch('authentication.user', function() {
+            $scope.gameType = $scope.authentication.user.type || '5sr';
+            $scope.gameRole = $scope.authentication.user.role || 'Unknown';
+            $scope.gameRegion = $scope.authentication.user.region || 'Unknown';
+            $scope.gameLeague = $scope.authentication.user.league || 'Unknown';
+            $scope.gameSummoner = $scope.authentication.user.summoner || 'Unknown';
+        });
+
+        $scope.propositions = [];
+        $http.get('/predictions/current').success(function(response) {
+            $scope.propositions = response;
+        }).error(function(response) {
+            console.log(response);
+        });
+
+        $scope.getPropositions = function() {
+            $http.post('/predictions/specific', $scope.settingsDetails).success(function(response) {
+                $scope.propositions = response;
+            }).error(function(response) {
+                console.log(response);
+            });
+        };
+
         $scope.filterIt = function() {
             var order = $filter('orderBy')($scope.champions, 'name');
             return $filter('filter')(order, $scope.search.name);
@@ -776,7 +797,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 
 
         $scope.forgotPassword = function() {
-            if (typeof $scope.closeThisDialog === "function") {
+            if (typeof $scope.closeThisDialog === 'function') {
                 $scope.closeThisDialog();
             }
             ngDialog.open({

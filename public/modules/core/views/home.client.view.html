@@ -121,7 +121,7 @@
             <div id="positionControls">
                 <div class="row">
                     <div class="col-lg-10 col-lg-offset-2 col-sm-8 col-sm-offset-3 col-xs-8 col-xs-offset-3 text-center">
-                        <button class="btn btn-success btn-large hvr-icon-bob">Start</button>
+                        <button class="btn btn-success btn-large hvr-icon-bob" ng-click="getPropositions()">Start</button>
                     </div>
                 </div>
                 <div class="row">
@@ -142,7 +142,7 @@
                     </div>
                     <div class="col-xs-5">
                         <div class="championBox pull-left" style="position: relative;">
-                            <img  style="position: absolute;" width="56" height="56" ng-src="modules/core/img/positions/you.png" data-toggle="tooltip" data-original-title="You dont drop champions here - We will propose You champions!">
+                            <img style="position: absolute;" width="56" height="56" ng-src="modules/core/img/positions/you.png" data-toggle="tooltip" data-original-title="You dont drop champions here - We will propose You champions!">
                         </div>
                         <div class="championBox pull-left" style="position: relative;" ng-repeat="champion in purple_ban1" data-drop="true" ng-model='purple_ban1' jqyoui-droppable="{index: {{$index}}}">
                             <img style="position: absolute;" width="56" height="56" ng-src="modules/core/img/positions/ban.png">
@@ -152,9 +152,9 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-2 hidden-xs text-center" data-toggle="tooltip" data-original-title="Drop champion here to unselect him">
-                    <div data-drop="true" ng-model='champions' jqyoui-droppable="{}">
-                        <img src="modules/core/img/arrows/arrows.jpg">
-                    </div>
+                        <div data-drop="true" ng-model='champions' jqyoui-droppable="{}">
+                            <img src="modules/core/img/arrows/arrows.jpg">
+                        </div>
                     </div>
                     <div class="col-sm-5 col-sm-offset-0 col-xs-5 col-xs-offset-2">
                         <div class="championBox pull-right" style="position: relative;" ng-repeat="champion in blue2" data-drop="true" ng-model='blue2' jqyoui-droppable="{index: {{$index}}}">
@@ -230,62 +230,43 @@
             </div>
         </div>
         <div class="col-lg-4 col-md-6 col-xs-12">
-            <div class="champPopup">
+            <div class="champPopup" ng-repeat="proposition in propositions">
                 <div class="row">
                     <div class="col-lg-6 col-md-7 col-xs-3">
-                        <img src="modules/core/img/champions_load/ahri4.jpg" height="300px">
+                        <img ng-if="proposition.img" ng-src="modules/core/img/champions_load/{{proposition.img}}" height="300px" style="margin-left: 7px; margin-top: 15px;">
+                        <div ng-hide="!proposition.worksWell">
+                            <span class="propositionWorks"> Works well with: </span>
+                            <div class="row">
+                                <div class="col-lg-4" ng-repeat="well in proposition.worksWell">
+                                    <img width="50" height="50" alt="{{well}}" ng-if="well" ng-src="modules/core/img/champions/{{well}}.webp">
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-hide="!proposition.weakAgainst">
+                            <span class="propositionWorks"> Weak against:</span>
+                            <div class="row">
+                                <div class="col-lg-4" ng-repeat="weak in proposition.weakAgainst">
+                                    <img width="50" height="50" alt="{{weak}}" ng-if="weak" ng-src="modules/core/img/champions/{{weak}}.webp">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-lg-6 col-md-5 col-xs-9">
                         <h3>
-                            Ahri
-                            <span class="pull-right" style="margin-right: 30px; font-style: italic; color: #dddddd;">#1</span>
+                            {{proposition.name}}
+                            <span class="pull-right" style="margin-right: 30px; font-style: italic; color: #dddddd;">#{{proposition.order}}</span>
                         </h3>
                         <ul class="list-unstyled pull-left">
                             <li style="">Pros:</li>
                             <ul class="list-unstyled">
-                                <li>
-                                    <i class="fa fa-plus-circle" /> win rate 59%
-                                </li>
-                                <li>
-                                    <i class="fa fa-plus-circle" /> high scallability into lategame
+                                <li ng-repeat="pro in proposition.pros">
+                                    <i class="fa fa-plus-circle" />&nbsp;{{pro}}
                                 </li>
                             </ul>
                             <li style="margin-top: 10px;">Cons:</li>
                             <ul class="list-unstyled">
-                                <li>
-                                    <i class="fa fa-minus-circle" /> selfcounter
-                                </li>
-                            </ul>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="champPopup">
-                <div class="row">
-                    <div class="col-xs-6">
-                        <img src="modules/core/img/champions_load/dodge1.jpg" height="300px">
-                    </div>
-                    <div class="col-xs-6">
-                        <h3>Dodge
-                            <span class="pull-right" style="margin-right: 30px;">#2</span>
-                        </h3>
-                        <ul class="list-unstyled">
-                            <li>Pros:</li>
-                            <ul class="list-unstyled">
-                                <li>
-                                    <i class="fa fa-plus-circle" /> win rate 100%
-                                </li>
-                                <li>
-                                    <i class="fa fa-plus-circle" /> you don't lose
-                                </li>
-                                <li>
-                                    <i class="fa fa-plus-circle" /> you are on losing streak
-                                </li>
-                            </ul>
-                            <li style="margin-top: 10px;">Cons:</li>
-                            <ul class="list-unstyled">
-                                <li>
-                                    <i class="fa fa-minus-circle" />no cons
+                                <li ng-repeat="con in proposition.cons">
+                                    <i class="fa fa-minus-circle" />&nbsp;{{con}}
                                 </li>
                             </ul>
                         </ul>
@@ -297,7 +278,9 @@
 </section>
 <script type="text/javascript">
 jQuery(document).ready(function($) {
-    $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
+    $('[data-toggle="tooltip"]').tooltip({
+        'placement': 'top'
+    });
 
 
     var object = $('#positionControls');

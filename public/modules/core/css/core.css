@@ -389,5 +389,9 @@ body {
         float: right;
     }
 }
-
-
+.propositionWorks {
+    margin-left: 15px;
+    color: #9797fc;
+    font-weight: bold;
+    text-shadow: 0 2px black;
+}

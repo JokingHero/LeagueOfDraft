@@ -1,8 +1,8 @@
 'use strict';
 
 
-angular.module('core').controller('HomeController', ['$scope', '$filter', 'Authentication', '$modal',
-    function($scope, $filter, Authentication, $modal) {
+angular.module('core').controller('HomeController', ['$scope', '$http', '$filter', 'Authentication', '$modal',
+    function($scope, $http, $filter, Authentication, $modal) {
         // This provides Authentication context.
         $scope.authentication = Authentication;
 
@@ -403,6 +403,21 @@ angular.module('core').controller('HomeController', ['$scope', '$filter', 'Authe
             $scope.gameLeague = $scope.authentication.user.league || 'Unknown';
             $scope.gameSummoner = $scope.authentication.user.summoner || 'Unknown';
         });
+
+        $scope.propositions = [];
+        $http.get('/predictions/current').success(function(response) {
+            $scope.propositions = response;
+        }).error(function(response) {
+            console.log(response);
+        });
+
+        $scope.getPropositions = function() {
+            $http.post('/predictions/specific', $scope.settingsDetails).success(function(response) {
+                $scope.propositions = response;
+            }).error(function(response) {
+                console.log(response);
+            });
+        };
 
         $scope.filterIt = function() {
             var order = $filter('orderBy')($scope.champions, 'name');

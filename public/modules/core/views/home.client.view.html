@@ -51,7 +51,7 @@
         </div>
         <div class="col-md-3">
             <label for="type">Game type:</label>
-            <select class="form-control" id="type" data-toggle="tooltip" title="" data-original-title="Game type You want to analyze">
+            <select class="form-control" id="type" data-ng-model="gameType" data-toggle="tooltip" title="" data-original-title="Game type You want to analyze">
                 <option value="5sr">5v5 Summoners Rift</option>
                 <option value="3tt">3v3 Twisted Treeline</option>
                 <option value="5cs">5v5 Crystal Scar</option>
@@ -59,8 +59,8 @@
         </div>
         <div class="col-md-2">
             <label for="role">Your role:</label>
-            <select class="form-control" id="role" data-toggle="tooltip" title="" data-original-title="We will propose champions only for selected role">
-                <option value="unk">Unknown</option>
+            <select class="form-control" id="role" data-ng-model="gameRole" data-toggle="tooltip" title="" data-original-title="We will propose champions only for selected role">
+                <option value="Unknown">Unknown</option>
                 <option value="top">Top</option>
                 <option value="mid">Mid</option>
                 <option value="adc">AD carry</option>
@@ -70,8 +70,8 @@
         </div>
         <div class="col-md-2">
             <label for="region">Region:</label>
-            <select class="form-control" id="region" data-toggle="tooltip" title="" data-original-title="Narrow down analysis to the specific region">
-                <option value="UN">Unknown</option>
+            <select class="form-control" id="region" data-ng-model="gameRegion" data-toggle="tooltip" title="" data-original-title="Narrow down analysis to the specific region">
+                <option value="Unknown">Unknown</option>
                 <option value="NA">North America</option>
                 <option value="EUW">EU West</option>
                 <option value="EUNE">EU Nordic & East</option>
@@ -86,18 +86,19 @@
         </div>
         <div class="col-md-2">
             <label for="league">League:</label>
-            <select class="form-control" id="league" data-toggle="tooltip" title="" data-original-title="Narrow down analysis to the specific league - we will only consider games from that level">
-                <option value="UN">Unknown</option>
-                <option value="BRONZE">Bronze</option>
-                <option value="GOLD">Gold</option>
-                <option value="PLATINUM">Platinum</option>
-                <option value="DIAMOND">Diamond</option>
-                <option value="CHALLENGER">Challenger</option>
+            <select class="form-control" id="league" data-ng-model="gameLeague" data-toggle="tooltip" title="" data-original-title="Narrow down analysis to the specific league - we will only consider games from that level">
+                <option value="Unknown">Unknown</option>
+                <option value="Bronze">Bronze</option>
+                <option value="Gold">Gold</option>
+                <option value="Platinum">Platinum</option>
+                <option value="Diamond">Diamond</option>
+                <option value="Master">Master</option>
+                <option value="Challenger">Challenger</option>
             </select>
         </div>
         <div class="col-md-3">
             <label for="summoner">Summoner name:</label>
-            <input type="text" class="form-control" placeholder="Unknown" id="summoner" data-toggle="tooltip" data-original-title="We will consider Your performance on proposed champions">
+            <input type="text" class="form-control" placeholder="Unknown" id="summoner" data-ng-model="gameSummoner" data-toggle="tooltip" data-original-title="We will consider Your performance on proposed champions">
         </div>
     </div>
     <div class="row" style="margin-top:40px;">

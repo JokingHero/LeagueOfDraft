@@ -33,7 +33,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 
 
         $scope.forgotPassword = function() {
-            if (typeof $scope.closeThisDialog === "function") {
+            if (typeof $scope.closeThisDialog === 'function') {
                 $scope.closeThisDialog();
             }
             ngDialog.open({

@@ -10,8 +10,6 @@ angular.module('core').controller('HomeController', ['$scope', '$filter', 'Authe
             'name': ''
         };
 
-        $scope.rejects = [{}];
-
         $scope.champions = [{
             'name': 'aatrox',
             'id': '266'
@@ -397,6 +395,14 @@ angular.module('core').controller('HomeController', ['$scope', '$filter', 'Authe
         $scope.blue3 = [{}];
         $scope.blue4 = [{}];
         $scope.blue5 = [{}];
+
+        $scope.$watch('authentication.user', function() {
+            $scope.gameType = $scope.authentication.user.type || '5sr';
+            $scope.gameRole = $scope.authentication.user.role || 'Unknown';
+            $scope.gameRegion = $scope.authentication.user.region || 'Unknown';
+            $scope.gameLeague = $scope.authentication.user.league || 'Unknown';
+            $scope.gameSummoner = $scope.authentication.user.summoner || 'Unknown';
+        });
 
         $scope.filterIt = function() {
             var order = $filter('orderBy')($scope.champions, 'name');

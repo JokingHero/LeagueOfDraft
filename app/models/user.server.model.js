@@ -25,27 +25,30 @@ var validateLocalStrategyPassword = function(password) {
  * User Schema
  */
 var UserSchema = new Schema({
-    summoners: {
-        type: [{
-            type: String,
-            trim: true
-        }],
-        default: ['']
+    summoner: {
+        type: String,
+        trim: true,
+        default: 'Unknown'
     },
     region: {
         type: String,
         trim: true,
-        default: ''
+        default: 'Unknown'
     },
     role: {
         type: String,
         trim: true,
-        default: ''
+        default: 'Unknown'
     },
-    gametype: {
+    type: {
         type: String,
         trim: true,
-        default: ''
+        default: '5sr'
+    },
+    league: {
+        type: String,
+        trim: true,
+        default: 'Unknown'
     },
     email: {
         type: String,

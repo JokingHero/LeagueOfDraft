@@ -67,8 +67,16 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 ]);
 'use strict';
 
-angular.module('core').controller('FooterController', ['$scope', 'ngDialog',
-    function($scope, ngDialog) {
+angular.module('core').controller('FooterController', ['$scope', '$http', 'ngDialog',
+    function($scope, $http, ngDialog) {
+
+    	$scope.email = function() {
+            $http.post('/contact', $scope.data).success(function(response) {
+                $scope.success = response.message;
+            }).error(function(response) {
+                $scope.error = response.message;
+            });
+        };
 
         $scope.contactModal = function() {
             ngDialog.open({
@@ -79,6 +87,7 @@ angular.module('core').controller('FooterController', ['$scope', 'ngDialog',
         };
     }
 ]);
+
 'use strict';
 
 angular.module('core').controller('HeaderController', ['$scope', 'Authentication', 'Menus', 'ngDialog',

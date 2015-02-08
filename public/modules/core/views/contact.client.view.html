@@ -6,17 +6,20 @@
         <fieldset>
             <div class="form-group">
                 <label for="email">Your Email</label>
-                <input type="email" id="email" name="email" class="form-control" data-ng-model="email.email" placeholder="Email*">
+                <input type="email" id="email" name="email" class="form-control" data-ng-model="data.email" placeholder="Email*">
             </div>
             <div class="form-group">
                 <label for="text"></label>
-                <textarea rows="5" id="text" name="text" class="form-control" data-ng-model="email.text" placeholder="Message*" style="resize:vertical;"></textarea>
+                <textarea rows="5" id="text" name="text" class="form-control" data-ng-model="data.text" placeholder="Message*" style="resize:vertical;"></textarea>
             </div>
             <div class="text-center form-group">
                 <button type="submit" class="btn btn-large action-button-green">Send</button>
             </div>
             <div data-ng-show="error" class="text-center text-danger">
                 <strong data-ng-bind="error"></strong>
+            </div>
+            <div data-ng-show="success" class="text-center text-success">
+                <strong data-ng-bind="success"></strong>
             </div>
         </fieldset>
     </form>

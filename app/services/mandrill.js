@@ -1,6 +1,6 @@
 'use strict';
 
-var config = require('../../../config/config');
+var config = require('../../config/config');
 var mandrill = require('mandrill-api/mandrill');
 var mandrill_client = new mandrill.Mandrill(config.mandrill);
 exports.send = function(fromName, fromEmail, to, subject, text, tags) {

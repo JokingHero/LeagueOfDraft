@@ -67,6 +67,20 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 ]);
 'use strict';
 
+angular.module('core').controller('FooterController', ['$scope', 'ngDialog',
+    function($scope, ngDialog) {
+
+        $scope.contactModal = function() {
+            ngDialog.open({
+                template: 'modules/core/views/contact.client.view.html',
+                className: 'ngdialog-theme-plain',
+                controller: 'FooterController'
+            });
+        };
+    }
+]);
+'use strict';
+
 angular.module('core').controller('HeaderController', ['$scope', 'Authentication', 'Menus', 'ngDialog',
     function($scope, Authentication, Menus, ngDialog) {
         $scope.authentication = Authentication;

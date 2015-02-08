@@ -1,7 +1,11 @@
-<div class="container">
+<div class="container" data-ng-controller="FooterController">
     <div class="row">
         <div class="col-lg-12">
             <p>&#34;All League of Legends artwork is sole property of Riot Games, Inc. championPrime isn’t endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.&#34;</p>
+
+            <p style="font-family: Lato; font-size: 18px; font-weight: bold; cursor: pointer;">
+                <span ng-click="contactModal()">Contact <i class="fa fa-envelope"></i></span>
+            </p>
         </div>
         <div class="col-lg-12 text-center hidden-lg">
             <p class="text-center lato">Support project <i class="fa fa-heart-o"></i>

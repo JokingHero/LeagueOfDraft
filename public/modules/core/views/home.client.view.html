@@ -152,7 +152,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-2 hidden-xs text-center">
-                        <div data-drop="true" ng-model='champions' jqyoui-droppable="{}" style="padding-left: 30px;" >
+                        <div data-drop="true" ng-model='champions' jqyoui-droppable="{}" style="padding-left: 30px;">
                             <img src="modules/core/img/arrows/arrows.jpg" data-toggle="tooltip" data-original-title="Drop champion here to unselect">
                         </div>
                     </div>
@@ -232,9 +232,31 @@
         <div class="col-xs-12" style="margin-top:40px;">
             <div class="champPopup" ng-repeat="proposition in propositions">
                 <div class="row">
-                    <div class="col-lg-6 col-md-7 col-xs-3">
+                    <div class="col-lg-2 col-md-3 col-xs-3">
                         <img ng-if="proposition.img" ng-src="modules/core/img/champions_load/{{proposition.img}}" height="300px" style="margin-left: 7px; margin-top: 15px;">
-                        <div ng-hide="!proposition.worksWell">
+                    </div>
+
+                    <div class="col-lg-5 col-md-6 col-xs-6">
+                        <h3>
+                            {{proposition.name}}
+                        </h3>
+                        <ul class="list-unstyled pull-left">
+                            <li style="">Pros:</li>
+                            <ul class="list-unstyled" style="padding-left:25px;">
+                                <li ng-repeat="pro in proposition.pros">
+                                    <i class="fa fa-plus-circle" />&nbsp;{{pro}}
+                                </li>
+                            </ul>
+                            <li style="margin-top: 10px;">Cons:</li>
+                            <ul class="list-unstyled" style="padding-left:25px;">
+                                <li ng-repeat="con in proposition.cons">
+                                    <i class="fa fa-minus-circle" />&nbsp;{{con}}
+                                </li>
+                            </ul>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-xs-3">
+                        <div ng-hide="!proposition.worksWell" style="margin-top: 55px;">
                             <span class="propositionWorks">Works well with:</span>
                             <div class="row">
                                 <div class="col-lg-4" ng-repeat="well in proposition.worksWell">
@@ -251,25 +273,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-5 col-xs-9">
-                        <h3>
-                            {{proposition.name}}
+                    <div class="col-lg-3 col-md-3 col-xs-3">
+                                                <h3>
                             <span class="pull-right" style="margin-right: 30px; font-style: italic; color: #dddddd;">#{{proposition.order}}</span>
                         </h3>
-                        <ul class="list-unstyled pull-left">
-                            <li style="">Pros:</li>
-                            <ul class="list-unstyled">
-                                <li ng-repeat="pro in proposition.pros">
-                                    <i class="fa fa-plus-circle" />&nbsp;{{pro}}
-                                </li>
-                            </ul>
-                            <li style="margin-top: 10px;">Cons:</li>
-                            <ul class="list-unstyled">
-                                <li ng-repeat="con in proposition.cons">
-                                    <i class="fa fa-minus-circle" />&nbsp;{{con}}
-                                </li>
-                            </ul>
-                        </ul>
                     </div>
                 </div>
             </div>

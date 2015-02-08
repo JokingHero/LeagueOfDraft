@@ -31,7 +31,6 @@ module.exports = {
 	},
 	// The session cookie name
 	sessionName: 'connect.sid',
-	mandrill: process.env.MANDRILL_APIKEY || 'dvifSXcwpPWLiwxWf5kULQ',
 	log: {
 		// Can specify one of 'combined', 'common', 'dev', 'short', 'tiny'
 		format: 'combined',

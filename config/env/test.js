@@ -18,6 +18,7 @@ module.exports = {
 			//stream: 'access.log'
 		}
 	},
+	mandrill: process.env.MANDRILL_APIKEY || 'dvifSXcwpPWLiwxWf5kULQ',
 	app: {
 		title: 'League Of Draft'
 	}

@@ -65,7 +65,10 @@ exports.forgot = function(req, res, next) {
         },
         // If valid email, send reset email using service
         function(emailHTML, user, done) {
-            mandrill.send(user.username, 'leagueofdraft@gmail.com', user.email, 'Password reset', emailHTML, 'PasswordReset');
+            mandrill.send('LeagueOfDraft', 'leagueofdraft@gmail.com', {
+                email: user.email,
+                name: user.username
+            }, 'Password reset', emailHTML, ['PasswordReset']);
             done(null);
         }
     ], function(err) {
@@ -162,7 +165,10 @@ exports.reset = function(req, res, next) {
         },
         // If valid email, send reset email using service
         function(emailHTML, user, done) {
-            mandrill.send('leagueOfDraft', 'leagueofdraft@gmail.com', user.email, 'Your password has been changed', emailHTML, 'PasswordChanged');
+            mandrill.send('LeagueOfDraft', 'leagueofdraft@gmail.com', {
+                email: user.email,
+                name: user.username
+            }, 'Your password has been changed', emailHTML, ['PasswordChanged']);
             done(null);
         }
     ], function(err) {

@@ -17,6 +17,7 @@ module.exports = {
 			stream: 'access.log'
 		}
 	},
+	mandrill: process.env.MANDRILL_APIKEY || 'dvifSXcwpPWLiwxWf5kULQ',
 	assets: {
 		lib: {
 			css: [

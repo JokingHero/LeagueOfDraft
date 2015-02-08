@@ -19,5 +19,6 @@ module.exports = {
 	},
 	app: {
 		title: 'League Of Draft'
-	}
+	},
+	mandrill: process.env.MANDRILL_APIKEY || 'dvifSXcwpPWLiwxWf5kULQ',
 };

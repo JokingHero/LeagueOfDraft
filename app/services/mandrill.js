@@ -5,8 +5,7 @@ var mandrill = require('mandrill-api/mandrill');
 var mandrill_client = new mandrill.Mandrill(config.mandrill);
 exports.send = function(fromName, fromEmail, to, subject, text, tags) {
     var message = {
-        'html': null,
-        'text': 'test',
+        'html': text,
         'subject': subject,
         'from_email': fromEmail,
         'from_name': fromName,

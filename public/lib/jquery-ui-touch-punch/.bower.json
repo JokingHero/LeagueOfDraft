@@ -18,6 +18,5 @@
   },
   "_source": "git://github.com/functino/jquery-ui-touch-punch.git",
   "_target": "*",
-  "_originalSource": "jquery-ui-touch-punch",
-  "_direct": true
+  "_originalSource": "jquery-ui-touch-punch"
 }

@@ -7,9 +7,6 @@ var json2csv = require('json2csv');
 
 var fileName = 'matches10';
 
-//my id 21778381
-//https://eune.api.pvp.net/api/lol/eune/v2.2/matchhistory/21778381?beginIndex=1&endIndex=15&api_key=8d28d7b1-e50e-438c-845a-309f609cc31f
-
 var leaguesToNumbers = {
     'CHALLENGER': 1,
     'MASTER': 2,

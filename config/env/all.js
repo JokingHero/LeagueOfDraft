@@ -31,7 +31,8 @@ module.exports = {
 	},
 	// The session cookie name
 	sessionName: 'connect.sid',
-	leagueKey: '&api_key=8d28d7b1-e50e-438c-845a-309f609cc31f',
+	leagueKey: '8d28d7b1-e50e-438c-845a-309f609cc31f',
+	leagueRequestLimit: 8,
 	mandrill: process.env.MANDRILL_APIKEY || 'dvifSXcwpPWLiwxWf5kULQ',
 	log: {
 		// Can specify one of 'combined', 'common', 'dev', 'short', 'tiny'

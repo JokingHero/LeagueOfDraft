@@ -16,7 +16,7 @@ load_data <- function(path) {
   tables <- lapply(files, read.csv)
   do.call(rbind, tables)
 }
-matches <- load_data("csv")[,-c(1:9)]
+matches <- load_data("csv")#[,-c(1:9)]
 
 #remove trolls
 matches <- na.omit(matches)

@@ -118,7 +118,6 @@ var agregatePlayersNames = function(allPlayers, identities) {
                 'summonerId': identity.player.summonerId,
                 'summonerName': identity.player.summonerName
             };
-            console.log(player);
             allPlayers.push(player);
         }
     });
@@ -182,9 +181,3 @@ getStream('matches1.json').pipe(es.mapSync(function(data) {
         }
     });
 }));
-
-
-
-
-
-//mongoimport --collection collection --file collection.json

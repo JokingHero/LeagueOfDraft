@@ -7,9 +7,9 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 /**
- * Player Schema
+ * Players Base Schema
  */
-var PlayerBaseSchema = new Schema({
+var PlayersBaseSchema = new Schema({
     summoner: {
         type: String,
         trim: true,
@@ -34,8 +34,9 @@ var PlayerBaseSchema = new Schema({
     },
     updated: {
         type: Date,
+        default: Date.now(),
         require: true
     }
 });
 
-mongoose.model('PlayerBase', PlayerBaseSchema);
+mongoose.model('PlayersBase', PlayersBaseSchema);

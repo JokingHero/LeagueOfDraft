@@ -1,25 +1,10 @@
 'use strict';
-process.env.NODE_ENV = 'production';
 
-
-var schedule = require('node-schedule'),
-    config = require('../../config/config'),
+var config = require('../../config/config'),
     _ = require('lodash'),
     async = require('async'),
-    rest = require('restler'),
-    mongoose = require('mongoose');
-
-var db = mongoose.connect(config.db.uri, config.db.options, function(err) {
-    if (err) {
-        console.log('Could not connect to MongoDB!');
-        console.log(err);
-    }
-});
-
-mongoose.connection.on('error', function(err) {
-    console.log('MongoDB connection error: ' + err);
-    process.exit(-1);
-});
+    mongoose = require('mongoose'),
+    rest = require('restler');
 
 require('../models/playersBase.server.model.js');
 require('../models/teamCompBase.server.model.js');
@@ -27,35 +12,9 @@ require('../models/teamCompBase.server.model.js');
 var PlayersBase = mongoose.model('PlayersBase');
 var TeamCompBase = mongoose.model('TeamCompBase');
 
-var day = 0; //0-30 - 31 days to iterate on
-var dayRule = new schedule.RecurrenceRule();
-dayRule.hour = 23; //every day at 23:59 we change day
-dayRule.minute = 59;
-var dayJob = schedule.scheduleJob(dayRule, function() {
-    day = day + 1;
-    if (day === 31) {
-        day = 0;
-    }
 
-    // TeamCompBase.update({
-    //     'stats.day': day
-    // }, {
-    //     $set: {
-    //         'stats.wins': 0
-    //     }
-    // }, {
-    //     multi: true
-    // }, function(err, numAffected) {
-    //     if (err) {
-    //         console.log('[Error] DayJob error. Could not update: %j', err);
-    //     }
-    //     if (numAffected) {
-    //         console.log('[DayJob] Updated %j documents.', numAffected);
-    //     }
-    // }));
-});
 
-var getRecentGames = function(player, callback) {
+exports.getRecentGames = function(day, player, callback) {
     var region = player.region.toLowerCase();
 
     async.waterfall([
@@ -237,25 +196,4 @@ var getRecentGames = function(player, callback) {
     });
 };
 
-var rule = new schedule.RecurrenceRule();
-var j = schedule.scheduleJob(rule, function() {
 
-    PlayersBase.find().sort('-updated').limit(config.leagueRequestLimit).exec(
-
-        function(err, players) {
-            if (err) {
-                console.log('[Error] PlayersBase find error:', err.message);
-                return;
-            }
-            players.forEach(function(player) {
-                getRecentGames(player, function(err, success) {
-                    if (err) {
-                        console.log('[Error] Failed to get recent games: %j', player.id);
-                    }
-                    if (success) {
-                        console.log(success);
-                    }
-                });
-            });
-        });
-});

@@ -126,8 +126,8 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 'use strict';
 
 
-angular.module('core').controller('HomeController', ['$scope', '$http', '$filter', 'Authentication', '$modal',
-    function($scope, $http, $filter, Authentication, $modal) {
+angular.module('core').controller('HomeController', ['$scope', '$http','$location', '$filter', 'Authentication', '$modal',
+    function($scope, $http, $location, $filter, Authentication, $modal) {
         // This provides Authentication context.
         $scope.authentication = Authentication;
 
@@ -539,6 +539,9 @@ angular.module('core').controller('HomeController', ['$scope', '$http', '$filter
         $scope.getPropositions = function() {
             $http.post('/predictions/specific', $scope.settingsDetails).success(function(response) {
                 $scope.propositions = response;
+                console.log($location);
+                $location.hash('predictions');
+                console.log($location);
             }).error(function(response) {
                 console.log(response);
             });

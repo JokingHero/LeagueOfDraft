@@ -11,13 +11,13 @@ var schedule = require('node-schedule'),
 
 var db = mongoose.connect(config.db.uri, config.db.options, function(err) {
     if (err) {
-        console.error(chalk.red('Could not connect to MongoDB!'));
-        console.log(chalk.red(err));
+        console.log('Could not connect to MongoDB!');
+        console.log(err);
     }
 });
 
 mongoose.connection.on('error', function(err) {
-    console.error(chalk.red('MongoDB connection error: ' + err));
+    console.log('MongoDB connection error: ' + err);
     process.exit(-1);
 });
 
@@ -75,7 +75,7 @@ var getRecentGames = function(player, callback) {
             var allPlayers = [];
             var parsedGames = [];
             recentGames.forEach(function(game) {
-                if (game && typeof game.fellowPlayers != 'undefined') {
+                if (game && typeof game.fellowPlayers !== 'undefined') {
                     game.fellowPlayers.forEach(function(fellowPlayer) {
                         allPlayers.push(fellowPlayer.summonerId);
                     });
@@ -89,13 +89,13 @@ var getRecentGames = function(player, callback) {
                     }), 'championId');
 
                     var win100 = false;
-                    if (game.teamId == 100) {
+                    if (game.teamId === 100) {
                         team100.push(game.championId);
                         win100 = game.stats.win;
                     } else {
                         team200.push(game.championId);
                         win100 = !game.stats.win;
-                    };
+                    }
                     team100 = _.sortBy(team100.map(Number));
                     team200 = _.sortBy(team200.map(Number));
 
@@ -250,7 +250,7 @@ var j = schedule.scheduleJob(rule, function() {
             players.forEach(function(player) {
                 getRecentGames(player, function(err, success) {
                     if (err) {
-                        console.log('[Error] Failed to get recent games: %j', player.id)
+                        console.log('[Error] Failed to get recent games: %j', player.id);
                     }
                     if (success) {
                         console.log(success);

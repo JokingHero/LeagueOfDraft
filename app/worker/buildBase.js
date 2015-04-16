@@ -35,9 +35,9 @@ exports.getRecentGames = function(day, player, callback) {
             var parsedGames = [];
             recentGames.forEach(function(game) {
                 if (game && typeof game.fellowPlayers !== 'undefined') {
-                    game.fellowPlayers.forEach(function(fellowPlayer) {
-                        allPlayers.push(fellowPlayer.summonerId);
-                    });
+                    // game.fellowPlayers.forEach(function(fellowPlayer) {
+                    //     allPlayers.push(fellowPlayer.summonerId);
+                    // });
                     //if (game.recentGames == "MATCHED_GAME" && game.gameMode == "CLASSIC" && game.subType == "RANKED_SOLO_5x5") {
 
                     var team100 = _.pluck(_.filter(game.fellowPlayers, {
@@ -66,7 +66,7 @@ exports.getRecentGames = function(day, player, callback) {
                     //}
                 }
             });
-            allPlayers = _.uniq(allPlayers);
+            //allPlayers = _.uniq(allPlayers);
             callback(null, parsedGames, allPlayers);
         },
         function(parsedGames, players, callback) {

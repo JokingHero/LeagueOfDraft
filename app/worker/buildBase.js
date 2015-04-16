@@ -21,9 +21,7 @@ exports.getRecentGames = function(day, player, callback) {
         function(callback) {
             var url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.3/game/by-summoner/' + player.id + '/recent?&api_key=' + config.leagueKey;
             rest.get(url).on('complete', function(recentGames) {
-                console.log('[Riot API] Riot API recentGames called. %j', player.id);
                 if (recentGames instanceof Error) {
-                    console.log('[Error] Riot API recentGames Error: ', recentGames.message);
                     callback(recentGames, null);
                 } else {
                     callback(null, recentGames.games);
@@ -38,8 +36,6 @@ exports.getRecentGames = function(day, player, callback) {
                     // game.fellowPlayers.forEach(function(fellowPlayer) {
                     //     allPlayers.push(fellowPlayer.summonerId);
                     // });
-                    //if (game.recentGames == "MATCHED_GAME" && game.gameMode == "CLASSIC" && game.subType == "RANKED_SOLO_5x5") {
-
                     var team100 = _.pluck(_.filter(game.fellowPlayers, {
                         teamId: 100
                     }), 'championId');
@@ -63,7 +59,6 @@ exports.getRecentGames = function(day, player, callback) {
                         team100: team100,
                         win100: win100
                     });
-                    //}
                 }
             });
             //allPlayers = _.uniq(allPlayers);
@@ -99,7 +94,6 @@ exports.getRecentGames = function(day, player, callback) {
                             if (err) {
                                 console.log('[Error]  Worker error. Team100 not saved: %j Error: %j', teamComp, err);
                             }
-                            console.log('New TeamComp added.');
                         });
                     } else {
                         var elementIndex = _.findIndex(teamComp.stats, {
@@ -114,7 +108,6 @@ exports.getRecentGames = function(day, player, callback) {
                             if (err) {
                                 console.log('[Error]  Worker error. Team100 not saved: %j Error: %j', teamComp, err);
                             }
-                            console.log('TeamComp updated.');
                         });
                     }
                 });
@@ -146,7 +139,6 @@ exports.getRecentGames = function(day, player, callback) {
                             if (err) {
                                 console.log('[Error]  Worker error. Team200 not saved: %j Error: %j', teamComp, err);
                             }
-                            console.log('New TeamComp added.');
                         });
                     } else {
                         var elementIndex = _.findIndex(teamComp.stats, {
@@ -161,7 +153,6 @@ exports.getRecentGames = function(day, player, callback) {
                             if (err) {
                                 console.log('[Error]  Worker error. Team200 not saved: %j Error: %j', teamComp, err);
                             }
-                            console.log('TeamComp updated.');
                         });
                     }
                 });

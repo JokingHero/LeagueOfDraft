@@ -96,9 +96,6 @@ var j = schedule.scheduleJob(rule, function() {
                     if (err) {
                         console.log('[Error] Failed to get recent games: %j', player.id);
                     }
-                    if (success) {
-                        console.log(success);
-                    }
                 });
             });
         });

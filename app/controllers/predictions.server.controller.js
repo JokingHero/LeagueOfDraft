@@ -1,9 +1,61 @@
 'use strict';
 
+var mongoose = require('mongoose'),
+    TeamCompBase = mongoose.model('TeamCompBase');
+
 /**
  * Module dependencies.
  */
 exports.specificPredictions = function(req, res) {
+    console.log(req.body);
+    TeamCompBase.aggregate([{
+            $unwind: "$stats"
+        }, {
+            $group: {
+                _id: {
+                    champ1: '$champ1',
+                    champ2: '$champ2',
+                    champ3: '$champ3',
+                    champ4: '$champ4',
+                    champ5: '$champ5'
+                },
+                wins: {
+                    $sum: '$stats.wins'
+                },
+                games: {
+                    $sum: '$stats.games'
+                }
+            }
+        }, {
+            $match: {
+                games: {
+                    $gte: 10
+                }
+            }
+        }, {
+            $project: {
+                _id: '$_id',
+                wins: '$wins',
+                games: '$games',
+                ratio: {
+                    $divide: ['$wins', '$games']
+                }
+            }
+        }, {
+            $sort: {
+                ratio: -1
+            }
+        }, {
+            $limit: 10
+        }],
+        function(err, results) {
+            if (err) {
+                console.error(err);
+            } else {
+                console.log(results);
+            }
+        });
+
     var exampleResponse = [{
         'order': '1',
         'name': 'Ahri',

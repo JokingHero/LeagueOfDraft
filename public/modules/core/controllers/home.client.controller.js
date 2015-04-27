@@ -1,8 +1,8 @@
 'use strict';
 
 
-angular.module('core').controller('HomeController', ['$scope', '$http','$location', '$filter', 'Authentication', '$modal',
-    function($scope, $http, $location, $filter, Authentication, $modal) {
+angular.module('core').controller('HomeController', ['$scope', '$http', '$location', '$filter', 'Authentication', '$modal', 'toaster',
+    function($scope, $http, $location, $filter, Authentication, $modal, toaster) {
         // This provides Authentication context.
         $scope.authentication = Authentication;
 
@@ -383,6 +383,10 @@ angular.module('core').controller('HomeController', ['$scope', '$http','$locatio
         $scope.purple_ban1 = [{}];
         $scope.purple_ban2 = [{}];
         $scope.purple_ban3 = [{}];
+        $scope.purple1 = [{
+            'name': 'aaaplayer',
+            'id': '-1'
+        }];
         $scope.purple2 = [{}];
         $scope.purple3 = [{}];
         $scope.purple4 = [{}];
@@ -408,18 +412,56 @@ angular.module('core').controller('HomeController', ['$scope', '$http','$locatio
         $http.get('/predictions/current').success(function(response) {
             $scope.propositions = response;
         }).error(function(response) {
-            console.log(response);
+            toaster.pop({
+                type: 'error',
+                title: 'Error',
+                body: response
+            });
         });
 
         $scope.getPropositions = function() {
-            $http.post('/predictions/specific', $scope.settingsDetails).success(function(response) {
-                $scope.propositions = response;
-                console.log($location);
-                $location.hash('predictions');
-                console.log($location);
-            }).error(function(response) {
-                console.log(response);
-            });
+            var blue = _.compact([$scope.blue1[0].id, $scope.blue2[0].id, $scope.blue3[0].id, $scope.blue4[0].id, $scope.blue5[0].id]);
+            var purple = _.compact([$scope.purple1[0].id, $scope.purple2[0].id, $scope.purple3[0].id, $scope.purple4[0].id, $scope.purple5[0].id]);
+            var team;
+
+            if (blue.indexOf('-1') !== -1) {
+                team = true;
+                blue.splice(blue.indexOf('-1'), 1);
+            }
+
+            if (purple.indexOf('-1') !== -1) {
+                team = false;
+                purple.splice(purple.indexOf('-1'), 1);
+            }
+
+            if (typeof team === 'undefined') {
+                toaster.pop({
+                    type: 'warning',
+                    title: 'Bad data',
+                    body: 'Move Doge to Your queue position and try again!'
+                });
+            } else {
+                $scope.settingsDetails = {
+                    bans: _.compact([$scope.purple_ban1[0].id, $scope.purple_ban2[0].id, $scope.purple_ban3[0].id, $scope.blue_ban1[0].id, $scope.blue_ban2[0].id, $scope.blue_ban3[0].id]),
+                    blue: blue,
+                    purple: purple,
+                    teamBlue: team,
+                    gameType: $scope.gameType,
+                    gameRole: $scope.gameRole,
+                    gameRegion: $scope.gameRegion,
+                    gameLeague: $scope.gameLeague,
+                    gameSummoner: $scope.gameSummoner
+                };
+                $http.post('/predictions/specific', $scope.settingsDetails).success(function(response) {
+                    $scope.propositions = response;
+                }).error(function(response) {
+                    toaster.pop({
+                        type: 'error',
+                        title: 'Error',
+                        body: response
+                    });
+                });
+            }
         };
 
         $scope.filterIt = function() {

@@ -18,6 +18,8 @@
     "slider-pro": "~1.1.0",
     "jquery-ui-touch-punch": "*",
     "ngDialog": "~0.3.9",
-    "async": "~0.9.2"
+    "async": "~0.9.2",
+    "lodash": "~3.7.0",
+    "angularjs-toaster": "~0.4.12"
   }
 }

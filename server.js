@@ -60,7 +60,7 @@ var dayJob = schedule.scheduleJob(dayRule, function() {
     if (day === 31) {
         day = 0;
     }
-
+    console.log(day);
     // TeamCompBase.update({
     //     'stats.day': day
     // }, {

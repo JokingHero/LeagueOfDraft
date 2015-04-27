@@ -142,8 +142,9 @@
                         </div>
                     </div>
                     <div class="col-xs-5">
-                        <div class="championBox pull-left" style="position: relative;">
-                            <img style="position: absolute;" width="56" height="56" ng-src="modules/core/img/positions/you.png" data-toggle="tooltip" data-original-title="You dont drop champions here - We will propose You champions!">
+                        <div class="championBox pull-left" style="position: relative;" ng-repeat="champion in purple1" data-drop="true" ng-model='purple1' jqyoui-droppable="{index: {{$index}}}">
+                            <img style="position: absolute;" width="56" height="56" ng-src="modules/core/img/positions/purple1.png">
+                            <img style="position: absolute; cursor: move;" width="56" height="56" ng-if="champion.name" ng-src="modules/core/img/champions/{{champion.name}}.webp" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="purple1" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name">
                         </div>
                         <div class="championBox pull-left" style="position: relative;" ng-repeat="champion in purple_ban1" data-drop="true" ng-model='purple_ban1' jqyoui-droppable="{index: {{$index}}}">
                             <img style="position: absolute;" width="56" height="56" ng-src="modules/core/img/positions/ban.png">
@@ -275,7 +276,7 @@
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-xs-3">
-                                                <h3>
+                        <h3>
                             <span class="pull-right" style="margin-right: 30px; font-style: italic; color: #dddddd;">#{{proposition.order}}</span>
                         </h3>
                     </div>
@@ -283,13 +284,13 @@
             </div>
         </div>
     </div>
+    <toaster-container toaster-options="{'time-out': 3000, 'close-button':true, 'animation-class': 'toast-top-center'}"></toaster-container>
 </section>
 <script type="text/javascript">
 jQuery(document).ready(function($) {
     $('[data-toggle="tooltip"]').tooltip({
         'placement': 'top'
     });
-
 
     $('#slider').sliderPro({
         width: '100%',

@@ -6,10 +6,53 @@ var mongoose = require('mongoose'),
 /**
  * Module dependencies.
  */
+var prepareBans = function(bans) {
+    var bansQuery = [{}];
+    if (bans.length > 0) {
+        for (var i = 0; i < bans.length; i++) {
+            bansQuery.push({
+                'champ1': {
+                    '$ne': Number(bans[i])
+                }
+            });
+            bansQuery.push({
+                'champ2': {
+                    '$ne': Number(bans[i])
+                }
+            });
+            bansQuery.push({
+                'champ3': {
+                    '$ne': Number(bans[i])
+                }
+            });
+            bansQuery.push({
+                'champ4': {
+                    '$ne': Number(bans[i])
+                }
+            });
+            bansQuery.push({
+                'champ5': {
+                    '$ne': Number(bans[i])
+                }
+            });
+        }
+    }
+    return bansQuery;
+};
+
 exports.specificPredictions = function(req, res) {
-    console.log(req.body);
+
+    var matchTheseChamps = req.body.purple;
+    if (req.body.teamBlue) {
+        matchTheseChamps = req.body.blue;
+    }
+    console.log(req.body.bans);
     TeamCompBase.aggregate([{
-            $unwind: "$stats"
+            $match: {
+                $and: prepareBans(req.body.bans)
+            }
+        }, {
+            $unwind: '$stats'
         }, {
             $group: {
                 _id: {

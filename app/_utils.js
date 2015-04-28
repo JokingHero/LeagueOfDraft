@@ -1,6 +1,5 @@
 'use strict';
 
-
 exports.validateEmail = function(email) {
     if (email.length === 0) {
         return false;

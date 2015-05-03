@@ -1,3 +1,5 @@
+'use strict';
+
 var fs = require('fs');
 var JSONStream = require('JSONStream');
 var es = require('event-stream');
@@ -26,7 +28,9 @@ var numbersToLeagues = {
 
 function calculateMedian(values) {
 
-    var filteredValues = values.filter(function(n){ return n != undefined });
+    var filteredValues = values.filter(function(n) {
+        return n !== undefined;
+    });
 
     filteredValues.sort(function(a, b) {
         return a - b;
@@ -105,7 +109,7 @@ var agregatePlayersChampions = function(participants) {
     return {
         'blue': blue,
         'purple': purple
-    }
+    };
 };
 
 var agregatePlayersNames = function(allPlayers, identities) {

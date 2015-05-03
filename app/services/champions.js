@@ -4,7 +4,8 @@ exports.allExisting = [{
     "id": 266,
     "name": "Aatrox",
     "img": "aatrox",
-    "graphicsCount": 2 "worksWell": ["yasuo", "zilean", "gnar"],
+    "graphicsCount": 2,
+    "worksWell": ["yasuo", "zilean", "gnar"],
     "weakAgainst": ["jax", "teemo", "riven"],
     "pros": ["Awesome early game harass", "Insane sustain", "Effective carry and viable tank", "Free Guardian Angel with Blood Well", "Ranged with ultimate"],
     "cons": ["Squishy early", "Susceptible to bursty champions", "If behind/die early, rly hard to come back", "Somewhat hard to master", "Extremely Autoattacking reliant"]
@@ -79,7 +80,7 @@ exports.allExisting = [{
     "worksWell": ["yasuo", "aatrox", "sejuani"],
     "weakAgainst": ["zed", "ziggs", "ahri"],
     "pros": ["Good farming and harass", "Good entrance/exit in fights with his W", "Highly Mobile", "High Damage Potential", "Highly efficient Passives"],
-    "cons": ["Early game a bit squishy", "Has poor sustainability early/mid game", "Hard to chase kills early/mid game", "Prone to ganks early/mid game due to higher cooldowns on W,E"
+    "cons": ["Early game a bit squishy", "Has poor sustainability early/mid game", "Hard to chase kills early/mid game", "Prone to ganks early/mid game due to higher cooldowns on W,E"]
 },{
     "id": 432,
     "name": "Bard",
@@ -88,7 +89,7 @@ exports.allExisting = [{
     "worksWell": ["caitlyn", "jinx", "leesin"],
     "weakAgainst": ["velkoz", "blitzcrank", "lulu"],
     "pros": ["A decent mix of poke and sustain during the laning phase", "Entire kit is well suited towards executing quick engagements, disengaging bad fights, and even hard tower diving", "Extremely slippery", "Very good overall map presence"],
-    "cons": ["Needs to leave adc on his own", "Chime spawn points are semi-random and can land you in trouble", "Both E and R can end up actually aiding the enemy team instead of yours", "Very low carry potential in solo queue, even for a support. "
+    "cons": ["Needs to leave adc on his own", "Chime spawn points are semi-random and can land you in trouble", "Both E and R can end up actually aiding the enemy team instead of yours", "Very low carry potential in solo queue, even for a support"]
 },{
     "id": 53,
     "name": "Blitzcrank",
@@ -1116,5 +1117,3 @@ exports.allExisting = [{
     "pros": ["Massive aoe damage with AoE CC", "Rampant Growth (The Seed) gives your vision when you need to facecheck", "Able to kill dragon and baron quickly with plants","Zyra is a great ambusher "],
     "cons": ["Low mobility and hard to escape if she gets in bad positioning", "Does poorly gap-closing champions"]
 }];
-
-+ (Math.floor(Math.random() * 5) + 1) + ".jpg"

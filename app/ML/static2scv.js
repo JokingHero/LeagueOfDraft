@@ -1,3 +1,5 @@
+'use strict';
+
 var fs = require('fs');
 var JSONStream = require('JSONStream');
 var es = require('event-stream');
@@ -29,7 +31,7 @@ var numbersToLeagues = {
 
 function calculateMedian(values) {
     var filteredValues = values.filter(function(n) {
-        return n != undefined
+        return n !== undefined;
     });
 
     filteredValues.sort(function(a, b) {
@@ -100,38 +102,38 @@ var agregatePlayersChampions = function(participants) {
 
     participants.forEach(function(participant) {
         if (participant.teamId === 100) {
-            if ((participant.timeline.lane == 'MIDDLE' || participant.timeline.lane == 'MID') && participant.timeline.role == 'SOLO') {
-                championPicks.blue_mid = participant.championId
-            };
-            if (participant.timeline.lane == 'TOP' && participant.timeline.role == 'SOLO') {
-                championPicks.blue_top = participant.championId
-            };
-            if (participant.timeline.lane == 'JUNGLE' && participant.timeline.role == 'NONE') {
-                championPicks.blue_jng = participant.championId
-            };
-            if ((participant.timeline.lane == 'BOTTOM' || participant.timeline.lane == 'BOT') && participant.timeline.role == 'DUO_CARRY') {
-                championPicks.blue_adc = participant.championId
-            };
-            if ((participant.timeline.lane == 'BOTTOM' || participant.timeline.lane == 'BOT') && participant.timeline.role == 'DUO_SUPPORT') {
-                championPicks.blue_supp = participant.championId
-            };
+            if ((participant.timeline.lane === 'MIDDLE' || participant.timeline.lane === 'MID') && participant.timeline.role === 'SOLO') {
+                championPicks.blue_mid = participant.championId;
+            }
+            if (participant.timeline.lane === 'TOP' && participant.timeline.role === 'SOLO') {
+                championPicks.blue_top = participant.championId;
+            }
+            if (participant.timeline.lane === 'JUNGLE' && participant.timeline.role === 'NONE') {
+                championPicks.blue_jng = participant.championId;
+            }
+            if ((participant.timeline.lane === 'BOTTOM' || participant.timeline.lane === 'BOT') && participant.timeline.role === 'DUO_CARRY') {
+                championPicks.blue_adc = participant.championId;
+            }
+            if ((participant.timeline.lane === 'BOTTOM' || participant.timeline.lane === 'BOT') && participant.timeline.role === 'DUO_SUPPORT') {
+                championPicks.blue_supp = participant.championId;
+            }
         }
         if (participant.teamId === 200) {
-            if (participant.timeline.lane == 'MIDDLE' && participant.timeline.role == 'SOLO') {
-                championPicks.purple_mid = participant.championId
-            };
-            if (participant.timeline.lane == 'TOP' && participant.timeline.role == 'SOLO') {
-                championPicks.purple_top = participant.championId
-            };
-            if (participant.timeline.lane == 'JUNGLE' && participant.timeline.role == 'NONE') {
-                championPicks.purple_jng = participant.championId
-            };
-            if (participant.timeline.lane == 'BOTTOM' && participant.timeline.role == 'DUO_CARRY') {
-                championPicks.purple_adc = participant.championId
-            };
-            if (participant.timeline.lane == 'BOTTOM' && participant.timeline.role == 'DUO_SUPPORT') {
-                championPicks.purple_supp = participant.championId
-            };
+            if (participant.timeline.lane === 'MIDDLE' && participant.timeline.role === 'SOLO') {
+                championPicks.purple_mid = participant.championId;
+            }
+            if (participant.timeline.lane === 'TOP' && participant.timeline.role === 'SOLO') {
+                championPicks.purple_top = participant.championId;
+            }
+            if (participant.timeline.lane === 'JUNGLE' && participant.timeline.role === 'NONE') {
+                championPicks.purple_jng = participant.championId;
+            }
+            if (participant.timeline.lane === 'BOTTOM' && participant.timeline.role === 'DUO_CARRY') {
+                championPicks.purple_adc = participant.championId;
+            }
+            if (participant.timeline.lane === 'BOTTOM' && participant.timeline.role === 'DUO_SUPPORT') {
+                championPicks.purple_supp = participant.championId;
+            }
         }
     });
 
@@ -156,12 +158,12 @@ var agregatePlayersNames = function(allPlayers, identities) {
 
 var agregateBans = function(teams) {
     var bans = [];
-    if (teams[0].bans != undefined) {
+    if (teams[0].bans !== undefined) {
         teams[0].bans.forEach(function(ban) {
             bans.push(ban.championId);
         });
     }
-    if (teams[1].bans != undefined) {
+    if (teams[1].bans !== undefined) {
         teams[1].bans.forEach(function(ban) {
             bans.push(ban.championId);
         });

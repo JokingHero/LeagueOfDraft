@@ -38,6 +38,9 @@ angular.module('core').controller('HomeController', ['$scope', '$http', '$locati
             'name': 'azir',
             'id': '268'
         }, {
+            'name': 'bard',
+            'id': '268'
+        }, {
             'name': 'blitzcrank',
             'id': '53'
         }, {
@@ -293,7 +296,7 @@ angular.module('core').controller('HomeController', ['$scope', '$http', '$locati
             'name': 'talon',
             'id': '91'
         }, {
-            'name': 'tarick',
+            'name': 'taric',
             'id': '44'
         }, {
             'name': 'teemo',

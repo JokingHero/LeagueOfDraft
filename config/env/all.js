@@ -52,7 +52,8 @@ module.exports = {
 				'public/lib/slider-pro/dist/css/slider-pro.min.css',
 				'public/lib/ngDialog/css/ngDialog.css',
 				'public/lib/ngDialog/css/ngDialog-theme-plain.min.css',
-				'public/lib/angularjs-toaster/toaster.min.css'
+				'public/lib/angularjs-toaster/toaster.min.css',
+				'public/lib/angular-loading-bar/build/loading-bar.min.css'
 			],
 			js: [
 				'public/lib/jquery/dist/jquery.min.js',
@@ -70,7 +71,9 @@ module.exports = {
 				'public/lib/bootstrap/js/tooltip.js',
 				'public/lib/lodash/lodash.min.js',
 				'public/lib/angularjs-toaster/toaster.min.js',
-				'public/lib/angular-scroll/angular-scroll.min.js'
+				'public/lib/angular-scroll/angular-scroll.min.js',
+				'public/lib/angular-loading-bar/build/loading-bar.min.js',
+				'public/lib/ngInfiniteScroll/build/ng-infinite-scroll.min.js'
 			]
 		},
 		css: [

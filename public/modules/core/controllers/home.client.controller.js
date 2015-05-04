@@ -1,7 +1,7 @@
 'use strict';
 
 
-angular.module('core').controller('HomeController', ['$scope', '$document','$http', '$location', '$filter', 'Authentication', '$modal', 'toaster',
+angular.module('core').controller('HomeController', ['$scope', '$document', '$http', '$location', '$filter', 'Authentication', '$modal', 'toaster',
     function($scope, $document, $http, $location, $filter, Authentication, $modal, toaster) {
         // This provides Authentication context.
         $scope.authentication = Authentication;
@@ -412,6 +412,7 @@ angular.module('core').controller('HomeController', ['$scope', '$document','$htt
         });
 
         $scope.propositions = [];
+        $scope.allPropositions = [];
 
         $scope.getPropositions = function() {
             var blue = _.compact([$scope.blue1[0].id, $scope.blue2[0].id, $scope.blue3[0].id, $scope.blue4[0].id, $scope.blue5[0].id]);
@@ -432,7 +433,7 @@ angular.module('core').controller('HomeController', ['$scope', '$document','$htt
                 toaster.pop({
                     type: 'warning',
                     title: 'Bad data',
-                    body: 'Move Doge to Your queue position and try again!'
+                    body: "Move 'You' block to Your queue position and try again!"
                 });
             } else {
                 $scope.settingsDetails = {
@@ -447,9 +448,21 @@ angular.module('core').controller('HomeController', ['$scope', '$document','$htt
                     gameSummoner: $scope.gameSummoner
                 };
                 $http.post('/predictions/specific', $scope.settingsDetails).success(function(response) {
-                    $scope.propositions = response;
-                    var goTo = angular.element(document.getElementById('predictions'));
-                    $document.scrollToElement(goTo, 75, 1000);
+                    $scope.allPropositions = response;
+
+                    if (response.length < 1) {
+                        toaster.pop({
+                            type: 'warining',
+                            title: 'Something went wrong',
+                            body: 'We have no propositions prepared for this request.'
+                        });
+                    } else if (response.length < 5) {
+                        $scope.propositions = response;
+                    } else {
+                        $scope.propositions = $scope.allPropositions.slice(0, 5);
+                        var goTo = angular.element(document.getElementById('predictions'));
+                        $document.scrollToElement(goTo, 75, 1500);
+                    }
                 }).error(function(response) {
                     toaster.pop({
                         type: 'error',
@@ -458,6 +471,10 @@ angular.module('core').controller('HomeController', ['$scope', '$document','$htt
                     });
                 });
             }
+        };
+
+        $scope.loadMorePropositions = function() {
+            $scope.propositions = $scope.allPropositions.slice(0, $scope.propositions.length + 5);
         };
 
         $scope.filterIt = function() {

@@ -67,7 +67,7 @@
     "img": "ashe",
     "graphicsCount": 9,
     "worksWell": ["zyra", "janna", "leona"],
-    "weakAgainst": ["caitlyn", "sivir", "grves"],
+    "weakAgainst": ["caitlyn", "sivir", "graves"],
     "pros": ["Adc with crowd control", "Can scout map with (E) Hawkshot", "Can initiate teamfights really well", "Constant slow"],
     "cons": ["Weak early game", "No escape tools", "Supportive ad carry"]
 },{
@@ -147,7 +147,7 @@
     "name": "Corki",
     "img": "corki",
     "graphicsCount": 6,
-    "worksWell": ["tarick", "janna", "sona"],
+    "worksWell": ["taric", "janna", "sona"],
     "weakAgainst": ["lucian", "caitlyn", "varus"],
     "pros": ["Large amount of burst damage", "Ultimate has very long range", "Has a long range escape ability", "Can shred armor off of opponents", "Passive gives true damage"],
     "cons": ["Does not have a steroid", "Ultimate has a restricted amount that must regenerate over time", "Runs out of mana quickly"]
@@ -201,7 +201,7 @@
     "name": "Evelynn",
     "img": "evelynn",
     "graphicsCount": 5,
-    "worksWell": ["shen", "orianna", "chogth"],
+    "worksWell": ["shen", "orianna", "chogath"],
     "weakAgainst": ["leesin", "udyr", "ryze"],
     "pros": ["Invisible mechanic", "Extremely mobile", "Fast jungle clear", "High mana sustain with passive", "High early burst damage for ganks"],
     "cons": ["No crowd control pre-6", "Can be burst down early game if focused", "Highly susceptible for counter jungling by champions like Lee Sin and Udyr"]
@@ -273,7 +273,7 @@
     "name": "Garen",
     "img": "garen",
     "graphicsCount": 8,
-    "worksWell": ["tarick", "sion", "blitzcrank"],
+    "worksWell": ["taric", "sion", "blitzcrank"],
     "weakAgainst": ["gangplank", "kennen", "yorick"],
     "pros": ["A lot of early game damage / burst", "Lot's of mobility with his MS increase on his Q and his ability to escape slows with his E when activated", "Naturally tanky due to his W ability which grants armor and magic resistance", "Lots of regen for the laning phase with his passive which boosts his regen when out of combat"],
     "cons": ["Damage falls off late game", "Laning phase can be countered by a lot of champions", "No hard CC"]
@@ -309,7 +309,7 @@
     "name": "Hecarim",
     "img": "hecarim",
     "graphicsCount": 5,
-    "worksWell": ["mogana", "orianna", "lulu"],
+    "worksWell": ["morgana", "orianna", "lulu"],
     "weakAgainst": ["lulu", "olaf", "jarvan"],
     "pros": ["Amazing Mobility", "Decent jungle clearing time", "High damage", "Good lategame", "Can adapt his build easily"],
     "cons": ["No hard CC", "Not very tanky"]
@@ -319,7 +319,7 @@
     "img": "heimerdinger",
     "graphicsCount": 5,
     "worksWell": ["blitzcrank", "vi", "skarner"],
-    "weakAgainst": ["vladimir", "gnar", "kenen"],
+    "weakAgainst": ["vladimir", "gnar", "kennen"],
     "pros": ["Lane bully", "Very safe in lane from Jungle ganks ", "Excellent anti-dive champion capable of creating a safe zone to protect your ADC", "Heimerdinger shines at Dragon and Baron fights", "Can easily siege without the Ancient Golem buff"],
     "cons": ["Cooldowns and Turret kit generation are long", "Heimer is not a real play maker and relies on enemies making mistakes against you"]
 },{
@@ -408,7 +408,7 @@
     "name": "Kassadin",
     "img": "kassadin",
     "graphicsCount": 5,
-    "worksWell": ["khzix", "morgana", "nocturne"],
+    "worksWell": ["khazix", "morgana", "nocturne"],
     "weakAgainst": ["soraka", "pantheon", "jayce"],
     "pros": ["Highly Mobile Versatile Assassin", "Fairly Strong laning phase (forces opponent to start flask)", "Great Map Pressure Post 6", "Scales Phenomenally among the assassins"],
     "cons": ["Low Base damages", "Ult is very mana intensive with stacks", "Can be countered by AD mids"]
@@ -433,7 +433,7 @@
 },{
     "id": 85,
     "name": "Kenen",
-    "img": "kenen",
+    "img": "kennen",
     "graphicsCount": 5,
     "worksWell": ["amumu", "sona", "karthus"],
     "weakAgainst": ["janna", "gragas", "jarvan"],
@@ -561,7 +561,7 @@
     "name": "Miss Fortune",
     "img": "missfortune",
     "graphicsCount": 10,
-    "worksWell": ["tarick", "sona", "braum"],
+    "worksWell": ["taric", "sona", "braum"],
     "weakAgainst": ["corki", "caitlyn", "graves"],
     "pros": ["Passive gives large amount of movement speed", "Most aggressive AD carry", "Strongest AD carry in lane phase", "Heal reduction on attack", "Strong AoE ultimate"],
     "cons": ["Not as strong out of lane phase", "Short attack range", "Passive applies only if not taking damage", "Cannot move while using ultimate"]
@@ -724,7 +724,7 @@
     "img": "riven",
     "graphicsCount": 5,
     "worksWell": ["orianna", "lulu", "zilean"],
-    "weakAgainst": ["kenen", "pantheon", "darius"],
+    "weakAgainst": ["kennen", "pantheon", "darius"],
     "pros": ["Very easy to snowball in lane ", "High mobility ", "Every skill scales with AD ", "Deals Insanely high amounts of damage during all points of the game","Cool Down Reduction is broken on this champion"],
     "cons": ["Needs a lot of farm ", "Any slip ups can result in you dying for free ", "Late game the enemy will most likely focus you first ", "Needs flash to get on carries in team fights", "Has to play team fights carefully "]
 },{
@@ -732,7 +732,7 @@
     "name": "Rumble",
     "img": "rumble",
     "graphicsCount": 3,
-    "worksWell": ["amumu", "kenen", "lulu"],
+    "worksWell": ["amumu", "kennen", "lulu"],
     "weakAgainst": ["jayce", "blitzcrank", "chogath"],
     "pros": ["Doesn't require mana to cast abilities", "Lots of AoE damage", "Strong laner", "Spammable abilities - harrass","Amazing teamfight potential with his AoE"],
     "cons": ["Melee auto-attack", "Easily gankable", "Can overheat, silencing yourself at a bad time", "No hard CC"]
@@ -787,7 +787,7 @@
     "img": "singed",
     "graphicsCount": 4,
     "worksWell": ["cassiopeia", "volibear", "zilean"],
-    "weakAgainst": ["kenen", "jarvan", "vayne"],
+    "weakAgainst": ["kennen", "jarvan", "vayne"],
     "pros": ["Can do level 1 proxy, a surprising strategy that is difficult to respond to", "Typically high CS count", "Very disruptive and annoying for the enemy team", "Fling lets Singed be a gamebreaker in teamfights","Very tanky with ultimate"],
     "cons": ["Proxy is high risk high reward, early game can be difficult if proxy doesn't work out ", "In proxying, early risk of dying can warrant a lot of gold for enemy team in the early going", "Proxy strategy is reliant on teamwork, allies not knowing when to take objectives", "Reliant on ultimate in teamfights", "Kiteable especially in late game"]
 },{
@@ -804,7 +804,7 @@
     "name": "Sivir",
     "img": "sivir",
     "graphicsCount": 4,
-    "worksWell": ["tarick", "alistar", "nami"],
+    "worksWell": ["taric", "alistar", "nami"],
     "weakAgainst": ["draven", "corki", "twitch"],
     "pros": ["Best ADC waveclear", "Very good utility with her ultimate", "Good AOE damage", "Safe with her spellshield and movementspeedbuffs"],
     "cons": ["No damage ultimate, witch make her a bit week", "Very dependent on Skillshoot in the early game and need good reaction with the spellshield", "Smallest ADC range "]
@@ -849,7 +849,7 @@
     "name": "Syndra",
     "img": "syndra",
     "graphicsCount": 3,
-    "worksWell": ["vi", "tarick", "blitzcrank"],
+    "worksWell": ["vi", "taric", "blitzcrank"],
     "weakAgainst": ["kassadin", "leblanc", "gragas"],
     "pros": ["Can stun 3-4 people in TF", "Great Burst", "Low Cooldowns", "Great farming champion and easy to last hit with her AA's animations","Unexpected burst"],
     "cons": ["Slightly Mana Intensive", "High skill cap", "Naturally squishy"]
@@ -858,7 +858,7 @@
     "name": "Talon",
     "img": "talon",
     "graphicsCount": 5,
-    "worksWell": ["amumu", "janna", "tarick"],
+    "worksWell": ["amumu", "janna", "taric"],
     "weakAgainst": ["tryndamere", "chogath", "gangplank"],
     "pros": ["Lots of burst damage", "Has a slow and silence", "Lots of AoE damage", "Can use ultimate for escape or chasing"],
     "cons": ["No hard CC", "Hard time laning against most champions", "Early game difficult"]
@@ -913,7 +913,7 @@
     "img": "tryndamere",
     "graphicsCount": 7,
     "worksWell": ["karthus", "ryze", "cassiopeia"],
-    "weakAgainst": ["teemo", "nidalee", "kenen"],
+    "weakAgainst": ["teemo", "nidalee", "kennen"],
     "pros": ["Difficult to kill because of his ultimate", "One of the strongest 1v1 champs in the game", "Lots of sustain and survivability built into his kit despite being a very squishy melee AD champion", "If left unchecked, has the potential to single handedly carry a game"],
     "cons": ["Hard countered by CC", "Kited easily", "Will be completely useless later in the game if he does not farm well", "Ignite hard counters his ultimate and his healing effects"]
 },{
@@ -930,7 +930,7 @@
     "name": "Twitch",
     "img": "twitch",
     "graphicsCount": 6,
-    "worksWell": ["tarick", "leona", "nami"],
+    "worksWell": ["taric", "leona", "nami"],
     "weakAgainst": ["leona", "lucian", "caitlyn"],
     "pros": ["Strong throughout the game", "Underestimated damage during lane", "Hidden AD carry that is actually one of the strongest late game", "Can fulfil the roles of an assassin, ad carry, counter jungle, counter ganker", "Catching an enemy carry off guard and cleaning up fights are easy to do with wards"],
     "cons": ["All major damage revolves around one skill", "Extremely Squishy compared to others", "Success in lane comes through enemies mistakes", "Requires aggressive playstyle"]
@@ -948,7 +948,7 @@
     "name": "Urgot",
     "img": "urgot",
     "graphicsCount": 5,
-    "worksWell": ["tarick", "janna", "morgana"],
+    "worksWell": ["taric", "janna", "morgana"],
     "weakAgainst": ["soraka", "ezreal", "corki"],
     "pros": ["Strong poke with abilities", "Has a shield to tank damage", "Can slow enemies with attacks when shield is on", "Strong ultimate for different situations", "Passive reduces enemy attack damage on attack"],
     "cons": ["Low attack range", "Falls off late game", "Weak until level 3 because damage is based on abilities"]
@@ -1002,7 +1002,7 @@
     "name": "Vladimir",
     "img": "vladimir",
     "graphicsCount": 8,
-    "worksWell": ["kenen", "morgana", "jarvan"],
+    "worksWell": ["kennen", "morgana", "jarvan"],
     "weakAgainst": ["swain", "riven", "fiddlesticks"],
     "pros": ["High sustainability", "With Zhonya's, can remain invulnerable for over 4 seconds", "Insane late game scaling due to passive","Pseudo tank, good damage soak","Can become a huge lane bully in certain matchups"],
     "cons": ["Spends health to cast abilities", "Sanguine pool has high cooldown early game", "No hard CC","Low spell ranges","Very weak early laning phase"]
@@ -1109,7 +1109,7 @@
     "id": 143,
     "name": "Zyra",
     "img": "zyra",
-    "graphicsCount": 5,
+    "graphicsCount": 4,
     "worksWell": ["amumu", "jarvan", "malphite"],
     "weakAgainst": ["leblanc", "zed", "fizz"],
     "pros": ["Massive aoe damage with AoE CC", "Rampant Growth (The Seed) gives your vision when you need to facecheck", "Able to kill dragon and baron quickly with plants","Zyra is a great ambusher "],

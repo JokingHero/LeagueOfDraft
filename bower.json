@@ -21,6 +21,8 @@
     "async": "~0.9.2",
     "lodash": "~3.7.0",
     "angularjs-toaster": "~0.4.12",
-    "angular-scroll": "~0.7.0"
+    "angular-scroll": "~0.7.0",
+    "angular-loading-bar": "~0.7.1",
+    "ngInfiniteScroll": "1.0.0"
   }
 }

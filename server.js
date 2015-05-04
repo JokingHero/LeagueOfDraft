@@ -57,30 +57,30 @@ var day = 0; //0-30 - 31 days to iterate on
 var dayRule = new schedule.RecurrenceRule();
 dayRule.hour = 23; //every day at 23:59 we change day
 dayRule.minute = 59;
+var TeamCompBase = mongoose.model('TeamCompBase');
 var dayJob = schedule.scheduleJob(dayRule, function() {
     day = day + 1;
     if (day === 31) {
         day = 0;
     }
     console.log('Day: ' + day);
-    // TeamCompBase.update({
-    //     'stats.day': day
-    // }, {
-    //     $set: {
-    //         'stats.wins': 0
-    //     }
-    // }, {
-    //     multi: true
-    // }, function(err, numAffected) {
-    //     if (err) {
-    //         console.log('[Error] DayJob error. Could not update: %j', err);
-    //     }
-    //     if (numAffected) {
-    //         console.log('[DayJob] Updated %j documents.', numAffected);
-    //     }
-    // }));
+    TeamCompBase.update({
+        'stats.day': day
+    }, {
+        $set: {
+            'stats.wins': 0
+        }
+    }, {
+        multi: true
+    }, function(err, numAffected) {
+        if (err) {
+            console.log('[Error] DayJob error. Could not update: %j', err);
+        }
+        if (numAffected) {
+            console.log('[DayJob] Updated %j documents.', numAffected);
+        }
+    });
 });
-
 
 var PlayersBase = mongoose.model('PlayersBase');
 var rule = new schedule.RecurrenceRule();

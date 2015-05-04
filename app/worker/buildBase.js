@@ -13,8 +13,7 @@ var PlayersBase = mongoose.model('PlayersBase');
 var TeamCompBase = mongoose.model('TeamCompBase');
 
 
-
-exports.getRecentGames = function(day, player, callback) {
+module.exports = function(day, player, callback) {
     var region = player.region.toLowerCase();
 
     async.waterfall([

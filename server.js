@@ -6,8 +6,10 @@ var init = require('./config/init')(),
     config = require('./config/config'),
     mongoose = require('mongoose'),
     schedule = require('node-schedule'),
-    buildBase = require('./app/worker/buildBase'),
-    chalk = require('chalk');
+    //buildBase = require('./app/worker/buildBase'),
+    chalk = require('chalk'),
+    workerFarm = require('worker-farm'),
+    workers = workerFarm(require.resolve('./app/worker/buildBase'));
 
 /**
  * Main application entry file.
@@ -60,7 +62,7 @@ var dayJob = schedule.scheduleJob(dayRule, function() {
     if (day === 31) {
         day = 0;
     }
-    console.log(day);
+    console.log('Day: ' + day);
     // TeamCompBase.update({
     //     'stats.day': day
     // }, {
@@ -83,7 +85,6 @@ var dayJob = schedule.scheduleJob(dayRule, function() {
 var PlayersBase = mongoose.model('PlayersBase');
 var rule = new schedule.RecurrenceRule();
 var j = schedule.scheduleJob(rule, function() {
-
     PlayersBase.find().sort('-updated').limit(config.leagueRequestLimit).exec(
 
         function(err, players) {
@@ -92,7 +93,7 @@ var j = schedule.scheduleJob(rule, function() {
                 return;
             }
             players.forEach(function(player) {
-                buildBase.getRecentGames(day, player, function(err, success) {
+                workers(day, player, function(err, success) {
                     if (err) {
                         console.log('[Error] Failed to get recent games: %j', player.id);
                     }

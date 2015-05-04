@@ -86,13 +86,13 @@ module.exports = function(grunt) {
 			dev: {
 				script: 'server.js',
 				options: {
-					nodeArgs: ['--debug'],
+					//nodeArgs: ['--debug'],
 					ext: 'js,html',
 					watch: watchFiles.serverViews.concat(watchFiles.serverJS)
 				}
 			}
 		},
-		'node-inspector': {
+		/*'node-inspector': {
 			custom: {
 				options: {
 					'web-port': 1337,
@@ -104,7 +104,7 @@ module.exports = function(grunt) {
 					'hidden': []
 				}
 			}
-		},
+		},*/
 		ngAnnotate: {
 			production: {
 				files: {
@@ -114,7 +114,7 @@ module.exports = function(grunt) {
 		},
 		concurrent: {
 			default: ['nodemon', 'watch'],
-			debug: ['nodemon', 'watch', 'node-inspector'],
+			debug: ['nodemon', 'watch'], //, 'node-inspector'],
 			options: {
 				logConcurrentOutput: true,
 				limit: 10

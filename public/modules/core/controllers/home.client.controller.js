@@ -1,8 +1,8 @@
 'use strict';
 
 
-angular.module('core').controller('HomeController', ['$scope', '$http', '$location', '$filter', 'Authentication', '$modal', 'toaster',
-    function($scope, $http, $location, $filter, Authentication, $modal, toaster) {
+angular.module('core').controller('HomeController', ['$scope', '$document','$http', '$location', '$filter', 'Authentication', '$modal', 'toaster',
+    function($scope, $document, $http, $location, $filter, Authentication, $modal, toaster) {
         // This provides Authentication context.
         $scope.authentication = Authentication;
 
@@ -412,15 +412,6 @@ angular.module('core').controller('HomeController', ['$scope', '$http', '$locati
         });
 
         $scope.propositions = [];
-        $http.get('/predictions/current').success(function(response) {
-            $scope.propositions = response;
-        }).error(function(response) {
-            toaster.pop({
-                type: 'error',
-                title: 'Error',
-                body: response
-            });
-        });
 
         $scope.getPropositions = function() {
             var blue = _.compact([$scope.blue1[0].id, $scope.blue2[0].id, $scope.blue3[0].id, $scope.blue4[0].id, $scope.blue5[0].id]);
@@ -457,6 +448,8 @@ angular.module('core').controller('HomeController', ['$scope', '$http', '$locati
                 };
                 $http.post('/predictions/specific', $scope.settingsDetails).success(function(response) {
                     $scope.propositions = response;
+                    var goTo = angular.element(document.getElementById('predictions'));
+                    $document.scrollToElement(goTo, 75, 1000);
                 }).error(function(response) {
                     toaster.pop({
                         type: 'error',

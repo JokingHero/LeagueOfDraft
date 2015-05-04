@@ -231,54 +231,48 @@
                 </div>
             </div>
         </div>
-        <div class="col-xs-12" style="margin-top:40px;" id="predictions">
+        <div class="col-lg-10 col-lg-offset-1 col-xs-12" style="margin-top:50px;" id="predictions">
             <div class="champPopup" ng-repeat="proposition in propositions">
                 <div class="row">
-                    <div class="col-lg-2 col-md-3 col-xs-3">
-                        <img ng-if="proposition.img" ng-src="modules/core/img/champions_load/{{proposition.img}}" height="300px" style="margin-left: 7px; margin-top: 15px;">
+                    <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
+                        <img ng-if="proposition.img" ng-src="modules/core/img/champions_load/{{proposition.img}}" height="300px" class="center-block">
                     </div>
-
-                    <div class="col-lg-5 col-md-6 col-xs-6">
+                    <div class="col-lg-3 col-md-3 col-xs-12 text-center">
                         <h3>
-                            {{proposition.name}}
+                            <span style="font-style: italic; color: #dddddd;">#{{$index + 1}}</span>&nbsp;{{proposition.name}}
                         </h3>
-                        <ul class="list-unstyled pull-left">
-                            <li style="">Pros:</li>
-                            <ul class="list-unstyled" style="padding-left:25px;">
-                                <li ng-repeat="pro in proposition.pros">
-                                    <i class="fa fa-plus-circle" />&nbsp;{{pro}}
-                                </li>
-                            </ul>
-                            <li style="margin-top: 10px;">Cons:</li>
-                            <ul class="list-unstyled" style="padding-left:25px;">
-                                <li ng-repeat="con in proposition.cons">
-                                    <i class="fa fa-minus-circle" />&nbsp;{{con}}
-                                </li>
-                            </ul>
-                        </ul>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-xs-3">
                         <div ng-hide="!proposition.worksWell" style="margin-top: 55px;">
                             <span class="propositionWorks">Works well with:</span>
                             <div class="row">
-                                <div class="col-lg-4" ng-repeat="well in proposition.worksWell">
-                                    <img width="50" height="50" alt="{{well}}" ng-if="well" ng-src="modules/core/img/champions/{{well}}.png">
+                                <div class="col-lg-4 col-md-4 col-xs-4" ng-repeat="well in proposition.worksWell">
+                                    <img width="50" height="50" alt="{{well}}" ng-if="well" ng-src="modules/core/img/champions/{{well}}.png" class="center-block">
                                 </div>
                             </div>
                         </div>
                         <div ng-hide="!proposition.weakAgainst">
                             <span class="propositionWorks">Weak against:</span>
                             <div class="row">
-                                <div class="col-lg-4" ng-repeat="weak in proposition.weakAgainst">
-                                    <img width="50" height="50" alt="{{weak}}" ng-if="weak" ng-src="modules/core/img/champions/{{weak}}.png">
+                                <div class="col-lg-4 col-md-4 col-xs-4" ng-repeat="weak in proposition.weakAgainst">
+                                    <img width="50" height="50" alt="{{weak}}" ng-if="weak" ng-src="modules/core/img/champions/{{weak}}.png" class="center-block">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-3 col-xs-3">
-                        <h3>
-                            <span class="pull-right" style="margin-right: 30px; font-style: italic; color: #dddddd;">#{{$index + 1}}</span>
-                        </h3>
+                    <div class="col-lg-6 col-md-6 col-xs-12">
+                        <ul class="list-unstyled pull-left">
+                            <li style="margin-left:10px; margin-top:25px;">Pros:</li>
+                            <ul class="list-unstyled" style="padding-left:25px; margin-left:10px;">
+                                <li ng-repeat="pro in proposition.pros">
+                                    <i class="fa fa-plus-circle" />&nbsp;{{pro}}
+                                </li>
+                            </ul>
+                            <li style="margin-top: 10px; margin-left:10px;">Cons:</li>
+                            <ul class="list-unstyled" style="padding-left:25px; margin-left:10px;">
+                                <li ng-repeat="con in proposition.cons">
+                                    <i class="fa fa-minus-circle" />&nbsp;{{con}}
+                                </li>
+                            </ul>
+                        </ul>
                     </div>
                 </div>
             </div>

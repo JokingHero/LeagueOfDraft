@@ -11,5 +11,4 @@ module.exports = function(app) {
 
 	// Predictions routing
 	app.route('/predictions/specific').post(predictions.specificPredictions);
-	app.route('/predictions/current').get(predictions.currentStatic);
 };

@@ -1,6 +1,4 @@
-"use strict";
-
-exports.allExisting = [{
+[{
     "id": 266,
     "name": "Aatrox",
     "img": "aatrox",
@@ -1116,4 +1114,4 @@ exports.allExisting = [{
     "weakAgainst": ["leblanc", "zed", "fizz"],
     "pros": ["Massive aoe damage with AoE CC", "Rampant Growth (The Seed) gives your vision when you need to facecheck", "Able to kill dragon and baron quickly with plants","Zyra is a great ambusher "],
     "cons": ["Low mobility and hard to escape if she gets in bad positioning", "Does poorly gap-closing champions"]
-}];
+}]

@@ -69,7 +69,8 @@ module.exports = {
 				'public/lib/ngDialog/js/ngDialog.min.js',
 				'public/lib/bootstrap/js/tooltip.js',
 				'public/lib/lodash/lodash.min.js',
-				'public/lib/angularjs-toaster/toaster.min.js'
+				'public/lib/angularjs-toaster/toaster.min.js',
+				'public/lib/angular-scroll/angular-scroll.min.js'
 			]
 		},
 		css: [

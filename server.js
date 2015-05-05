@@ -64,7 +64,7 @@ var dayJob = schedule.scheduleJob(dayRule, function() {
         day = 0;
     }
     console.log('Day: ' + day);
-    TeamCompBase.update({
+    /*TeamCompBase.update({
         'stats.day': day
     }, {
         $set: {
@@ -79,10 +79,10 @@ var dayJob = schedule.scheduleJob(dayRule, function() {
         if (numAffected) {
             console.log('[DayJob] Updated %j documents.', numAffected);
         }
-    });
+    });*/
 });
 
-var PlayersBase = mongoose.model('PlayersBase');
+/*var PlayersBase = mongoose.model('PlayersBase');
 var rule = new schedule.RecurrenceRule();
 var j = schedule.scheduleJob(rule, function() {
     PlayersBase.find().sort('-updated').limit(config.leagueRequestLimit).exec(
@@ -100,4 +100,4 @@ var j = schedule.scheduleJob(rule, function() {
                 });
             });
         });
-});
+});*/

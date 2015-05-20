@@ -27,16 +27,16 @@ var PlayersBaseSchema = new Schema({
         unique: true,
         require: true
     },
-    league: {
-        type: String,
-        trim: true,
-        default: 'Unknown'
-    },
     updated: {
         type: Date,
         default: Date.now(),
         require: true
-    }
+    },
+    champions: [{
+        id: Number,
+        winPercent: Number
+    }]
 });
 
+PlayersBaseSchema.index({ summoner: 1, region: 1});
 mongoose.model('PlayersBase', PlayersBaseSchema);

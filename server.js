@@ -6,10 +6,8 @@ var init = require('./config/init')(),
     config = require('./config/config'),
     mongoose = require('mongoose'),
     schedule = require('node-schedule'),
-    //buildBase = require('./app/worker/buildBase'),
     chalk = require('chalk'),
-    workerFarm = require('worker-farm'),
-    workers = workerFarm(require.resolve('./app/worker/buildBase'));
+    worker = require('./app/worker/buildBase');
 
 /**
  * Main application entry file.
@@ -51,53 +49,9 @@ if (process.env.NODE_ENV === 'secure') {
 }
 console.log('--');
 
-
-
-var day = 0; //0-30 - 31 days to iterate on
 var dayRule = new schedule.RecurrenceRule();
-dayRule.hour = 23; //every day at 23:59 we change day
-dayRule.minute = 59;
-var TeamCompBase = mongoose.model('TeamCompBase');
+//dayRule.hour = 22; //every day at 03:00 we fetch worker to get data from champion.gg
+//dayRule.minute = 37;
 var dayJob = schedule.scheduleJob(dayRule, function() {
-    day = day + 1;
-    if (day === 31) {
-        day = 0;
-    }
-    console.log('Day: ' + day);
-    /*TeamCompBase.update({
-        'stats.day': day
-    }, {
-        $set: {
-            'stats.wins': 0
-        }
-    }, {
-        multi: true
-    }, function(err, numAffected) {
-        if (err) {
-            console.log('[Error] DayJob error. Could not update: %j', err);
-        }
-        if (numAffected) {
-            console.log('[DayJob] Updated %j documents.', numAffected);
-        }
-    });*/
+    worker();
 });
-
-/*var PlayersBase = mongoose.model('PlayersBase');
-var rule = new schedule.RecurrenceRule();
-var j = schedule.scheduleJob(rule, function() {
-    PlayersBase.find().sort('-updated').limit(config.leagueRequestLimit).exec(
-
-        function(err, players) {
-            if (err) {
-                console.log('[Error] PlayersBase find error:', err.message);
-                return;
-            }
-            players.forEach(function(player) {
-                workers(day, player, function(err, success) {
-                    if (err) {
-                        console.log('[Error] Failed to get recent games: %j', player.id);
-                    }
-                });
-            });
-        });
-});*/

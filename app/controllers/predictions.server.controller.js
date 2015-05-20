@@ -2,7 +2,7 @@
 
 var _ = require('lodash');
 var mongoose = require('mongoose'),
-    TeamCompBase = mongoose.model('TeamCompBase'),
+    //TeamCompBase = mongoose.model('TeamCompBase'),
     championBase = require('../services/champions.json');
 
 /**
@@ -280,7 +280,7 @@ var prepareTeamChamps = function(matchTheseChamps) {
 
 exports.specificPredictions = function(req, res) {
 
-    var matchTheseChamps = req.body.purple;
+    /*var matchTheseChamps = req.body.purple;
     if (req.body.teamBlue) {
         matchTheseChamps = req.body.blue;
     }
@@ -361,5 +361,6 @@ exports.specificPredictions = function(req, res) {
 
                 res.json(finalPropositions);
             }
-        });
+        });*/
+    res.json({});
 };

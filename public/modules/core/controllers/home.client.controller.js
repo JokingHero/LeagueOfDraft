@@ -404,10 +404,8 @@ angular.module('core').controller('HomeController', ['$scope', '$document', '$ht
         $scope.blue5 = [{}];
 
         $scope.$watch('authentication.user', function() {
-            $scope.gameType = $scope.authentication.user.type || '5sr';
             $scope.gameRole = $scope.authentication.user.role || 'Unknown';
             $scope.gameRegion = $scope.authentication.user.region || 'Unknown';
-            $scope.gameLeague = $scope.authentication.user.league || 'Unknown';
             $scope.gameSummoner = $scope.authentication.user.summoner || 'Unknown';
         });
 
@@ -437,14 +435,12 @@ angular.module('core').controller('HomeController', ['$scope', '$document', '$ht
                 });
             } else {
                 $scope.settingsDetails = {
-                    bans: _.compact([$scope.purple_ban1[0].id, $scope.purple_ban2[0].id, $scope.purple_ban3[0].id, $scope.blue_ban1[0].id, $scope.blue_ban2[0].id, $scope.blue_ban3[0].id]),
-                    blue: blue,
-                    purple: purple,
+                    bans: _.compact([$scope.purple_ban1[0].id, $scope.purple_ban2[0].id, $scope.purple_ban3[0].id, $scope.blue_ban1[0].id, $scope.blue_ban2[0].id, $scope.blue_ban3[0].id]).map(Number),
+                    blue: blue.map(Number),
+                    purple: purple.map(Number),
                     teamBlue: team,
-                    gameType: $scope.gameType,
                     gameRole: $scope.gameRole,
                     gameRegion: $scope.gameRegion,
-                    gameLeague: $scope.gameLeague,
                     gameSummoner: $scope.gameSummoner
                 };
                 $http.post('/predictions/specific', $scope.settingsDetails).success(function(response) {

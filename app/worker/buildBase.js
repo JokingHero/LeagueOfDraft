@@ -1,7 +1,6 @@
 'use strict';
 
-var //config = require('../../config/config'),
-    _ = require('lodash'),
+var _ = require('lodash'),
     fs = require('fs'),
     rest = require('restler'),
     champions = require('../services/champions.json');
@@ -33,7 +32,8 @@ module.exports = function() {
                         "graphicsCount": thisChamp.graphicsCount,
                         "pros": thisChamp.pros,
                         "cons": thisChamp.cons,
-                        "counters": []
+                        "counters": [],
+                        "countered": false
                     };
                     var url = 'http://champion.gg/champion/' + champ.key + '/' + champ.role;
                     rest.get(url).on('complete', function(details) {
@@ -59,7 +59,7 @@ module.exports = function() {
                                         if (err) {
                                             console.log(err);
                                         } else {
-                                            console.log("JSON saved");
+                                            GLOBAL.currentChampsBase = require('../services/currentChampsBase.json');
                                         }
                                     });
                                 }

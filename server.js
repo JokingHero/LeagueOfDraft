@@ -50,8 +50,10 @@ if (process.env.NODE_ENV === 'secure') {
 console.log('--');
 
 var dayRule = new schedule.RecurrenceRule();
-//dayRule.hour = 22; //every day at 03:00 we fetch worker to get data from champion.gg
-//dayRule.minute = 37;
+dayRule.hour = 23; //every day at 23:59 we fetch worker to get data from champion.gg
+dayRule.minute = 59;
 var dayJob = schedule.scheduleJob(dayRule, function() {
     worker();
 });
+
+GLOBAL.currentChampsBase = require('./app/services/currentChampsBase.json');

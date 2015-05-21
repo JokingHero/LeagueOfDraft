@@ -13,24 +13,22 @@ var PlayersBaseSchema = new Schema({
     summoner: {
         type: String,
         trim: true,
-        default: 'Unknown'
+        required: true
     },
     region: {
         type: String,
         trim: true,
-        default: 'Unknown'
+        required: true
     },
     id: {
         type: String,
         trim: true,
-        default: 'Unknown',
         unique: true,
         require: true
     },
     updated: {
         type: Date,
-        default: Date.now(),
-        require: true
+        default: Date.now()
     },
     champions: [{
         id: Number,
@@ -38,5 +36,8 @@ var PlayersBaseSchema = new Schema({
     }]
 });
 
-PlayersBaseSchema.index({ summoner: 1, region: 1});
+PlayersBaseSchema.index({
+    id: 1
+});
+
 mongoose.model('PlayersBase', PlayersBaseSchema);

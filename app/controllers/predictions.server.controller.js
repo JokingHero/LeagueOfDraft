@@ -1,8 +1,14 @@
 'use strict';
 
-var _ = require('lodash');
-var mongoose = require('mongoose');
-//TeamCompBase = mongoose.model('TeamCompBase');
+var _ = require('lodash'),
+    config = require('../../config/config'),
+    mongoose = require('mongoose'),
+    rest = require('restler');
+
+var RateLimiter = require('limiter').RateLimiter;
+var limiter = new RateLimiter(config.leagueRequestLimit, 10000, true);
+
+var PlayersBase = mongoose.model('PlayersBase');
 
 /**
  * Module dependencies.
@@ -68,8 +74,82 @@ exports.specificPredictions = function(req, res) {
                 proposition.countered = true;
             }
         }
-        //winrates of player
     });
-    propositions = _.sortBy(propositions, "winPercent").reverse();
-    res.json(propositions);
+
+    //winrates of player
+    if (req.body.gameRegion !== 'Unknown' && req.body.gameSummoner !== 'Unknown') {
+
+        limiter.removeTokens(1, function(err, remainingRequests) {
+            if (remainingRequests < 0) {
+                propositions = _.sortBy(propositions, "winPercent").reverse();
+                res.json(propositions);
+            } else {
+                var getId = 'https://' + req.body.gameRegion + '.api.pvp.net/api/lol/' + req.body.gameRegion + '/v1.4/summoner/by-name/' + req.body.gameSummoner.toLowerCase() + '?api_key=' + config.leagueKey;
+                rest.get(getId).on('complete', function(response) {
+                    if (response instanceof Error) {
+                        console.log('[RIOT API] Error: %j', response);
+                    } else {
+                        var player = {
+                            id: response[req.body.gameSummoner.toLowerCase()].id,
+                            summoner: req.body.gameSummoner.toLowerCase(),
+                            region: req.body.gameRegion,
+                            champions: []
+                        };
+                        var getStatsByChamp = 'https://' + req.body.gameRegion + '.api.pvp.net/api/lol/' + req.body.gameRegion + '/v1.3/stats/by-summoner/' + player.id + '/ranked?season=SEASON2015&api_key=' + config.leagueKey;
+                        rest.get(getStatsByChamp).on('complete', function(response) {
+                            if (response instanceof Error) {
+                                console.log('[RIOT API] Error: %j', response);
+                            } else {
+
+                                _.forEach(response.champions, function(champion) {
+                                    if (champion.stats.totalSessionsPlayed > 10) {
+                                        player.champions.push({
+                                            id: champion.id,
+                                            winRate: (champion.stats.totalSessionsWon * 100) / champion.stats.totalSessionsPlayed
+                                        });
+                                    }
+                                });
+
+                                PlayersBase.findOneAndUpdate({
+                                        id: player.id
+                                    },
+                                    player, {
+                                        upsert: true
+                                    },
+                                    function(err) {
+                                        if (err) {
+                                            console.log('[MongoDB] Error: %j', err);
+                                        }
+                                    }
+                                );
+
+                                //change propositions
+                                _.forEach(propositions, function(proposition) {
+                                    if (!proposition.countered) {
+                                        console.log(proposition.winPercent);
+                                        console.log(player.champions);
+                                        console.log(proposition.id);
+                                        var index = _.findIndex(player.champions, {
+                                            'id': proposition.id
+                                        });
+                                        if (index !== -1) {
+                                            proposition.winPercent = player.champions[index].winRate;
+                                        }
+                                        console.log(proposition.winPercent);
+                                    }
+                                });
+
+                                //send response
+                                propositions = _.sortBy(propositions, "winPercent").reverse();
+                                res.json(propositions);
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    } else {
+        propositions = _.sortBy(propositions, "winPercent").reverse();
+        res.json(propositions);
+    }
 };

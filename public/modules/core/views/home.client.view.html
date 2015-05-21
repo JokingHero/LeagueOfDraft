@@ -218,8 +218,11 @@
                     </div>
                     <div class="col-lg-3 col-md-3 col-xs-12 text-center">
                         <h3>
-                            <span style="font-style: italic; color: #dddddd;">#{{$index + 1}}</span>&nbsp;{{proposition.name}}
+                            <span style="font-style: italic; color: #dddddd;">#{{$index + 1}}</span>&nbsp;{{proposition.name + ' ' + proposition.role}}
                         </h3>
+                        <h4>
+                            <a style="font-style: italic; color: #fff;" ng-href="http://www.champion.gg/champion/{{proposition.key + '/' + proposition.role}}" target="_blank" >Build</a>
+                        </h4>
                         <div ng-hide="!proposition.worksWell" style="margin-top: 55px;">
                             <span class="propositionWorks">Works well with:</span>
                             <div class="row">

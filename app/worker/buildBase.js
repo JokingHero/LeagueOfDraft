@@ -33,7 +33,9 @@ module.exports = function() {
                         "pros": thisChamp.pros,
                         "cons": thisChamp.cons,
                         "counters": [],
-                        "countered": false
+                        "countered": false,
+                        "worksWell": thisChamp.worksWell,
+                        "weakAgainst": thisChamp.weakAgainst
                     };
                     var url = 'http://champion.gg/champion/' + champ.key + '/' + champ.role;
                     rest.get(url).on('complete', function(details) {

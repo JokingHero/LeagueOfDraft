@@ -4,50 +4,30 @@
         <form name="userForm" data-ng-submit="updateUserProfile(userForm.$valid)" class="signin form-horizontal" autocomplete="off">
             <fieldset>
                 <div class="form-group">
-                    <label for="type">Game type:</label>
-                    <select class="form-control" id="type" name="type" class="form-control" data-ng-model="user.type" data-toggle="tooltip" title="" data-original-title="Game type You want to analyze">
-                        <option value="5sr">5v5 Summoners Rift</option>
-                        <option value="3tt">3v3 Twisted Treeline</option>
-                        <option value="5cs">5v5 Crystal Scar</option>
-                    </select>
-                </div>
-                <div class="form-group">
                     <label for="role">Role:</label>
                     <select class="form-control" id="role" name="role" class="form-control" data-ng-model="user.role" data-toggle="tooltip" title="" data-original-title="We will propose champions only for selected role" >
                         <option value="Unknown">Unknown</option>
-                        <option value="top">Top</option>
-                        <option value="mid">Mid</option>
-                        <option value="adc">AD carry</option>
-                        <option value="sup">Support</option>
-                        <option value="jun">Jungler</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="league">League:</label>
-                    <select class="form-control" id="league" name="league" class="form-control" data-ng-model="user.league" data-toggle="tooltip" title="" data-original-title="Narrow down analysis to the specific league - we will only consider games from that level">
-                        <option value="Unknown">Unknown</option>
-                        <option value="Bronze">Bronze</option>
-                        <option value="Gold">Gold</option>
-                        <option value="Platinum">Platinum</option>
-                        <option value="Diamond">Diamond</option>
-                        <option value="Master">Master</option>
-                        <option value="Challenger">Challenger</option>
+                        <option value="Top">Top</option>
+                        <option value="Middle">Mid</option>
+                        <option value="ADC">AD carry</option>
+                        <option value="Support">Support</option>
+                        <option value="Jungle">Jungler</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="region">Region</label>
                     <select class="form-control" id="region" name="region" class="form-control" data-ng-model="user.region" data-toggle="tooltip" title="" data-original-title="Narrow down analysis to the specific region">
                         <option value="Unknown">Unknown</option>
-                        <option value="NA">North America</option>
-                        <option value="EUW">EU West</option>
-                        <option value="EUNE">EU Nordic & East</option>
-                        <option value="BR">Brazil</option>
-                        <option value="TR">Turkey</option>
-                        <option value="LAN">Latin America North</option>
-                        <option value="LAS">Latin America South</option>
-                        <option value="OCE">Oceania</option>
-                        <option value="RU">Russia</option>
-                        <option value="KR">Korea</option>
+                        <option value="na">North America</option>
+                        <option value="euw">EU West</option>
+                        <option value="eune">EU Nordic & East</option>
+                        <option value="br">Brazil</option>
+                        <option value="tr">Turkey</option>
+                        <option value="lan">Latin America North</option>
+                        <option value="las">Latin America South</option>
+                        <option value="oce">Oceania</option>
+                        <option value="ru">Russia</option>
+                        <option value="kr">Korea</option>
                     </select>
                 </div>
                 <div class="form-group">

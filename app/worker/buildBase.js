@@ -48,7 +48,7 @@ module.exports = function() {
                                 var stringRest = details.substring(start + keyString.length);
                                 var championDetails = JSON.parse(stringRest.slice(0, stringRest.indexOf("};") + 1));
                                 championDetails.matchups.forEach(function(matchup) {
-                                    if (matchup.games > 10) {
+                                    if (matchup.games > 15) {
                                         updateChamp.counters.push({
                                             "id": champions[matchup.key].id,
                                             "winRate": matchup.winRate

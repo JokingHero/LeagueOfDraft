@@ -59,8 +59,14 @@ exports.specificPredictions = function(req, res) {
         });
 
         if (counters.length > 0) {
-            proposition.winPercent = _.sortBy(counters, "winRate")[0].winRate;
-            proposition.countered = true;
+
+            proposition.winPercent = _.reduce(counters, function(memo, counter) {
+                return memo + counter.winRate;
+            }, 0) / counters.length;
+
+            if (proposition.winPercent < 50) {
+                proposition.countered = true;
+            }
         }
         //winrates of player
     });

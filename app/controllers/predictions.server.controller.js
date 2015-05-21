@@ -81,8 +81,33 @@ exports.specificPredictions = function(req, res) {
 
         limiter.removeTokens(1, function(err, remainingRequests) {
             if (remainingRequests < 0) {
-                propositions = _.sortBy(propositions, "winPercent").reverse();
-                res.json(propositions);
+                PlayersBase.findOne({
+                        $or: [{
+                            'region': req.body.gameRegion
+                        }, {
+                            'summoner': req.body.gameSummoner.toLowerCase()
+                        }]
+                    },
+                    function(err, playerData) {
+                        if (err) {
+                            console.log('[MongoDB] Error: %j', err);
+                            propositions = _.sortBy(propositions, "winPercent").reverse();
+                            res.json(propositions);
+                        } else {
+                            _.forEach(propositions, function(proposition) {
+                                if (!proposition.countered) {
+                                    var index = _.findIndex(playerData.champions, {
+                                        'id': proposition.id
+                                    });
+                                    if (index !== -1) {
+                                        proposition.winPercent = playerData.champions[index].winPercent;
+                                    }
+                                }
+                            });
+                            propositions = _.sortBy(propositions, "winPercent").reverse();
+                            res.json(propositions);
+                        }
+                    });
             } else {
                 var getId = 'https://' + req.body.gameRegion + '.api.pvp.net/api/lol/' + req.body.gameRegion + '/v1.4/summoner/by-name/' + req.body.gameSummoner.toLowerCase() + '?api_key=' + config.leagueKey;
                 rest.get(getId).on('complete', function(response) {
@@ -105,7 +130,7 @@ exports.specificPredictions = function(req, res) {
                                     if (champion.stats.totalSessionsPlayed > 10) {
                                         player.champions.push({
                                             id: champion.id,
-                                            winRate: (champion.stats.totalSessionsWon * 100) / champion.stats.totalSessionsPlayed
+                                            winPercent: champion.stats.totalSessionsWon * 100 / champion.stats.totalSessionsPlayed
                                         });
                                     }
                                 });
@@ -126,16 +151,12 @@ exports.specificPredictions = function(req, res) {
                                 //change propositions
                                 _.forEach(propositions, function(proposition) {
                                     if (!proposition.countered) {
-                                        console.log(proposition.winPercent);
-                                        console.log(player.champions);
-                                        console.log(proposition.id);
                                         var index = _.findIndex(player.champions, {
                                             'id': proposition.id
                                         });
                                         if (index !== -1) {
                                             proposition.winPercent = player.champions[index].winRate;
                                         }
-                                        console.log(proposition.winPercent);
                                     }
                                 });
 

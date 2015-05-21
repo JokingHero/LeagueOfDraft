@@ -37,7 +37,9 @@ var PlayersBaseSchema = new Schema({
 });
 
 PlayersBaseSchema.index({
-    id: 1
+    id: 1,
+    region: 1,
+    summoner: 1
 });
 
 mongoose.model('PlayersBase', PlayersBaseSchema);

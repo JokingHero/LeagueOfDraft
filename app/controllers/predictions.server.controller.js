@@ -113,6 +113,8 @@ exports.specificPredictions = function(req, res) {
                 rest.get(getId).on('complete', function(response) {
                     if (response instanceof Error) {
                         console.log('[RIOT API] Error: %j', response);
+                        propositions = _.sortBy(propositions, "winPercent").reverse();
+                        res.json(propositions);
                     } else {
                         var player = {
                             id: response[req.body.gameSummoner.toLowerCase()].id,
@@ -124,6 +126,8 @@ exports.specificPredictions = function(req, res) {
                         rest.get(getStatsByChamp).on('complete', function(response) {
                             if (response instanceof Error) {
                                 console.log('[RIOT API] Error: %j', response);
+                                propositions = _.sortBy(propositions, "winPercent").reverse();
+                                res.json(propositions);
                             } else {
 
                                 _.forEach(response.champions, function(champion) {

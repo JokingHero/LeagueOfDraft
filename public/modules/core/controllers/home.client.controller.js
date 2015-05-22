@@ -387,7 +387,7 @@ angular.module('core').controller('HomeController', ['$scope', '$document', '$ht
         $scope.purple_ban2 = [{}];
         $scope.purple_ban3 = [{}];
         $scope.purple1 = [{
-            'name': 'aaaplayer',
+            'name': 'aaayou',
             'id': '-1'
         }];
         $scope.purple2 = [{}];

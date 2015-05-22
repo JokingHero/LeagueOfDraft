@@ -2,15 +2,15 @@
 
 module.exports = {
     app: {
-        title: 'League Of Draft',
-        description: 'Win games in champion select! Or at least increase Your chances later.',
-        keywords: 'league of legends, champion select, what champion to pick, counterpick, champion draft'
+        title: 'Pick best possible champion in League Of Legends draft!',
+        description: 'Win League Of Legends games in champion select! Or at least increase Your chances. We will tell You what champion to pick, considering current meta, your performance and counters.',
+        keywords: 'league of legends, lol, champion select, what champion to pick, counterpick, champion draft'
     },
     port: process.env.PORT || 3000,
     templateEngine: 'swig',
     // The secret should be set to a non-guessable string that
     // is used to compute a session hash
-    sessionSecret: 'MEAN',
+    sessionSecret: 'leaguesupersecretdraft',
     // The name of the MongoDB collection to store sessions in
     sessionCollection: 'sessions',
     // The session cookie settings

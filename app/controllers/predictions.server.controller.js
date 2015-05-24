@@ -109,10 +109,10 @@ exports.specificPredictions = function(req, res) {
                         }
                     });
             } else {
-                var getId = 'https://' + req.body.gameRegion + '.api.pvp.net/api/lol/' + req.body.gameRegion + '/v1.4/summoner/by-name/' + req.body.gameSummoner.toLowerCase() + '?api_key=' + config.leagueKey;
+                var getId = 'https://' + req.body.gameRegion + '.api.pvp.net/api/lol/' + req.body.gameRegion + '/v1.4/summoner/by-name/' + encodeURIComponent(req.body.gameSummoner.toLowerCase())  + '?api_key=' + config.leagueKey;
                 rest.get(getId).on('complete', function(response) {
-                    if (response instanceof Error) {
-                        console.log('[RIOT API] Error: %j', response);
+                    if (response instanceof Error || typeof response === "string" || response instanceof String) {
+                        console.log('[RIOT API] Error: %j', response); 
                         propositions = _.sortBy(propositions, "winPercent").reverse();
                         res.json(propositions);
                     } else {
@@ -124,7 +124,7 @@ exports.specificPredictions = function(req, res) {
                         };
                         var getStatsByChamp = 'https://' + req.body.gameRegion + '.api.pvp.net/api/lol/' + req.body.gameRegion + '/v1.3/stats/by-summoner/' + player.id + '/ranked?season=SEASON2015&api_key=' + config.leagueKey;
                         rest.get(getStatsByChamp).on('complete', function(response) {
-                            if (response instanceof Error) {
+                            if (response instanceof Error || typeof response === "string" || response instanceof String) {
                                 console.log('[RIOT API] Error: %j', response);
                                 propositions = _.sortBy(propositions, "winPercent").reverse();
                                 res.json(propositions);

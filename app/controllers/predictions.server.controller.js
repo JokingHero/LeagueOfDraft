@@ -85,7 +85,7 @@ exports.specificPredictions = function(req, res) {
                         $or: [{
                             'region': req.body.gameRegion
                         }, {
-                            'summoner': req.body.gameSummoner.toLowerCase()
+                            'summoner': req.body.gameSummoner.replace(/\s/g, '').toLowerCase()
                         }]
                     },
                     function(err, playerData) {
@@ -109,16 +109,16 @@ exports.specificPredictions = function(req, res) {
                         }
                     });
             } else {
-                var getId = 'https://' + req.body.gameRegion + '.api.pvp.net/api/lol/' + req.body.gameRegion + '/v1.4/summoner/by-name/' + encodeURIComponent(req.body.gameSummoner.toLowerCase())  + '?api_key=' + config.leagueKey;
+                var getId = 'https://' + req.body.gameRegion + '.api.pvp.net/api/lol/' + req.body.gameRegion + '/v1.4/summoner/by-name/' + encodeURIComponent(req.body.gameSummoner.toLowerCase()) + '?api_key=' + config.leagueKey;
                 rest.get(getId).on('complete', function(response) {
                     if (response instanceof Error || typeof response === "string" || response instanceof String) {
-                        console.log('[RIOT API] Error: %j', response); 
                         propositions = _.sortBy(propositions, "winPercent").reverse();
                         res.json(propositions);
                     } else {
+
                         var player = {
-                            id: response[req.body.gameSummoner.toLowerCase()].id,
-                            summoner: req.body.gameSummoner.toLowerCase(),
+                            id: response[req.body.gameSummoner.replace(/\s/g, '').toLowerCase()].id,
+                            summoner: req.body.gameSummoner.replace(/\s/g, '').toLowerCase(),
                             region: req.body.gameRegion,
                             champions: []
                         };
@@ -158,8 +158,9 @@ exports.specificPredictions = function(req, res) {
                                         var index = _.findIndex(player.champions, {
                                             'id': proposition.id
                                         });
+
                                         if (index !== -1) {
-                                            proposition.winPercent = player.champions[index].winRate;
+                                            proposition.winPercent = player.champions[index].winPercent;
                                         }
                                     }
                                 });

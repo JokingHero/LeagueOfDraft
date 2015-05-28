@@ -1,6 +1,6 @@
 <section data-ng-controller="HomeController">
     <div class="row" id="introHeader">
-        <div class="col-xs-12" style="margin-bottom: 20px;">
+        <div class="col-xs-12 hidden-sm hidden-xs" style="margin-bottom: 20px;">
             <div class="slider-pro" id="slider">
                 <div class="sp-slides">
                     <div class="sp-slide">
@@ -93,7 +93,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-xs-2 championBox" ng-repeat="champion in champions  | filter:search | orderBy : 'name'" data-drop="true" ng-model='champions' jqyoui-droppable="{index: {{$index}}, applyFilter: 'filterIt'}">
-                    <img width="56" height="56" alt="{{champion.name}}" style="cursor: move;" ng-if="champion.name" ng-src="modules/core/img/champions/{{champion.name}}.png" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="champions" jqyoui-draggable="{index: {{$index}}, applyFilter: 'filterIt', placeholder:true}" ng-hide="!champion.name">
+                    <div style="width: 48px; height:48px; border-radius: 8px; vertical-align: middle; cursor: move;" class="{{champion.name}}" alt="{{champion.name}}" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="champions" jqyoui-draggable="{index: {{$index}}, applyFilter: 'filterIt', placeholder:true}" ng-hide="!champion.name"></div>
                 </div>
             </div>
         </div>
@@ -112,22 +112,22 @@
                 <div class="row">
                     <div class="col-xs-5 col-xs-offset-2 col-md-5 col-md-offset-2">
                         <div class="championBox pull-right" style="position: relative;" ng-repeat="champion in blue1" data-drop="true" ng-model="blue1" jqyoui-droppable="{index: {{$index}}}">
-                            <img style="position: absolute;" width="56" height="56" ng-src="modules/core/img/positions/blue1.png">
-                            <img style="position: absolute; cursor: move;" width="56" height="56" ng-if="champion.name" ng-src="modules/core/img/champions/{{champion.name}}.png" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="blue1" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name">
+                            <img style="position: absolute;" width="48" height="48" ng-src="modules/core/img/positions/blue1.png">
+                            <div style="position: absolute; cursor: move; width: 48px; height:48px; border-radius: 8px;" ng-if="champion.name" class="{{champion.name}}" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="blue1" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name"></div>
                         </div>
                         <div class="championBox pull-right" style="position: relative;" ng-repeat="champion in blue_ban1" data-drop="true" ng-model='blue_ban1' jqyoui-droppable="{index: {{$index}}}">
-                            <img style="position: absolute;" width="56" height="56" ng-src="modules/core/img/positions/ban.png">
-                            <img style="position: absolute; cursor: move;" width="56" height="56" ng-if="champion.name" ng-src="modules/core/img/champions/{{champion.name}}.png" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="blue_ban1" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name">
+                            <img style="position: absolute;" width="48" height="48" ng-src="modules/core/img/positions/ban.png">
+                            <div style="position: absolute; cursor: move; width: 48px; height:48px; border-radius: 8px;" ng-if="champion.name" class="{{champion.name}}" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="blue_ban1" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name"></div>
                         </div>
                     </div>
                     <div class="col-xs-5">
                         <div class="championBox pull-left" style="position: relative;" ng-repeat="champion in purple1" data-drop="true" ng-model='purple1' jqyoui-droppable="{index: {{$index}}}">
-                            <img style="position: absolute;" width="56" height="56" ng-src="modules/core/img/positions/purple1.png">
-                            <img style="position: absolute; cursor: move;" width="56" height="56" ng-if="champion.name" ng-src="modules/core/img/champions/{{champion.name}}.png" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="purple1" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name">
+                            <img style="position: absolute;" width="48" height="48" ng-src="modules/core/img/positions/purple1.png">
+                            <div style="position: absolute; cursor: move; width: 48px; height:48px; border-radius: 8px;" ng-if="champion.name" class="{{champion.name}}" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="purple1" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name"></div>
                         </div>
                         <div class="championBox pull-left" style="position: relative;" ng-repeat="champion in purple_ban1" data-drop="true" ng-model='purple_ban1' jqyoui-droppable="{index: {{$index}}}">
-                            <img style="position: absolute;" width="56" height="56" ng-src="modules/core/img/positions/ban.png">
-                            <img style="position: absolute; cursor: move;" width="56" height="56" ng-if="champion.name" ng-src="modules/core/img/champions/{{champion.name}}.png" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="purple_ban1" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name">
+                            <img style="position: absolute;" width="48" height="48" ng-src="modules/core/img/positions/ban.png">
+                            <div style="position: absolute; cursor: move; width: 48px; height:48px; border-radius: 8px;" ng-if="champion.name" class="{{champion.name}}" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="purple_ban1" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name"></div>
                         </div>
                     </div>
                 </div>
@@ -139,72 +139,72 @@
                     </div>
                     <div class="col-sm-5 col-sm-offset-0 col-xs-5 col-xs-offset-2">
                         <div class="championBox pull-right" style="position: relative;" ng-repeat="champion in blue2" data-drop="true" ng-model='blue2' jqyoui-droppable="{index: {{$index}}}">
-                            <img style="position: absolute;" width="56" height="56" ng-src="modules/core/img/positions/blue2.png">
-                            <img style="position: absolute; cursor: move;" width="56" height="56" ng-if="champion.name" ng-src="modules/core/img/champions/{{champion.name}}.png" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="blue2" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name">
+                            <img style="position: absolute;" width="48" height="48" ng-src="modules/core/img/positions/blue2.png">
+                            <div style="position: absolute; cursor: move; width: 48px; height:48px; border-radius: 8px;" ng-if="champion.name" class="{{champion.name}}" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="blue2" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name"></div>
                         </div>
                         <div class="championBox pull-right" style="position: relative;" ng-repeat="champion in blue_ban2" data-drop="true" ng-model='blue_ban2' jqyoui-droppable="{index: {{$index}}}">
-                            <img style="position: absolute;" width="56" height="56" ng-src="modules/core/img/positions/ban.png">
-                            <img style="position: absolute; cursor: move;" width="56" height="56" ng-if="champion.name" ng-src="modules/core/img/champions/{{champion.name}}.png" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="blue_ban2" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name">
+                            <img style="position: absolute;" width="48" height="48" ng-src="modules/core/img/positions/ban.png">
+                            <div style="position: absolute; cursor: move; width: 48px; height:48px; border-radius: 8px;" ng-if="champion.name" class="{{champion.name}}" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="blue_ban2" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name"></div>
                         </div>
                     </div>
                     <div class="col-xs-5">
                         <div class="championBox pull-left" style="position: relative;" ng-repeat="champion in purple2" data-drop="true" ng-model='purple2' jqyoui-droppable="{index: {{$index}}}">
-                            <img style="position: absolute;" width="56" height="56" ng-src="modules/core/img/positions/purple2.png">
-                            <img style="position: absolute; cursor: move;" width="56" height="56" ng-if="champion.name" ng-src="modules/core/img/champions/{{champion.name}}.png" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="purple2" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name">
+                            <img style="position: absolute;" width="48" height="48" ng-src="modules/core/img/positions/purple2.png">
+                            <div style="position: absolute; cursor: move; width: 48px; height:48px; border-radius: 8px;" ng-if="champion.name" class="{{champion.name}}" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="purple2" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name"></div>
                         </div>
                         <div class="championBox pull-left" style="position: relative;" ng-repeat="champion in purple_ban2" data-drop="true" ng-model='purple_ban2' jqyoui-droppable="{index: {{$index}}}">
-                            <img style="position: absolute;" width="56" height="56" ng-src="modules/core/img/positions/ban.png">
-                            <img style="position: absolute; cursor: move;" width="56" height="56" ng-if="champion.name" ng-src="modules/core/img/champions/{{champion.name}}.png" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="purple_ban2" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name">
+                            <img style="position: absolute;" width="48" height="48" ng-src="modules/core/img/positions/ban.png">
+                            <div style="position: absolute; cursor: move; width: 48px; height:48px; border-radius: 8px;" ng-if="champion.name" class="{{champion.name}}" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="purple_ban2" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name"></div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-5 col-xs-offset-2 col-md-5 col-md-offset-2">
                         <div class="championBox pull-right" style="position: relative;" ng-repeat="champion in blue3" data-drop="true" ng-model='blue3' jqyoui-droppable="{index: {{$index}}}">
-                            <img style="position: absolute;" width="56" height="56" ng-src="modules/core/img/positions/blue3.png">
-                            <img style="position: absolute; cursor: move;" width="56" height="56" ng-if="champion.name" ng-src="modules/core/img/champions/{{champion.name}}.png" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="blue3" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name">
+                            <img style="position: absolute;" width="48" height="48" ng-src="modules/core/img/positions/blue3.png">
+                            <div style="position: absolute; cursor: move; width: 48px; height:48px; border-radius: 8px;" ng-if="champion.name" class="{{champion.name}}" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="blue3" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name"></div>
                         </div>
                         <div class="championBox pull-right" style="position: relative;" ng-repeat="champion in blue_ban3" data-drop="true" ng-model='blue_ban3' jqyoui-droppable="{index: {{$index}}}">
-                            <img style="position: absolute;" width="56" height="56" ng-src="modules/core/img/positions/ban.png">
-                            <img style="position: absolute; cursor: move;" width="56" height="56" ng-if="champion.name" ng-src="modules/core/img/champions/{{champion.name}}.png" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="blue_ban3" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name">
+                            <img style="position: absolute;" width="48" height="48" ng-src="modules/core/img/positions/ban.png">
+                            <div style="position: absolute; cursor: move; width: 48px; height:48px; border-radius: 8px;" ng-if="champion.name" class="{{champion.name}}" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="blue_ban3" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name"></div>
                         </div>
                     </div>
                     <div class="col-xs-5">
                         <div class="championBox pull-left" style="position: relative;" ng-repeat="champion in purple3" data-drop="true" ng-model='purple3' jqyoui-droppable="{index: {{$index}}}">
-                            <img style="position: absolute;" width="56" height="56" ng-src="modules/core/img/positions/purple3.png">
-                            <img style="position: absolute; cursor: move;" width="56" height="56" ng-if="champion.name" ng-src="modules/core/img/champions/{{champion.name}}.png" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="purple3" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name">
+                            <img style="position: absolute;" width="48" height="48" ng-src="modules/core/img/positions/purple3.png">
+                            <div style="position: absolute; cursor: move; width: 48px; height:48px; border-radius: 8px;" ng-if="champion.name" class="{{champion.name}}" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="purple3" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name"></div>
                         </div>
                         <div class="championBox pull-left" style="position: relative;" ng-repeat="champion in purple_ban3" data-drop="true" ng-model='purple_ban3' jqyoui-droppable="{index: {{$index}}}">
-                            <img style="position: absolute;" width="56" height="56" ng-src="modules/core/img/positions/ban.png">
-                            <img style="position: absolute; cursor: move;" width="56" height="56" ng-if="champion.name" ng-src="modules/core/img/champions/{{champion.name}}.png" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="purple_ban3" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name">
+                            <img style="position: absolute;" width="48" height="48" ng-src="modules/core/img/positions/ban.png">
+                            <div style="position: absolute; cursor: move; width: 48px; height:48px; border-radius: 8px;" ng-if="champion.name" class="{{champion.name}}" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="purple_ban3" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name"></div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-5 col-xs-offset-2 col-md-4 col-md-offset-3">
                         <div class="championBox pull-right" style="position: relative;" ng-repeat="champion in blue4" data-drop="true" ng-model='blue4' jqyoui-droppable="{index: {{$index}}}" ng-hide="gameType === '3tt' || gameType === 'p3tt'">
-                            <img style="position: absolute;" width="56" height="56" ng-src="modules/core/img/positions/blue4.png">
-                            <img style="position: absolute; cursor: move;" width="56" height="56" ng-if="champion.name" ng-src="modules/core/img/champions/{{champion.name}}.png" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="blue4" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name">
+                            <img style="position: absolute;" width="48" height="48" ng-src="modules/core/img/positions/blue4.png">
+                            <div style="position: absolute; cursor: move; width: 48px; height:48px; border-radius: 8px;" ng-if="champion.name" class="{{champion.name}}" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="blue4" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name"></div>
                         </div>
                     </div>
                     <div class="col-xs-5">
                         <div class="championBox pull-left" style="position: relative;" ng-repeat="champion in purple4" data-drop="true" ng-model='purple4' jqyoui-droppable="{index: {{$index}}}" ng-hide="gameType === '3tt' || gameType === 'p3tt'">
-                            <img style="position: absolute;" width="56" height="56" ng-src="modules/core/img/positions/purple4.png">
-                            <img style="position: absolute; cursor: move;" width="56" height="56" ng-if="champion.name" ng-src="modules/core/img/champions/{{champion.name}}.png" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="purple4" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name">
+                            <img style="position: absolute;" width="48" height="48" ng-src="modules/core/img/positions/purple4.png">
+                            <div style="position: absolute; cursor: move; width: 48px; height:48px; border-radius: 8px;" ng-if="champion.name" class="{{champion.name}}" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="purple4" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name"></div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-5 col-xs-offset-2 col-md-4 col-md-offset-3">
                         <div class="championBox pull-right" style="position: relative;" ng-repeat="champion in blue5" data-drop="true" ng-model='blue5' jqyoui-droppable="{index: {{$index}}}" ng-hide="gameType === '3tt' || gameType === 'p3tt'">
-                            <img style="position: absolute;" width="56" height="56" ng-src="modules/core/img/positions/blue5.png">
-                            <img style="position: absolute; cursor: move;" width="56" height="56" ng-if="champion.name" ng-src="modules/core/img/champions/{{champion.name}}.png" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="blue5" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name">
+                            <img style="position: absolute;" width="48" height="48" ng-src="modules/core/img/positions/blue5.png">
+                            <div style="position: absolute; cursor: move; width: 48px; height:48px; border-radius: 8px;" ng-if="champion.name" class="{{champion.name}}" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="blue5" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name"></div>
                         </div>
                     </div>
                     <div class="col-xs-5">
                         <div class="championBox pull-left" style="position: relative;" ng-repeat="champion in purple5" data-drop="true" ng-model='purple5' jqyoui-droppable="{index: {{$index}}}" ng-hide="gameType === '3tt' || gameType === 'p3tt'">
-                            <img style="position: absolute;" width="56" height="56" ng-src="modules/core/img/positions/purple5.png">
-                            <img style="position: absolute; cursor: move;" width="56" height="56" ng-if="champion.name" ng-src="modules/core/img/champions/{{champion.name}}.png" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="purple5" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name">
+                            <img style="position: absolute;" width="48" height="48" ng-src="modules/core/img/positions/purple5.png">
+                            <div style="position: absolute; cursor: move; width: 48px; height:48px; border-radius: 8px;" ng-if="champion.name" class="{{champion.name}}" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="purple5" jqyoui-draggable="{index: {{$index}}, placeholder:true}" ng-hide="!champion.name"></div>
                         </div>
                     </div>
                 </div>
@@ -221,13 +221,13 @@
                             <span style="font-style: italic; color: #dddddd;">#{{$index + 1}}</span>&nbsp;{{proposition.name + ' ' + proposition.role}}
                         </h3>
                         <h4>
-                            <a style="font-style: italic; color: #fff;" ng-href="http://www.champion.gg/champion/{{proposition.key + '/' + proposition.role}}" target="_blank" >Build</a>
+                            <a style="font-style: italic; color: #fff;" ng-href="http://www.champion.gg/champion/{{proposition.key + '/' + proposition.role}}" target="_blank">Build</a>
                         </h4>
                         <div ng-hide="!proposition.worksWell" style="margin-top: 55px;">
                             <span class="propositionWorks">Works well with:</span>
                             <div class="row">
                                 <div class="col-lg-4 col-md-4 col-xs-4" ng-repeat="well in proposition.worksWell">
-                                    <img width="50" height="50" alt="{{well}}" ng-if="well" ng-src="modules/core/img/champions/{{well}}.png" class="center-block">
+                                    <div style="height:48px; width:48px;" alt="{{well}}" ng-if="well" class="{{well}}" class="center-block"></div>
                                 </div>
                             </div>
                         </div>
@@ -235,7 +235,7 @@
                             <span class="propositionWorks">Weak against:</span>
                             <div class="row">
                                 <div class="col-lg-4 col-md-4 col-xs-4" ng-repeat="weak in proposition.weakAgainst">
-                                    <img width="50" height="50" alt="{{weak}}" ng-if="weak" ng-src="modules/core/img/champions/{{weak}}.png" class="center-block">
+                                    <div style="height:48px; width:48px;" alt="{{weak}}" ng-if="weak" class="{{weak}}" class="center-block"></div>
                                 </div>
                             </div>
                         </div>

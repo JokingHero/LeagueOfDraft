@@ -48,8 +48,10 @@ exports.specificPredictions = function(req, res) {
             var possibleRoles = _.filter(JSON.parse(JSON.stringify(GLOBAL.currentChampsBase)), {
                 'id': teamMate
             });
-            possibleRoles = _.sortBy(possibleRoles, "playPercent").reverse();
-            teamMatesRoles.push(possibleRoles[0].role);
+            if (possibleRoles.length > 0) {
+                possibleRoles = _.sortBy(possibleRoles, "playPercent").reverse();
+                teamMatesRoles.push(possibleRoles[0].role);
+            }
         });
         var rolesToTake = _.difference(standardTeamRoles, teamMatesRoles);
         propositions = _.filter(propositions, function(proposition) {

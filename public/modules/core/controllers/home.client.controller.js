@@ -74,6 +74,9 @@ angular.module('core').controller('HomeController', ['$scope', '$document', '$ht
             'name': 'drmundo',
             'id': '36'
         }, {
+            'name': 'ekko',
+            'id': '245'
+        }, {
             'name': 'elise',
             'id': '60'
         }, {

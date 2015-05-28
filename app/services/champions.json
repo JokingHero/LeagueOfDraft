@@ -209,6 +209,16 @@
         "pros": ["High base damage and steriod damage from his E", "% based damage that makes him great for taking out tanky targets", "Very tanky and can take a beating and come back with full HP"],
         "cons": ["Heavily countered by ignite and other healing reduction spells and abilities", "Requires a decent amount of farm to be a true threat"]
     },
+    "Ekko": {
+        "id": 244,
+        "name": "Ekko",
+        "img": "ekko",
+        "graphicsCount": 2,
+        "worksWell": ["sejuani", "gnar", "lulu"],
+        "weakAgainst": ["lissandra", "chogath", "lulu"],
+        "pros": ["Insane burst and sustained damage", "Very mobile", "Really good in skirmishes", "Great zone control"],
+        "cons": ["Low survivability", "Spends a lot of Mana", "Can be focused down easily in teamfights with Crowd Control"]
+    },
     "Elise": {
         "id": 60,
         "name": "Elise",

@@ -1,0 +1,398 @@
+.aatrox, .ahri, .akali, .alistar, .amumu, .anivia, .annie, .ashe, .azir, .blitzcrank, .brand, .braum, .caitlyn, .cassiopeia, .chogath, .corki, .darius, .diana, .draven, .drmundo, .elise, .evelynn, .ezreal, .fiddlesticks, .fiora, .fizz, .galio, .gangplank, .garen, .gnar {
+    background-image: url("../img/champions/champion0.png");
+    background-repeat: no-repeat;
+}
+.aatrox {
+    background-position: 0 0;
+}
+.ahri {
+    background-position: -48px 0;
+}
+.akali {
+    background-position: -96px 0;
+}
+.alistar {
+    background-position: -144px 0;
+}
+.amumu {
+    background-position: -192px 0;
+}
+.anivia {
+    background-position: -240px 0;
+}
+.annie {
+    background-position: -288px 0;
+}
+.ashe {
+    background-position: -336px 0;
+}
+.azir {
+    background-position: -384px 0;
+}
+.blitzcrank {
+    background-position: -432px 0;
+}
+.brand {
+    background-position: 0 -48px;
+}
+.braum {
+    background-position: -48px -48px;
+}
+.caitlyn {
+    background-position: -96px -48px;
+}
+.cassiopeia {
+    background-position: -144px -48px;
+}
+.chogath {
+    background-position: -192px -48px;
+}
+.corki {
+    background-position: -240px -48px;
+}
+.darius {
+    background-position: -288px -48px;
+}
+.diana {
+    background-position: -336px -48px;
+}
+.draven {
+    background-position: -384px -48px;
+}
+.drmundo {
+    background-position: -432px -48px;
+}
+.elise {
+    background-position: 0 -96px;
+}
+.evelynn {
+    background-position: -48px -96px;
+}
+.ezreal {
+    background-position: -96px -96px;
+}
+.fiddlesticks {
+    background-position: -144px -96px;
+}
+.fiora {
+    background-position: -192px -96px;
+}
+.fizz {
+    background-position: -240px -96px;
+}
+.galio {
+    background-position: -288px -96px;
+}
+.gangplank {
+    background-position: -336px -96px;
+}
+.garen {
+    background-position: -384px -96px;
+}
+.gnar {
+    background-position: -432px -96px;
+}
+.gragas, .graves, .hecarim, .heimerdinger, .irelia, .janna, .jarvan, .jax, .jayce, .jinx, .kalista, .karma, .karthus, .kassadin, .katarina, .kayle, .kennen, .khazix, .kogmav, .leblanc, .leesin, .leona, .lissandra, .lucian, .lulu, .lux, .malphite, .malzahar, .maokai, .masteryi {
+    background-image: url("../img/champions/champion1.png");
+    background-repeat: no-repeat;
+}
+.gragas {
+    background-position: 0 0;
+}
+.graves {
+    background-position: -48px 0;
+}
+.hecarim {
+    background-position: -96px 0;
+}
+.heimerdinger {
+    background-position: -144px 0;
+}
+.irelia {
+    background-position: -192px 0;
+}
+.janna {
+    background-position: -240px 0;
+}
+.jarvan {
+    background-position: -288px 0;
+}
+.jax {
+    background-position: -336px 0;
+}
+.jayce {
+    background-position: -384px 0;
+}
+.jinx {
+    background-position: -432px 0;
+}
+.kalista {
+    background-position: 0 -48px;
+}
+.karma {
+    background-position: -48px -48px;
+}
+.karthus {
+    background-position: -96px -48px;
+}
+.kassadin {
+    background-position: -144px -48px;
+}
+.katarina {
+    background-position: -192px -48px;
+}
+.kayle {
+    background-position: -240px -48px;
+}
+.kennen {
+    background-position: -288px -48px;
+}
+.khazix {
+    background-position: -336px -48px;
+}
+.kogmav {
+    background-position: -384px -48px;
+}
+.leblanc {
+    background-position: -432px -48px;
+}
+.leesin {
+    background-position: 0 -96px;
+}
+.leona {
+    background-position: -48px -96px;
+}
+.lissandra {
+    background-position: -96px -96px;
+}
+.lucian {
+    background-position: -144px -96px;
+}
+.lulu {
+    background-position: -192px -96px;
+}
+.lux {
+    background-position: -240px -96px;
+}
+.malphite {
+    background-position: -288px -96px;
+}
+.malzahar {
+    background-position: -336px -96px;
+}
+.maokai {
+    background-position: -384px -96px;
+}
+.masteryi {
+    background-position: -432px -96px;
+}
+.missfortune, .wukong, .mordekaiser, .morgana, .nami, .nasus, .nautilus, .nidalee, .nocturne, .nunu, .olaf, .orianna, .pantheon, .poppy, .quinn, .rammus, .reksai, .renekton, .rengar, .riven, .rumble, .ryze, .sejuani, .shaco, .shen, .shyvana, .singed, .sion, .sivir, .skarner {
+    background-image: url("../img/champions/champion2.png");
+    background-repeat: no-repeat;
+}
+.missfortune {
+    background-position: 0 0;
+}
+.wukong {
+    background-position: -48px 0;
+}
+.mordekaiser {
+    background-position: -96px 0;
+}
+.morgana {
+    background-position: -144px 0;
+}
+.nami {
+    background-position: -192px 0;
+}
+.nasus {
+    background-position: -240px 0;
+}
+.nautilus {
+    background-position: -288px 0;
+}
+.nidalee {
+    background-position: -336px 0;
+}
+.nocturne {
+    background-position: -384px 0;
+}
+.nunu {
+    background-position: -432px 0;
+}
+.olaf {
+    background-position: 0 -48px;
+}
+.orianna {
+    background-position: -48px -48px;
+}
+.pantheon {
+    background-position: -96px -48px;
+}
+.poppy {
+    background-position: -144px -48px;
+}
+.quinn {
+    background-position: -192px -48px;
+}
+.rammus {
+    background-position: -240px -48px;
+}
+.reksai {
+    background-position: -288px -48px;
+}
+.renekton {
+    background-position: -336px -48px;
+}
+.rengar {
+    background-position: -384px -48px;
+}
+.riven {
+    background-position: -432px -48px;
+}
+.rumble {
+    background-position: 0 -96px;
+}
+.ryze {
+    background-position: -48px -96px;
+}
+.sejuani {
+    background-position: -96px -96px;
+}
+.shaco {
+    background-position: -144px -96px;
+}
+.shen {
+    background-position: -192px -96px;
+}
+.shyvana {
+    background-position: -240px -96px;
+}
+.singed {
+    background-position: -288px -96px;
+}
+.sion {
+    background-position: -336px -96px;
+}
+.sivir {
+    background-position: -384px -96px;
+}
+.skarner {
+    background-position: -432px -96px;
+}
+.sona, .soraka, .swain, .syndra, .talon, .taric, .teemo, .thresh, .tristana, .trundle, .tryndamere, .twistedfate, .twitch, .udyr, .urgot, .varus, .vayne, .veigar, .velkoz, .vi, .viktor, .vladimir, .volibear, .warwick, .xerath, .xinzhao, .yasuo, .yorick, .zac, .zed {
+    background-image: url("../img/champions/champion3.png");
+    background-repeat: no-repeat;
+}
+.sona {
+    background-position: 0 0;
+}
+.soraka {
+    background-position: -48px 0;
+}
+.swain {
+    background-position: -96px 0;
+}
+.syndra {
+    background-position: -144px 0;
+}
+.talon {
+    background-position: -192px 0;
+}
+.taric {
+    background-position: -240px 0;
+}
+.teemo {
+    background-position: -288px 0;
+}
+.thresh {
+    background-position: -336px 0;
+}
+.tristana {
+    background-position: -384px 0;
+}
+.trundle {
+    background-position: -432px 0;
+}
+.tryndamere {
+    background-position: 0 -48px;
+}
+.twistedfate {
+    background-position: -48px -48px;
+}
+.twitch {
+    background-position: -96px -48px;
+}
+.udyr {
+    background-position: -144px -48px;
+}
+.urgot {
+    background-position: -192px -48px;
+}
+.varus {
+    background-position: -240px -48px;
+}
+.vayne {
+    background-position: -288px -48px;
+}
+.veigar {
+    background-position: -336px -48px;
+}
+.velkoz {
+    background-position: -384px -48px;
+}
+.vi {
+    background-position: -432px -48px;
+}
+.viktor {
+    background-position: 0 -96px;
+}
+.vladimir {
+    background-position: -48px -96px;
+}
+.volibear {
+    background-position: -96px -96px;
+}
+.warwick {
+    background-position: -144px -96px;
+}
+.xerath {
+    background-position: -192px -96px;
+}
+.xinzhao {
+    background-position: -240px -96px;
+}
+.yasuo {
+    background-position: -288px -96px;
+}
+.yorick {
+    background-position: -336px -96px;
+}
+.zac {
+    background-position: -384px -96px;
+}
+.zed {
+    background-position: -432px -96px;
+}
+.ziggs, .zilean, .zyra, .bard, .ekko, .aaayou {
+    background-image: url("../img/champions/champion4.png");
+    background-repeat: no-repeat;
+}
+.ziggs {
+    background-position: 0 0;
+}
+.zilean {
+    background-position: -48px 0;
+}
+.zyra {
+    background-position: -96px 0;
+}
+.bard {
+    background-position: -144px 0;
+}
+.ekko {
+    background-position: -192px 0;
+}
+.aaayou {
+    background-position: -240px 0;
+}

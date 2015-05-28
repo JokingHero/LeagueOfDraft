@@ -1,5 +1,5 @@
 .aatrox, .ahri, .akali, .alistar, .amumu, .anivia, .annie, .ashe, .azir, .blitzcrank, .brand, .braum, .caitlyn, .cassiopeia, .chogath, .corki, .darius, .diana, .draven, .drmundo, .elise, .evelynn, .ezreal, .fiddlesticks, .fiora, .fizz, .galio, .gangplank, .garen, .gnar {
-    background-image: url("/modules/core/img/champions/champion0.png");
+    background-image: url("/modules/core/img/sprites/champion0.png");
     background-repeat: no-repeat;
 }
 .aatrox {
@@ -93,7 +93,7 @@
     background-position: -432px -96px;
 }
 .gragas, .graves, .hecarim, .heimerdinger, .irelia, .janna, .jarvan, .jax, .jayce, .jinx, .kalista, .karma, .karthus, .kassadin, .katarina, .kayle, .kennen, .khazix, .kogmav, .leblanc, .leesin, .leona, .lissandra, .lucian, .lulu, .lux, .malphite, .malzahar, .maokai, .masteryi {
-    background-image: url("/modules/core/img/champions/champion1.png");
+    background-image: url("/modules/core/img/sprites/champion1.png");
     background-repeat: no-repeat;
 }
 .gragas {
@@ -187,7 +187,7 @@
     background-position: -432px -96px;
 }
 .missfortune, .wukong, .mordekaiser, .morgana, .nami, .nasus, .nautilus, .nidalee, .nocturne, .nunu, .olaf, .orianna, .pantheon, .poppy, .quinn, .rammus, .reksai, .renekton, .rengar, .riven, .rumble, .ryze, .sejuani, .shaco, .shen, .shyvana, .singed, .sion, .sivir, .skarner {
-    background-image: url("/modules/core/img/champions/champion2.png");
+    background-image: url("/modules/core/img/sprites/champion2.png");
     background-repeat: no-repeat;
 }
 .missfortune {
@@ -281,7 +281,7 @@
     background-position: -432px -96px;
 }
 .sona, .soraka, .swain, .syndra, .talon, .taric, .teemo, .thresh, .tristana, .trundle, .tryndamere, .twistedfate, .twitch, .udyr, .urgot, .varus, .vayne, .veigar, .velkoz, .vi, .viktor, .vladimir, .volibear, .warwick, .xerath, .xinzhao, .yasuo, .yorick, .zac, .zed {
-    background-image: url("/modules/core/img/champions/champion3.png");
+    background-image: url("/modules/core/img/sprites/champion3.png");
     background-repeat: no-repeat;
 }
 .sona {
@@ -375,7 +375,7 @@
     background-position: -432px -96px;
 }
 .ziggs, .zilean, .zyra, .bard, .ekko, .aaayou {
-    background-image: url("/modules/core/img/champions/champion4.png");
+    background-image: url("/modules/core/img/sprites/champion4.png");
     background-repeat: no-repeat;
 }
 .ziggs {
@@ -395,4 +395,42 @@
 }
 .aaayou {
     background-position: -240px 0;
+}
+.ban, .blue1, .blue2, .blue3, .blue4, .blue5, .purple1, .purple2, .purple3, .purple4, .purple5 {
+    background: url('/modules/core/img/sprites/positions.png') no-repeat top left;
+    width: 48px;
+    height: 48px;
+}
+.ban {
+    background-position: 0 0;
+}
+.blue1 {
+    background-position: -48px 0;
+}
+.blue2 {
+    background-position: -96px 0;
+}
+.blue3 {
+    background-position: -144px 0;
+}
+.blue4 {
+    background-position: -192px 0;
+}
+.blue5 {
+    background-position: -240px 0;
+}
+.purple1 {
+    background-position: -288px 0;
+}
+.purple2 {
+    background-position: -336px 0;
+}
+.purple3 {
+    background-position: -384px 0;
+}
+.purple4 {
+    background-position: -432px 0;
+}
+.purple5 {
+    background-position: -480px 0;
 }

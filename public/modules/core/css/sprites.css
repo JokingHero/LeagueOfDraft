@@ -1,5 +1,5 @@
 .aatrox, .ahri, .akali, .alistar, .amumu, .anivia, .annie, .ashe, .azir, .blitzcrank, .brand, .braum, .caitlyn, .cassiopeia, .chogath, .corki, .darius, .diana, .draven, .drmundo, .elise, .evelynn, .ezreal, .fiddlesticks, .fiora, .fizz, .galio, .gangplank, .garen, .gnar {
-    background-image: url("../img/champions/champion0.png");
+    background-image: url("/modules/core/img/champions/champion0.png");
     background-repeat: no-repeat;
 }
 .aatrox {
@@ -93,7 +93,7 @@
     background-position: -432px -96px;
 }
 .gragas, .graves, .hecarim, .heimerdinger, .irelia, .janna, .jarvan, .jax, .jayce, .jinx, .kalista, .karma, .karthus, .kassadin, .katarina, .kayle, .kennen, .khazix, .kogmav, .leblanc, .leesin, .leona, .lissandra, .lucian, .lulu, .lux, .malphite, .malzahar, .maokai, .masteryi {
-    background-image: url("../img/champions/champion1.png");
+    background-image: url("/modules/core/img/champions/champion1.png");
     background-repeat: no-repeat;
 }
 .gragas {
@@ -187,7 +187,7 @@
     background-position: -432px -96px;
 }
 .missfortune, .wukong, .mordekaiser, .morgana, .nami, .nasus, .nautilus, .nidalee, .nocturne, .nunu, .olaf, .orianna, .pantheon, .poppy, .quinn, .rammus, .reksai, .renekton, .rengar, .riven, .rumble, .ryze, .sejuani, .shaco, .shen, .shyvana, .singed, .sion, .sivir, .skarner {
-    background-image: url("../img/champions/champion2.png");
+    background-image: url("/modules/core/img/champions/champion2.png");
     background-repeat: no-repeat;
 }
 .missfortune {
@@ -281,7 +281,7 @@
     background-position: -432px -96px;
 }
 .sona, .soraka, .swain, .syndra, .talon, .taric, .teemo, .thresh, .tristana, .trundle, .tryndamere, .twistedfate, .twitch, .udyr, .urgot, .varus, .vayne, .veigar, .velkoz, .vi, .viktor, .vladimir, .volibear, .warwick, .xerath, .xinzhao, .yasuo, .yorick, .zac, .zed {
-    background-image: url("../img/champions/champion3.png");
+    background-image: url("/modules/core/img/champions/champion3.png");
     background-repeat: no-repeat;
 }
 .sona {
@@ -375,7 +375,7 @@
     background-position: -432px -96px;
 }
 .ziggs, .zilean, .zyra, .bard, .ekko, .aaayou {
-    background-image: url("../img/champions/champion4.png");
+    background-image: url("/modules/core/img/champions/champion4.png");
     background-repeat: no-repeat;
 }
 .ziggs {

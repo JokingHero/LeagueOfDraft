@@ -427,6 +427,9 @@ angular.module('core').controller('HomeController', ['$scope', '$document', '$ht
             'name': 'syndra',
             'id': '134'
         }, {
+            'name': 'tahm',
+            'id': '223'
+        }, {
             'name': 'talon',
             'id': '91'
         }, {
@@ -613,15 +616,6 @@ angular.module('core').controller('HomeController', ['$scope', '$document', '$ht
         };
     }
 ]);
-
-'use strict';
-
-angular.module('core').directive('scrollfix', ["$window", function($window) {
-    return function(scope, element, attrs) {
-
-        
-    };
-}]);
 
 'use strict';
 

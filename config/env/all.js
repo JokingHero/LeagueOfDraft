@@ -31,8 +31,8 @@ module.exports = {
     },
     // The session cookie name
     sessionName: 'connect.sid',
-    leagueKey: '8d28d7b1-e50e-438c-845a-309f609cc31f',
-    leagueRequestLimit: 5, //divide always by two coz we must fetch also id - Standarad RIOT limitation is 10 requests every 10 seconds
+    leagueKey: '0b7bff22-1905-4d35-b28e-f766375e95f3',
+    leagueRequestLimit: 1500, //divide always by two coz we must fetch also id - RIOT limitation is 3000 requests every 10 sec
     mandrill: process.env.MANDRILL_APIKEY || 'dvifSXcwpPWLiwxWf5kULQ',
     log: {
         // Can specify one of 'combined', 'common', 'dev', 'short', 'tiny'

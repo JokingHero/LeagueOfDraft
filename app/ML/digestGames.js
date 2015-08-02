@@ -35,8 +35,6 @@ function calculateMedian(values) {
     filteredValues.sort(function(a, b) {
         return a - b;
     });
-    console.log(values);
-    console.log(filteredValues);
     var half = Math.floor(filteredValues.length / 2);
 
     if (filteredValues.length % 2) {

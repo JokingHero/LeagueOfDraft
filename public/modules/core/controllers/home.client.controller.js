@@ -296,6 +296,9 @@ angular.module('core').controller('HomeController', ['$scope', '$document', '$ht
             'name': 'syndra',
             'id': '134'
         }, {
+            'name': 'tahm',
+            'id': '223'
+        }, {
             'name': 'talon',
             'id': '91'
         }, {

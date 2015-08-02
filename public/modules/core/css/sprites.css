@@ -374,7 +374,7 @@
 .zed {
     background-position: -432px -96px;
 }
-.ziggs, .zilean, .zyra, .bard, .ekko, .aaayou {
+.ziggs, .zilean, .zyra, .bard, .ekko, .tahm {
     background-image: url("/modules/core/img/sprites/champion4.png");
     background-repeat: no-repeat;
 }
@@ -393,10 +393,10 @@
 .ekko {
     background-position: -192px 0;
 }
-.aaayou {
+.tahm {
     background-position: -240px 0;
 }
-.ban, .blue1, .blue2, .blue3, .blue4, .blue5, .purple1, .purple2, .purple3, .purple4, .purple5 {
+.ban, .blue1, .blue2, .blue3, .blue4, .blue5, .purple1, .purple2, .purple3, .purple4, .purple5, .aaayou {
     background: url('/modules/core/img/sprites/positions.png') no-repeat top left;
     width: 48px;
     height: 48px;
@@ -433,4 +433,7 @@
 }
 .purple5 {
     background-position: -480px 0;
+}
+.aaayou {
+    background-position: -528px 0;
 }

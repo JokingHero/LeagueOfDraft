@@ -949,6 +949,16 @@
         "pros": ["Can stun 3-4 people in TF", "Great Burst", "Low Cooldowns", "Great farming champion and easy to last hit with her AA's animations", "Unexpected burst"],
         "cons": ["Slightly Mana Intensive", "High skill cap", "Naturally squishy"]
     },
+    "TahmKench": {
+        "id": 223,
+        "name": "Tahm Kench",
+        "img": "tahm",
+        "graphicsCount": 2,
+        "worksWell": ["graves", "jarvan", "karthus"],
+        "weakAgainst": ["janna", "kalista", "ashe"],
+        "pros": ["Very tanky", "Can save his teammates' lives", "Can lock a target down", "High base damage", "Easy to set up ganks with his ultimate"],
+        "cons": ["Needs team to buy him time in order to be effective", "No battle ultimate", "Low mobility in combat"]
+    },
     "Talon": {
         "id": 91,
         "name": "Talon",

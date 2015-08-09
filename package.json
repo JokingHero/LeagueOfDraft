@@ -3,10 +3,10 @@
   "description": "Win games in champion select! Or at least increase Your chances later.",
   "version": "0.3.3",
   "private": false,
-  "author": "https://github.com/meanjs/mean/graphs/contributors",
+  "author": "Kornel Labun",
   "repository": {
     "type": "git",
-    "url": "https://github.com/meanjs/mean.git"
+    "url": "https://github.com/JokingHero/LeagueOfDraft.git"
   },
   "engines": {
     "node": ">=0.10.28",

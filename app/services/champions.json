@@ -512,7 +512,7 @@
     },
     "JarvanIV": {
         "id": 59,
-        "name": "Jarvan VI",
+        "name": "Jarvan IV",
         "img": "jarvan",
         "graphicsCount": 7,
         "worksWell": ["gnar", "rumble", "orianna"],

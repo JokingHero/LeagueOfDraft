@@ -227,6 +227,13 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-12" style="margin-top:20px;">
+                <ul class="fa-ul" style="display: table; margin: 0 auto;" id="methods">
+                    <li ng-repeat="method in methods track by $index"><i class="fa-li fa fa-cog"></i>{{method}}</li>
+                </ul>
+            </div>
+        </div>
         <div infinite-scroll="loadMorePropositions()" infinite-scroll-distance="3" class="col-lg-6 col-lg-offset-3 col-xs-12" style="margin-top:50px;" id="predictions">
             <div class="champPopup" ng-repeat="proposition in propositions">
                 <div class="row">

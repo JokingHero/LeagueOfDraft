@@ -25,6 +25,8 @@ Array.prototype.extend = function(other_array) {
 exports.specificPredictions = function(req, res) {
     var standardTeamRoles = ['ADC', 'Middle', 'Top', 'Jungle', 'Support'];
     var propositions = [];
+    var methodsBans = req.body.bans.length > 0;
+    var methodsCounters = false;
     var filterIds = [0];
     filterIds.extend(req.body.purple);
     filterIds.extend(req.body.blue);
@@ -68,7 +70,6 @@ exports.specificPredictions = function(req, res) {
         });
 
         if (counters.length > 0) {
-
             proposition.winPercent = _.reduce(counters, function(memo, counter) {
                 return memo + counter.winRate;
             }, 0) / counters.length;
@@ -76,6 +77,7 @@ exports.specificPredictions = function(req, res) {
             if (proposition.winPercent < 50) {
                 proposition.countered = true;
             }
+            methodsCounters = true;
         }
     });
 
@@ -88,15 +90,20 @@ exports.specificPredictions = function(req, res) {
                         $or: [{
                             'region': req.body.gameRegion
                         }, {
-                            'summoner': req.body.gameSummoner.replace(/\s/g,
-                                '').toLowerCase()
+                            'summoner': req.body.gameSummoner.replace(/\s/g, '').toLowerCase()
                         }]
                     },
                     function(err, playerData) {
                         if (err) {
                             console.log('[MongoDB] Error: %j', err);
-                            propositions = _.sortBy(propositions, "winPercent").reverse();
-                            res.json(propositions);
+                            res.json({
+                                'propositions': _.sortBy(propositions, "winPercent").reverse(),
+                                'methods': [
+                                  methodsBans ? 'Bans excluded.' : 'No bans excluded.',
+                                  methodsCounters ? 'Counters considered.' : 'No counters have been considered.',
+                                  'Player Win Rates not examined. Database error.'
+                                ]
+                            });
                         }
                         else {
                             _.forEach(propositions, function(proposition) {
@@ -109,8 +116,14 @@ exports.specificPredictions = function(req, res) {
                                     }
                                 }
                             });
-                            propositions = _.sortBy(propositions, "winPercent").reverse();
-                            res.json(propositions);
+                            res.json({
+                                'propositions': _.sortBy(propositions, "winPercent").reverse(),
+                                'methods': [
+                                  methodsBans ? 'Bans excluded.' : 'No bans excluded.',
+                                  methodsCounters ? 'Counters considered.' : 'No counters have been considered.',
+                                  'Player Win Rates examined.'
+                                ]
+                            });
                         }
                     });
             }
@@ -121,8 +134,14 @@ exports.specificPredictions = function(req, res) {
                     '?api_key=' + config.leagueKey;
                 rest.get(getId).on('complete', function(response) {
                     if (response instanceof Error || typeof response === "string" || response instanceof String) {
-                        propositions = _.sortBy(propositions, "winPercent").reverse();
-                        res.json(propositions);
+                        res.json({
+                            'propositions': _.sortBy(propositions, "winPercent").reverse(),
+                            'methods': [
+                              methodsBans ? 'Bans excluded.' : 'No bans excluded.',
+                              methodsCounters ? 'Counters considered.' : 'No counters have been considered.',
+                              'Player Win Rates not examined. Could not find player.'
+                            ]
+                        });
                     }
                     else {
                         var player = {
@@ -138,8 +157,14 @@ exports.specificPredictions = function(req, res) {
                         rest.get(getStatsByChamp).on('complete', function(response) {
                             if (response instanceof Error || typeof response === "string" || response instanceof String) {
                                 console.log('[RIOT API] Error: %j', response);
-                                propositions = _.sortBy(propositions, "winPercent").reverse();
-                                res.json(propositions);
+                                res.json({
+                                    'propositions': _.sortBy(propositions, "winPercent").reverse(),
+                                    'methods': [
+                                      methodsBans ? 'Bans excluded.' : 'No bans excluded.',
+                                      methodsCounters ? 'Counters considered.' : 'No counters have been considered.',
+                                      'Player Win Rates not examined. RIOT API error.'
+                                    ]
+                                });
                             }
                             else {
                                 _.forEach(response.champions, function(champion) {
@@ -159,9 +184,7 @@ exports.specificPredictions = function(req, res) {
                                     },
                                     function(err) {
                                         if (err) {
-                                            console.log(
-                                                '[MongoDB] Error: %j',
-                                                err);
+                                            console.log('[MongoDB] Error: %j', err);
                                         }
                                     }
                                 );
@@ -180,8 +203,14 @@ exports.specificPredictions = function(req, res) {
                                 });
 
                                 //send response
-                                propositions = _.sortBy(propositions, "winPercent").reverse();
-                                res.json(propositions);
+                                res.json({
+                                    'propositions': _.sortBy(propositions, "winPercent").reverse(),
+                                    'methods': [
+                                      methodsBans ? 'Bans excluded.' : 'No bans excluded.',
+                                      methodsCounters ? 'Counters considered.' : 'No counters have been considered.',
+                                      'Player Win Rates examined.'
+                                    ]
+                                });
                             }
                         });
                     }
@@ -190,7 +219,13 @@ exports.specificPredictions = function(req, res) {
         });
     }
     else {
-        propositions = _.sortBy(propositions, "winPercent").reverse();
-        res.json(propositions);
+        res.json({
+            'propositions': _.sortBy(propositions, "winPercent").reverse(),
+            'methods': [
+              methodsBans ? 'Bans excluded.' : 'No bans excluded.',
+              methodsCounters ? 'Counters considered.' : 'No counters have been considered.',
+              'Player Win Rates not examined. No data submitted.'
+            ]
+        });
     }
 };

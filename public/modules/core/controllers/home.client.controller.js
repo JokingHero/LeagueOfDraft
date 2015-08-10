@@ -600,20 +600,7 @@ angular.module('core').controller('HomeController', ['$scope', '$document', '$ht
                 };
                 $http.post('/predictions/specific', $scope.settingsDetails).success(
                     function(response) {
-                        $scope.allPropositions = _.sortBy(response, "winPercent").reverse();
-                        $scope.allPropositions.forEach(function(proposition) {
-                            var counters = _.sortBy(proposition.counters, "winRate");
-
-                            function championIdToName(obj) {
-                                return _.find($scope.champions,
-                                    function(champs) {
-                                        return champs.id === obj.id.toString();
-                                    }).name;
-                            }
-                            proposition.weakAgainst = counters.slice(0, 3).map(championIdToName);
-                            proposition.goodAgainst = counters.slice(-3).map(championIdToName);
-                        });
-
+                        $scope.allPropositions = response;
                         if (response.length < 1) {
                             toaster.pop({
                                 type: 'warining',

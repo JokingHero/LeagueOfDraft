@@ -7,12 +7,24 @@ var _ = require('lodash'),
 
 var allParsed = [];
 
+function championIdToName(obj) {
+    var whichOne = _.find(champions, function(champ) {
+        return champ.id === obj.id;
+    });
+    if (!whichOne) {
+        console.log('[Worker Error] Bad champion id.');
+        return '';
+    }
+    return whichOne.img;
+}
+
 module.exports = function() {
     rest.get('http://champion.gg/statistics/').on('complete', function(championsStats) {
         console.log('Worker statistics');
         if (championsStats instanceof Error) {
             console.log('[Worker] Error: %j', championsStats);
-        } else {
+        }
+        else {
             var keyString = "matchupData.stats = ";
             var start = championsStats.indexOf(keyString);
             if (start !== -1) {
@@ -34,14 +46,15 @@ module.exports = function() {
                         "cons": thisChamp.cons,
                         "counters": [],
                         "countered": false,
-                        "worksWell": thisChamp.worksWell,
-                        "weakAgainst": thisChamp.weakAgainst
+                        "goodAgainst": [],
+                        "weakAgainst": []
                     };
                     var url = 'http://champion.gg/champion/' + champ.key + '/' + champ.role;
                     rest.get(url).on('complete', function(details) {
                         if (details instanceof Error) {
                             console.log('[Worker] Error: %j', details);
-                        } else {
+                        }
+                        else {
                             keyString = "matchupData.championData = ";
                             start = details.indexOf(keyString);
                             if (start !== -1) {
@@ -55,13 +68,20 @@ module.exports = function() {
                                         });
                                     }
                                 });
+
+                                var counters = _.sortBy(updateChamp.counters, "winRate");
+                                updateChamp.weakAgainst = counters.slice(0, 3).map(championIdToName);
+                                updateChamp.goodAgainst = counters.slice(-3).map(championIdToName);
+
                                 allParsed.push(updateChamp);
                                 if (allParsed.length === championsUnparsed.length) {
                                     fs.writeFile('./app/services/currentChampsBase.json', JSON.stringify(allParsed, null, 4), function(err) {
                                         if (err) {
                                             console.log(err);
-                                        } else {
-                                            GLOBAL.currentChampsBase = require('../services/currentChampsBase.json');
+                                        }
+                                        else {
+                                            GLOBAL.currentChampsBase = allParsed;
+                                            console.log('[Worker] Data updated.');
                                         }
                                     });
                                 }
@@ -72,7 +92,8 @@ module.exports = function() {
 
                 console.log('[Worker] Fetch successfull.');
 
-            } else {
+            }
+            else {
                 console.log('[Worker] Could not fetch from Champion.gg');
             }
         }

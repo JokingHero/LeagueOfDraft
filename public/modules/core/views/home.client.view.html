@@ -243,10 +243,10 @@
                         <h4>
                             <p style="color: #dddddd;">Win chance: {{proposition.winPercent}}%</p>
                         </h4>
-                        <div ng-hide="!proposition.worksWell" style="margin-top: 55px;">
+                        <div ng-hide="!proposition.goodAgainst" style="margin-top: 55px;">
                             <span class="propositionWorks">Good against:</span>
                             <div class="row">
-                                <div class="col-lg-4 col-md-4 col-xs-4" ng-repeat="well in proposition.goodAgainst">
+                                <div class="col-lg-4 col-md-4 col-xs-4" ng-repeat="well in proposition.goodAgainst track by $index">
                                     <div style="height:48px; width:48px;" alt="{{well}}" ng-if="well" class="{{well}}" class="center-block"></div>
                                 </div>
                             </div>
@@ -254,7 +254,7 @@
                         <div ng-hide="!proposition.weakAgainst">
                             <span class="propositionWorks">Weak against:</span>
                             <div class="row">
-                                <div class="col-lg-4 col-md-4 col-xs-4" ng-repeat="weak in proposition.weakAgainst">
+                                <div class="col-lg-4 col-md-4 col-xs-4" ng-repeat="weak in proposition.weakAgainst track by $index">
                                     <div style="height:48px; width:48px;" alt="{{weak}}" ng-if="weak" class="{{weak}}" class="center-block"></div>
                                 </div>
                             </div>

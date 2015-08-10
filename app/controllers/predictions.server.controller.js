@@ -32,9 +32,7 @@ exports.specificPredictions = function(req, res) {
 
     var teamWith = req.body.teamBlue === true ? req.body.blue : req.body.purple;
     var teamAgainst = req.body.teamBlue === false ? req.body.blue : req.body.purple;
-
-    propositions = _.filter(JSON.parse(JSON.stringify(GLOBAL.currentChampsBase)), function(
-        proposition) {
+    propositions = _.filter(JSON.parse(JSON.stringify(GLOBAL.currentChampsBase)), function(proposition) {
         return filterIds.indexOf(proposition.id) === -1;
     });
 
@@ -107,8 +105,7 @@ exports.specificPredictions = function(req, res) {
                                         'id': proposition.id
                                     });
                                     if (index !== -1) {
-                                        proposition.winPercent = playerData
-                                            .champions[index].winPercent;
+                                        proposition.winPercent = playerData.champions[index].winPercent;
                                     }
                                 }
                             });
@@ -123,18 +120,14 @@ exports.specificPredictions = function(req, res) {
                     encodeURIComponent(req.body.gameSummoner.toLowerCase()) +
                     '?api_key=' + config.leagueKey;
                 rest.get(getId).on('complete', function(response) {
-                    if (response instanceof Error || typeof response ===
-                        "string" || response instanceof String) {
+                    if (response instanceof Error || typeof response === "string" || response instanceof String) {
                         propositions = _.sortBy(propositions, "winPercent").reverse();
                         res.json(propositions);
                     }
                     else {
-
                         var player = {
-                            id: response[req.body.gameSummoner.replace(
-                                /\s/g, '').toLowerCase()].id,
-                            summoner: req.body.gameSummoner.replace(/\s/g,
-                                '').toLowerCase(),
+                            id: response[req.body.gameSummoner.replace(/\s/g, '').toLowerCase()].id,
+                            summoner: req.body.gameSummoner.replace(/\s/g, '').toLowerCase(),
                             region: req.body.gameRegion,
                             champions: []
                         };
@@ -142,30 +135,18 @@ exports.specificPredictions = function(req, res) {
                             '.api.pvp.net/api/lol/' + req.body.gameRegion +
                             '/v1.3/stats/by-summoner/' + player.id +
                             '/ranked?season=SEASON2015&api_key=' + config.leagueKey;
-                        rest.get(getStatsByChamp).on('complete', function(
-                            response) {
-                            if (response instanceof Error || typeof response ===
-                                "string" || response instanceof String) {
-                                console.log('[RIOT API] Error: %j',
-                                    response);
-                                propositions = _.sortBy(propositions,
-                                    "winPercent").reverse();
+                        rest.get(getStatsByChamp).on('complete', function(response) {
+                            if (response instanceof Error || typeof response === "string" || response instanceof String) {
+                                console.log('[RIOT API] Error: %j', response);
+                                propositions = _.sortBy(propositions, "winPercent").reverse();
                                 res.json(propositions);
                             }
                             else {
-
-                                _.forEach(response.champions, function(
-                                    champion) {
-                                    if (champion.stats.totalSessionsPlayed >
-                                        10) {
+                                _.forEach(response.champions, function(champion) {
+                                    if (champion.stats.totalSessionsPlayed > 10) {
                                         player.champions.push({
-                                            id: champion
-                                                .id,
-                                            winPercent: champion
-                                                .stats.totalSessionsWon *
-                                                100 /
-                                                champion
-                                                .stats.totalSessionsPlayed
+                                            id: champion.id,
+                                            winPercent: champion.stats.totalSessionsWon * 100 / champion.stats.totalSessionsPlayed
                                         });
                                     }
                                 });
@@ -186,24 +167,20 @@ exports.specificPredictions = function(req, res) {
                                 );
 
                                 //change propositions
-                                _.forEach(propositions, function(
-                                    proposition) {
+                                _.forEach(propositions, function(proposition) {
                                     if (!proposition.countered) {
-                                        var index = _.findIndex(
-                                            player.champions, {
-                                                'id': proposition
-                                                    .id
-                                            });
+                                        var index = _.findIndex(player.champions, {
+                                            'id': proposition.id
+                                        });
 
                                         if (index !== -1) {
-                                            proposition.winPercent =
-                                                player.champions[
-                                                    index].winPercent;
+                                            proposition.winPercent = player.champions[index].winPercent;
                                         }
                                     }
                                 });
 
                                 //send response
+                                propositions = _.sortBy(propositions, "winPercent").reverse();
                                 res.json(propositions);
                             }
                         });
@@ -213,6 +190,7 @@ exports.specificPredictions = function(req, res) {
         });
     }
     else {
+        propositions = _.sortBy(propositions, "winPercent").reverse();
         res.json(propositions);
     }
 };

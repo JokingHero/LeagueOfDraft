@@ -679,8 +679,8 @@
     },
     "KogMaw": {
         "id": 96,
-        "name": "Kog'mav",
-        "img": "kogmav",
+        "name": "Kog'maw",
+        "img": "kogmaw",
         "graphicsCount": 9,
         "worksWell": ["nami", "thresh", "nunu"],
         "weakAgainst": ["lucian", "leona", "tristana"],

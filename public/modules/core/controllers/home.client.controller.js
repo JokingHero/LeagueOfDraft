@@ -213,7 +213,7 @@ angular.module('core').controller('HomeController', ['$scope', '$document', '$ht
                 'id': '121'
         },
             {
-                'name': 'kogmav',
+                'name': 'kogmaw',
                 'id': '96'
         },
             {

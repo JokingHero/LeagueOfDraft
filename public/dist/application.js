@@ -647,41 +647,25 @@ angular.module('core').controller('HomeController', ['$scope', '$document', '$ht
                 'name': 'zyra',
                 'id': '143'
         }];
-        $scope.purple_ban1 = [
-            {}];
-        $scope.purple_ban2 = [
-            {}];
-        $scope.purple_ban3 = [
-            {}];
-        $scope.purple1 = [
-            {
-                'name': 'aaayou',
-                'id': '-1'
+        $scope.purple_ban1 = [{}];
+        $scope.purple_ban2 = [{}];
+        $scope.purple_ban3 = [{}];
+        $scope.purple1 = [{
+            'name': 'aaayou',
+            'id': '-1'
         }];
-        $scope.purple2 = [
-            {}];
-        $scope.purple3 = [
-            {}];
-        $scope.purple4 = [
-            {}];
-        $scope.purple5 = [
-            {}];
-        $scope.blue_ban1 = [
-            {}];
-        $scope.blue_ban2 = [
-            {}];
-        $scope.blue_ban3 = [
-            {}];
-        $scope.blue1 = [
-            {}];
-        $scope.blue2 = [
-            {}];
-        $scope.blue3 = [
-            {}];
-        $scope.blue4 = [
-            {}];
-        $scope.blue5 = [
-            {}];
+        $scope.purple2 = [{}];
+        $scope.purple3 = [{}];
+        $scope.purple4 = [{}];
+        $scope.purple5 = [{}];
+        $scope.blue_ban1 = [{}];
+        $scope.blue_ban2 = [{}];
+        $scope.blue_ban3 = [{}];
+        $scope.blue1 = [{}];
+        $scope.blue2 = [{}];
+        $scope.blue3 = [{}];
+        $scope.blue4 = [{}];
+        $scope.blue5 = [{}];
 
         $scope.$watch('authentication.user', function() {
             $scope.gameRole = $scope.authentication.user.role || 'Unknown';
@@ -691,6 +675,7 @@ angular.module('core').controller('HomeController', ['$scope', '$document', '$ht
 
         $scope.propositions = [];
         $scope.allPropositions = [];
+        $scope.methods = [];
 
         $scope.getPropositions = function() {
             var blue = _.compact([$scope.blue1[0].id, $scope.blue2[0].id, $scope.blue3[
@@ -718,10 +703,8 @@ angular.module('core').controller('HomeController', ['$scope', '$document', '$ht
             }
             else {
                 $scope.settingsDetails = {
-                    bans: _.compact([$scope.purple_ban1[0].id, $scope.purple_ban2[0]
-                        .id, $scope.purple_ban3[0].id, $scope.blue_ban1[0].id,
-                        $scope.blue_ban2[0].id, $scope.blue_ban3[0].id]).map(
-                        Number),
+                    bans: _.compact([$scope.purple_ban1[0].id, $scope.purple_ban2[0].id, $scope.purple_ban3[0].id,
+                                     $scope.blue_ban1[0].id, $scope.blue_ban2[0].id, $scope.blue_ban3[0].id]).map(Number),
                     blue: blue.map(Number),
                     purple: purple.map(Number),
                     teamBlue: team,
@@ -731,21 +714,22 @@ angular.module('core').controller('HomeController', ['$scope', '$document', '$ht
                 };
                 $http.post('/predictions/specific', $scope.settingsDetails).success(
                     function(response) {
-                        $scope.allPropositions = response;
-                        if (response.length < 1) {
+                        $scope.allPropositions = response.propositions;
+                        $scope.methods = response.methods;
+                        if (response.propositions.length < 1) {
                             toaster.pop({
                                 type: 'warining',
                                 title: 'Something went wrong',
                                 body: 'We have no propositions prepared for this request.'
                             });
                         }
-                        else if (response.length < 5) {
+                        else if (response.propositions.length < 5) {
                             $scope.propositions = response;
                         }
                         else {
                             $scope.propositions = $scope.allPropositions.slice(0, 5);
                             var goTo = angular.element(document.getElementById(
-                                'predictions'));
+                                'methods'));
                             $document.scrollToElement(goTo, 75, 1500);
                         }
                     }).error(function(response) {

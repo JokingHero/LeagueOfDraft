@@ -248,7 +248,7 @@
                             <a style="font-style: italic; color: #fff;" ng-href="http://www.champion.gg/champion/{{proposition.key + '/' + proposition.role}}" target="_blank">Build</a>
                         </h4>
                         <h4>
-                            <p style="color: #dddddd;">Win chance: {{proposition.winPercent}}%</p>
+                            <p style="color: #dddddd;">Win chance: {{proposition.winPercent | number:2}}%</p>
                         </h4>
                         <div ng-hide="!proposition.goodAgainst" style="margin-top: 55px;">
                             <span class="propositionWorks">Good against:</span>

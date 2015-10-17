@@ -42,8 +42,6 @@ module.exports = function() {
                         "playPercent": champ.general.playPercent,
                         "banRate": champ.general.banRate,
                         "graphicsCount": thisChamp.graphicsCount,
-                        "pros": thisChamp.pros,
-                        "cons": thisChamp.cons,
                         "counters": [],
                         "countered": false,
                         "goodAgainst": [],

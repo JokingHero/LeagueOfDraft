@@ -374,7 +374,7 @@
 .zed {
     background-position: -432px -96px;
 }
-.ziggs, .zilean, .zyra, .bard, .ekko, .tahm {
+.ziggs, .zilean, .zyra, .bard, .ekko, .tahm, .kindred {
     background-image: url("/modules/core/img/sprites/champion4.png");
     background-repeat: no-repeat;
 }
@@ -395,6 +395,9 @@
 }
 .tahm {
     background-position: -240px 0;
+}
+.kindred {
+    background-position: -284px 0;
 }
 .ban, .blue1, .blue2, .blue3, .blue4, .blue5, .purple1, .purple2, .purple3, .purple4, .purple5, .aaayou {
     background: url('/modules/core/img/sprites/positions.png') no-repeat top left;

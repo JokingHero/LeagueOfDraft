@@ -213,6 +213,10 @@ angular.module('core').controller('HomeController', ['$scope', '$document', '$ht
                 'id': '121'
         },
             {
+                'name': 'kindred',
+                'id': '203'
+        },
+            {
                 'name': 'kogmaw',
                 'id': '96'
         },
@@ -547,10 +551,8 @@ angular.module('core').controller('HomeController', ['$scope', '$document', '$ht
         $scope.methods = [];
 
         $scope.getPropositions = function() {
-            var blue = _.compact([$scope.blue1[0].id, $scope.blue2[0].id, $scope.blue3[
-                0].id, $scope.blue4[0].id, $scope.blue5[0].id]);
-            var purple = _.compact([$scope.purple1[0].id, $scope.purple2[0].id, $scope.purple3[
-                0].id, $scope.purple4[0].id, $scope.purple5[0].id]);
+            var blue = _.compact([$scope.blue1[0].id, $scope.blue2[0].id, $scope.blue3[0].id, $scope.blue4[0].id, $scope.blue5[0].id]);
+            var purple = _.compact([$scope.purple1[0].id, $scope.purple2[0].id, $scope.purple3[0].id, $scope.purple4[0].id, $scope.purple5[0].id]);
             var team;
 
             if (blue.indexOf('-1') !== -1) {
@@ -587,7 +589,7 @@ angular.module('core').controller('HomeController', ['$scope', '$document', '$ht
                         $scope.methods = response.methods;
                         if (response.propositions.length < 1) {
                             toaster.pop({
-                                type: 'warining',
+                                type: 'warning',
                                 title: 'Something went wrong',
                                 body: 'We have no propositions prepared for this request.'
                             });
@@ -602,18 +604,17 @@ angular.module('core').controller('HomeController', ['$scope', '$document', '$ht
                             $document.scrollToElement(goTo, 75, 1500);
                         }
                     }).error(function(response) {
-                    toaster.pop({
-                        type: 'error',
-                        title: 'Error',
-                        body: response
-                    });
+                        toaster.pop({
+                            type: 'error',
+                            title: 'Error',
+                            body: response
+                        });
                 });
             }
         };
 
         $scope.loadMorePropositions = function() {
-            $scope.propositions = $scope.allPropositions.slice(0, $scope.propositions.length +
-                5);
+            $scope.propositions = $scope.allPropositions.slice(0, $scope.propositions.length + 5);
         };
 
         $scope.filterIt = function() {

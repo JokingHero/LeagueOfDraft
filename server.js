@@ -51,7 +51,7 @@ console.log('--');
 
 var dayRule = new schedule.RecurrenceRule();
 dayRule.hour = 14;
-dayRule.minute = 35;
+dayRule.minute = 40;
 var dayJob = schedule.scheduleJob(dayRule, function() {
     worker();
 });

@@ -50,8 +50,8 @@ if (process.env.NODE_ENV === 'secure') {
 console.log('--');
 
 var dayRule = new schedule.RecurrenceRule();
-dayRule.hour = 14;
-dayRule.minute = 40;
+dayRule.hour = 22;
+dayRule.minute = 28;
 var dayJob = schedule.scheduleJob(dayRule, function() {
     worker();
 });

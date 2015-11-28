@@ -215,6 +215,12 @@
         "img": "heimerdinger",
         "graphicsCount": 5
     },
+    "Illaoi": {
+        "id": 420,
+        "name": "Illaoi",
+        "img": "illaoi",
+        "graphicsCount": 2
+    },
     "Irelia": {
         "id": 39,
         "name": "Irelia",
